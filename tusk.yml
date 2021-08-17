@@ -1,0 +1,193 @@
+tasks:
+  configure-local-env:
+    private: true
+    run:
+      - set-environment:
+          DJANGO_SETTINGS_MODULE: src.settings.local
+
+  configure-prod-env:
+    private: true
+    run:
+      - set-environment:
+          DJANGO_SETTINGS_MODULE: src.settings.prod
+
+  app:run-dev:
+    usage: Run Django app for development.
+    run:
+      - task: configure-local-env
+      - docker-compose up --detach
+      # - python manage.py collectstatic --no-input
+      - python manage.py migrate
+      - python manage.py runserver_plus
+
+  app:run-prod:
+    usage: Run Django app for production.
+    run:
+      - task: configure-prod-env
+      - python manage.py collectstatic --no-input
+      - python manage.py migrate
+      - gunicorn src.core.wsgi:application
+
+  app:show-url-patterns:
+    usage: Show Django app urlpatterns (excluding Django Admin paths).
+    run:
+      - task: configure-local-env
+      - python manage.py show_urls --format=aligned | grep -v "^/admin/"
+
+  app:show-migrations:
+    usage: Show Django migrations for a given app.
+    options:
+      app:
+        usage: "Allowed values: app_auth, karmaspace"
+        values:
+          - app_auth
+          - karmaspace
+    run:
+      - task: configure-local-env
+      - python manage.py showmigrations ${app}
+
+  app:rollback-n-migrations:
+    usage: Rollback last N Django migrations for a given app.
+    options:
+      app:
+        required: true
+        usage: "Allowed values: app_auth, karmaspace"
+        values:
+          - app_auth
+          - karmaspace
+      num:
+        usage: Number of migrations to roll back.
+        type: integer
+        default: 1
+    run:
+      - task: configure-local-env
+      - command:
+          print: "Rolling back ${num} migrations in ${app} app..."
+          exec:
+            python
+            manage.py
+            migrate ${app}
+            $(python manage.py showmigrations ${app} | tail -n $((${num} + 1)) | head -n 1 | cut -d' ' -f3)
+
+  app:expose-online:
+    usage: Expose $DJANGO_PORT online over HTTPS.
+    description: |
+      Required dependencies:
+      + ngrok (https://ngrok.com)
+        + Installation:
+          + Official Docs: https://ngrok.com/download
+          + MacOS/Linux (brew or symlinks): https://gist.github.com/wosephjeber/aa174fb851dfe87e644e
+          + Node wrapper: https://www.npmjs.com/package/ngrok
+    run: ngrok http $DJANGO_PORT
+
+  cache:flush-all:
+    run:
+      - task: configure-local-env
+      - docker exec -it karmaspace_redis_1 redis-cli -a $REDIS_PASSWORD flushall
+
+  ci:check-missing-dj-migrations:
+    run:
+      - task: configure-local-env
+      - python manage.py makemigrations --check --dry-run
+
+  ci:set-precommit-githook:
+    usage: Set Pre-commit Git Hook saved in `./githooks/pre-commit`.
+    run:
+      - ln -sf ../../githooks/pre-commit .git/hooks/pre-commit
+      - git config --bool flake8.strict true  # Make Flake8 failures prevent commits.
+
+  dependencies:compile:
+    usage: Compile dependencies using pip-tools (https://github.com/jazzband/pip-tools).
+    run:
+      - pip-compile
+        --upgrade
+        --generate-hashes
+        --allow-unsafe
+        --quiet
+        --output-file requirements/locked/base.txt
+        requirements/abstract/base.in
+
+      - pip-compile
+        --upgrade
+        --generate-hashes
+        --allow-unsafe
+        --quiet
+        --output-file requirements/locked/dev.txt
+        requirements/abstract/dev.in
+
+      - pip-compile
+        --upgrade
+        --generate-hashes
+        --allow-unsafe
+        --quiet
+        --output-file requirements/locked/prod.txt
+        requirements/abstract/prod.in
+
+  dependencies:list-outdated:
+    run: python -m pip list --outdated
+
+  dependencies:sync-dev:
+    usage: Synchronise dependencies i.e. delete OLD, update EXISTING & install NEW.
+    run:
+      - python -m pip install pip-tools
+      - pip-sync requirements/locked/dev.txt
+
+  dramatiq:run-dev:
+    usage: Run task queue built on Dramatiq + Redis with dev settings.
+    run:
+      - task: configure-local-env
+      - python manage.py rundramatiq --reload --reload-use-polling --force-color
+
+  dramatiq:run-prod:
+    usage: Run task queue built on Dramatiq + Redis with prod settings.
+    run:
+      - task: configure-prod-env
+      - python manage.py rundramatiq
+
+  linters:coverage-report:
+    usage: Open refreshed coverage report in a browser.
+    run:
+      - coverage html
+      - open htmlcov/index.html
+
+  linters:flake8-report:
+    usage: Open refreshed Flake8 report in a browser.
+    run: python -m flake8 --format=html --htmldir=flake-report; open flake-report/index.html
+
+  linters:run-all:
+    usage: Lint source code using Isort, Black, Flake8 and Bandit.
+    run:
+      - python -m isort . --quiet
+      - black --line-length=100 --exclude=venv .
+      - python -m flake8
+      - bandit --recursive --exclude=/app_tests,/tests,/venv .
+
+  tests:run:
+    usage: Run pytests with coverage report.
+    options:
+      test-files-and-dirs:
+        usage: "Default: src/"
+        default: src/
+      reuse-db:
+        usage: "Default: true"
+        default: true
+        type: bool
+    run:
+      command:
+        print: "Running tests..."
+        exec: |
+          set -e  # Exit immediately if a command returns a non-zero status
+
+          args=()
+
+          if [ ${test-files-and-dirs} = "src/" ]; then
+              args+=(--cov=src)
+              args+=(--cov-branch)
+          fi
+
+          if ${reuse-db}; then
+              args+=(--reuse-db)
+          fi
+
+          set -x  # Print each command
+          python -m pytest ${args[@]} ${test-files-and-dirs}

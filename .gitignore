@@ -1,0 +1,27 @@
+# Coverage
+htmlcov/
+.coverage
+
+# Flake8
+flake-report/
+
+# PyCharm
+.idea
+
+# Pyenv
+.python-version
+
+# Python compiler
+__pycache__/
+
+# Virtualenv
+venv/
+
+# -----------
+
+# KarmaSpace
+/media
+/profiles
+/static
+*.env
+*.log

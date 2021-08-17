@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  dramatiq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["tusk", "dramatiq:run-dev"]
+    depends_on:
+      - postgres
+      - redis
+    env_file: .env
+    environment:
+      - DJANGO_DATABASE_URL=postgres://db-user:db-password@postgres:5432/karmaspace
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    image: karmaspace-backend:local
+    tty: true
+    volumes:
+      - .:/karmaspace-backend
+
+  postgres:
+    image: "postgres:11.8"
+    environment:
+      - POSTGRES_DB=karmaspace
+      - POSTGRES_USER=db-user
+      - POSTGRES_PASSWORD=db-password
+    ports:
+      - 8888:5432
+    tty: true
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    command: ["/bin/sh", "-c", "redis-server --requirepass $$REDIS_PASSWORD"]
+    image: redis:6.2.1-buster
+    environment:
+      - REDIS_PASSWORD=$REDIS_PASSWORD
+    ports:
+      - 8889:6379
+    tty: true
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:

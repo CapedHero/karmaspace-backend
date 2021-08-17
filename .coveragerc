@@ -1,0 +1,16 @@
+[paths]
+source =
+    ./src
+
+[run]
+omit =
+    */__init__.py
+    */tests/*
+    */urls.py
+    src/**/admin.py
+    src/**/admin/*
+    src/**/apps.py
+    src/**/migrations/*
+    src/core/asgi.py
+    src/settings/*
+    src/core/wsgi.py

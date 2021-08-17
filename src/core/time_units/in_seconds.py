@@ -1,0 +1,2 @@
+ONE_HOUR = 1 * 60 * 60
+THREE_HOURS = ONE_HOUR * 3

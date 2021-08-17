@@ -1,0 +1,17 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  render_deployment:
+    name: Trigger deployment on Render
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Call Render deploy hook: Backend"
+        run: curl --silent --show-error --fail --location ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}
+
+      - name: "Call Render deploy hook: Dramatiq"
+        run: curl --silent --show-error --fail --location ${{ secrets.RENDER_DRAMATIQ_DEPLOY_HOOK }}
