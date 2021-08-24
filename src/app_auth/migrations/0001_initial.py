@@ -24,7 +24,9 @@ class Migration(migrations.Migration):
             fields=[
                 (
                     "id",
-                    models.UUIDField(default=uuid4, editable=False, primary_key=True, serialize=False),
+                    models.UUIDField(
+                        default=uuid4, editable=False, primary_key=True, serialize=False
+                    ),
                 ),
                 ("created_at", models.DateTimeField(auto_now_add=True)),
                 ("modified_at", models.DateTimeField(auto_now=True)),
@@ -57,7 +59,9 @@ class Migration(migrations.Migration):
             fields=[
                 (
                     "id",
-                    models.UUIDField(default=uuid4, editable=False, primary_key=True, serialize=False),
+                    models.UUIDField(
+                        default=uuid4, editable=False, primary_key=True, serialize=False
+                    ),
                 ),
                 (
                     "last_login",
