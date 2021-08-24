@@ -3,7 +3,7 @@ from typing import Any
 
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, UserManager
-from django.contrib.postgres.fields import CICharField
+from django.contrib.postgres.fields import CICharField, CIEmailField
 from django.core.files import File
 from django.core.validators import RegexValidator
 from django.db import models
@@ -32,7 +32,7 @@ def get_avatar_upload_to_path(instance: "User", filename: str) -> str:
 class User(PermissionsMixin, AbstractBaseUser, BaseModel):
     username = CICharField(max_length=50, unique=True, validators=[UsernameValidator()])
     full_name = models.CharField(max_length=50, default="", blank=True)
-    email = models.EmailField(unique=True)
+    email = CIEmailField(unique=True)
     avatar = models.ImageField(upload_to=get_avatar_upload_to_path, null=True, blank=True)
 
     is_staff = models.BooleanField(
