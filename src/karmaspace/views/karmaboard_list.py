@@ -7,9 +7,9 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED
 from rest_framework.views import APIView
 
+from src.app_auth.models import User
 from src.core.permissions import IsOwner
 from ..models import KarmaBoard
-from src.app_auth.models import User
 
 
 class GetOutputSerializer(serializers.ModelSerializer):
