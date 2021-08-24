@@ -79,6 +79,8 @@ per-file-ignores =
   src/app_auth/views/__init__.py: F401
   src/core/urls.py: E800
   src/core/utils.py: T001
+  src/karmaspace/models/__init__.py: F401
+  src/karmaspace/views/__init__.py: F401
   src/settings/*: F401, F403, F405
 
 # McCabe Cyclomatic Complexity
