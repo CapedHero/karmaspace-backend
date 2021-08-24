@@ -9,10 +9,12 @@ from src.app_auth.urls import api_urlpatterns as app_auth_api_urlpatterns
 from src.app_auth.urls import auth_urlpatterns
 from src.app_auth.urls import emails_urlpatterns as app_auth_emails_urlpatterns
 from src.core.views import health_view
+from src.karmaspace.urls import api_urlpatterns as karmaspace_api_urlpatterns
 
 
 api_urlpatterns = [
     *app_auth_api_urlpatterns,
+    *karmaspace_api_urlpatterns,
 ]
 
 emails_urlpatterns = [
