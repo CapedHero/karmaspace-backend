@@ -75,7 +75,6 @@ class User(PermissionsMixin, AbstractBaseUser, BaseModel):
     def save(self, *args: Any, **kwargs: Any) -> None:
         # is_new = not self.id
 
-        self.full_clean()
         super().save(*args, **kwargs)
 
         # if is_new and settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON:

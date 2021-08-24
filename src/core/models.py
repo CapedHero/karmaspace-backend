@@ -1,3 +1,4 @@
+from typing import Any
 from uuid import uuid4
 
 from django.db import models
@@ -13,3 +14,7 @@ class BaseModel(models.Model):
 
     def __repr__(self) -> str:
         return f"<instance of model `{self.__class__.__name__}`>"
+
+    def save(self, *args: Any, **kwargs: Any) -> None:
+        self.full_clean()
+        super().save(*args, **kwargs)

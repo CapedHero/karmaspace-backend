@@ -1,5 +1,3 @@
-from typing import Any
-
 from django.db import models
 
 from src.core.models import BaseModel
@@ -20,7 +18,3 @@ class PassphraseRecord(BaseModel):
 
     def __str__(self) -> str:
         return f"PassphraseRecord email={self.email}"
-
-    def save(self, *args: Any, **kwargs: Any) -> None:
-        self.full_clean()
-        super().save(*args, **kwargs)
