@@ -144,6 +144,13 @@ tasks:
       - task: configure-prod-env
       - python manage.py rundramatiq
 
+  fixtures:reload:
+    usage: Remove existing data and load fixtures.
+    run:
+      - ./manage.py flush --no-input
+      - ./manage.py loaddata fixtures/users.yaml
+      - ./manage.py loaddata fixtures/karmaboards.yaml
+
   linters:coverage-report:
     usage: Open refreshed coverage report in a browser.
     run:

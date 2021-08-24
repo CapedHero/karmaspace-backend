@@ -1,0 +1,16 @@
+- model: app_auth.user
+  pk: 02007fdf-543b-41df-9088-b1b63b9de095
+  fields:
+    last_login: 2021-08-23 21:26:07.077000+00:00
+    is_superuser: false
+    created_at: 2021-08-17 13:04:45.840223+00:00
+    modified_at: 2021-08-17 13:04:46.164998+00:00
+    username: CapedHero
+    full_name: ''
+    email: mc.wrzesniewski@gmail.com
+    avatar: avatars/CapedHero.svg
+    is_staff: false
+    is_active: true
+    password: ''
+    groups: []
+    user_permissions: []
