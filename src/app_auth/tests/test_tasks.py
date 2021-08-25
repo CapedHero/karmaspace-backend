@@ -16,10 +16,10 @@ def test_send_passphrase_to_user(mailoutbox):
 
     assert mail.from_email == settings.DEFAULT_FROM_EMAIL
     assert list(mail.to) == [user_email]
-    assert mail.subject == f"Twoje jednorazowe hasło do KarmaSpace to {passphrase}"
+    assert mail.subject == f"Twoje tymczasowe hasło do KarmaSpace to {passphrase}"
 
     actual_html = mail.alternatives[0][0]
     actual_plain_msg = mail.body
     for msg in [actual_html, actual_plain_msg]:
-        assert "Twoje jednorazowe hasło do KarmaSpace" in msg
+        assert "Twoje tymczasowe hasło do KarmaSpace" in msg
         assert passphrase in msg

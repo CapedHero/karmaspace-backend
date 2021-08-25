@@ -13,7 +13,7 @@ def send_passphrase_to_user(user_email: str, passphrase: str) -> None:
         context={"passphrase": passphrase},
     )
     send_mail(
-        subject=f"Twoje jednorazowe hasło do KarmaSpace to {passphrase}",
+        subject=f"Twoje tymczasowe hasło do KarmaSpace to {passphrase}",
         html_message=msg_html,
         message=strip_tags(msg_html),
         from_email=settings.DEFAULT_FROM_EMAIL,
