@@ -8,7 +8,7 @@ from django.views.static import serve
 from src.app_auth.urls import api_urlpatterns as app_auth_api_urlpatterns
 from src.app_auth.urls import auth_urlpatterns
 from src.app_auth.urls import emails_urlpatterns as app_auth_emails_urlpatterns
-from src.core.views import health_view
+from src.core.views import health_view, sentry_tunnel_view
 from src.karmaspace.urls import api_urlpatterns as karmaspace_api_urlpatterns
 
 
@@ -32,6 +32,7 @@ urlpatterns = [
         view=RedirectView.as_view(url=staticfiles_storage.url("favicon.svg"), permanent=False),
     ),
     re_path(r"^media/(?P<path>.*)$", view=serve, kwargs={"document_root": settings.MEDIA_ROOT}),
+    path("sentry/tunnel", view=sentry_tunnel_view, name="sentry_tunnel"),
 ]
 
 if settings.DEBUG:
