@@ -45,7 +45,7 @@ def sentry_tunnel_view(request: Request) -> Response:
         )
 
     sentry_project_id = dsn.rsplit("/", maxsplit=1)[1]
-    url = f"https://sentry.io/api/{sentry_project_id}/envelope"
+    url = f"https://sentry.io/api/{sentry_project_id}/envelope/"
     sentry_response = requests.post(
         url=url,
         data=request.body,
