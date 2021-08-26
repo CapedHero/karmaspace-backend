@@ -1,5 +1,6 @@
 from typing import Any
 
+from django.db.models.aggregates import Sum
 from rest_framework import serializers
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -26,7 +27,10 @@ class PostOutputSerializer(KarmaBoardSerializer):
 
 
 class GetOutputSerializer(KarmaBoardSerializer):
-    ...
+    class Meta(KarmaBoardSerializer.Meta):
+        fields = [*KarmaBoardSerializer.Meta.fields, "total_karmas_value"]
+
+    total_karmas_value = serializers.IntegerField()
 
 
 class KarmaBoardListView(APIView):
@@ -40,6 +44,10 @@ class KarmaBoardListView(APIView):
         return Response(data=output, status=HTTP_201_CREATED)
 
     def get(self, request: Request) -> Response:
-        karmaboards = KarmaBoard.objects.filter(owner=request.user).order_by("name")
+        karmaboards = (
+            KarmaBoard.objects.filter(owner=request.user)
+            .annotate(total_karmas_value=Sum("karmas__value"))
+            .order_by("name")
+        )
         output = GetOutputSerializer(karmaboards, many=True).data
         return Response(data=output, status=HTTP_200_OK)
