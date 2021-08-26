@@ -1,14 +1,16 @@
 from typing import Any
 
 from rest_framework import serializers
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.status import HTTP_201_CREATED
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED
 from rest_framework.views import APIView
 
 from src.core.permissions import IsOwner
 from ..models import Karma, KarmaBoard
+from ..serializers import KarmaSerializer
 
 
 class PostInputSerializer(serializers.ModelSerializer):
@@ -17,17 +19,11 @@ class PostInputSerializer(serializers.ModelSerializer):
         fields = ["name", "value"]
 
     def create(self, validated_data: Any) -> Karma:
-        karmaboard = KarmaBoard.objects.get(
-            owner__username=self.context["karmaboard_owner_username"],
-            slug=self.context["karmaboard_slug"],
-        )
-        return Karma.objects.create(karmaboard=karmaboard, **validated_data)
+        return Karma.objects.create(karmaboard=self.context["karmaboard"], **validated_data)
 
 
-class PostOutputSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Karma
-        fields = ["id", "created_at", "name", "value"]
+class PostOutputSerializer(KarmaSerializer):
+    ...
 
 
 class KarmaListView(APIView):
@@ -39,12 +35,12 @@ class KarmaListView(APIView):
         karmaboard_owner_username: str,
         karmaboard_slug: str,
     ) -> Response:
-        input_ = PostInputSerializer(
-            data=request.data,
-            context={
-                "karmaboard_owner_username": karmaboard_owner_username,
-                "karmaboard_slug": karmaboard_slug
-            })
+        karmaboard = get_object_or_404(
+            queryset=KarmaBoard,
+            owner__username=karmaboard_owner_username,
+            slug=karmaboard_slug,
+        )
+        input_ = PostInputSerializer(data=request.data, context={"karmaboard": karmaboard})
         input_.is_valid(raise_exception=True)
         instance = input_.save()
         output = PostOutputSerializer(instance).data
