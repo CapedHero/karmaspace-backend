@@ -28,13 +28,13 @@ class PatchOutputSerializer(KarmaSpaceSerializer):
 class KarmaBoardDetailView(APIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
-    def get(self, request: Request, owner_username: str, karmaboard_slug: str) -> Response:
-        db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=karmaboard_slug)
+    def get(self, request: Request, owner_username: str, slug: str) -> Response:
+        db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=slug)
         output = GetOutputSerializer(db_obj).data
         return Response(data=output, status=HTTP_200_OK)
 
-    def patch(self, request: Request, owner_username: str, karmaboard_slug: str) -> Response:
-        db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=karmaboard_slug)
+    def patch(self, request: Request, owner_username: str, slug: str) -> Response:
+        db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=slug)
         input_ = PatchInputSerializer(db_obj, data=request.data, partial=True)
         input_.is_valid(raise_exception=True)
         instance = input_.save()
