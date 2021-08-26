@@ -11,7 +11,7 @@ from src.core.utils import get_object_str
 
 class KarmaBoard(BaseModel):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="karmaboards")
-    name = CICharField(max_length=50)
+    name = CICharField(max_length=30)
     slug = models.SlugField(max_length=50)
 
     class Meta:
