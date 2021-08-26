@@ -20,7 +20,7 @@ flake8-print==4.0.0
 flake8-quotes==3.2.0
 freezegun==1.1.0
 gprof2dot==2021.2.21
-ipdb==0.13.5
+ipdb==0.13.9
 ipython==7.21.0
 isort==5.7.0
 pip-tools==5.5.0
