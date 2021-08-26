@@ -1,10 +1,16 @@
 from rest_framework import serializers
 
 from src.app_auth.models import User
-from .models import KarmaBoard
+from .models import Karma, KarmaBoard
 
 
-class KarmaSpaceSerializer(serializers.ModelSerializer):
+class KarmaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Karma
+        fields = ["id", "created_at", "name", "value"]
+
+
+class KarmaBoardSerializer(serializers.ModelSerializer):
     class OwnerSerializer(serializers.ModelSerializer):
         class Meta:
             model = User

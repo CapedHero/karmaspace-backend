@@ -1,3 +1,5 @@
+from typing import Any, Dict
+
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
@@ -8,11 +10,18 @@ from rest_framework.views import APIView
 
 from src.core.permissions import IsOwner
 from ..models import KarmaBoard
-from ..serializers import KarmaSpaceSerializer
+from ..serializers import KarmaSerializer, KarmaBoardSerializer
 
 
-class GetOutputSerializer(KarmaSpaceSerializer):
-    ...
+class GetOutputSerializer(KarmaBoardSerializer):
+    class Meta(KarmaBoardSerializer.Meta):
+        fields = [*KarmaBoardSerializer.Meta.fields, "karmas"]
+
+    karmas = serializers.SerializerMethodField(method_name="get_karmas")
+
+    def get_karmas(self, karmaboard: KarmaBoard) -> Dict[str, Dict[str, Any]]:
+        karmas = karmaboard.karmas.all().order_by("-created_at")
+        return KarmaSerializer(karmas, many=True).data
 
 
 class PatchInputSerializer(serializers.ModelSerializer):
@@ -21,7 +30,7 @@ class PatchInputSerializer(serializers.ModelSerializer):
         fields = ["name"]
 
 
-class PatchOutputSerializer(KarmaSpaceSerializer):
+class PatchOutputSerializer(KarmaBoardSerializer):
     ...
 
 

@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 
 from src.core.permissions import IsOwner
 from ..models import KarmaBoard
-from ..serializers import KarmaSpaceSerializer
+from ..serializers import KarmaBoardSerializer
 
 
 class PostInputSerializer(serializers.ModelSerializer):
@@ -21,11 +21,11 @@ class PostInputSerializer(serializers.ModelSerializer):
         return KarmaBoard.objects.create(owner=self.context["owner"], **validated_data)
 
 
-class PostOutputSerializer(KarmaSpaceSerializer):
+class PostOutputSerializer(KarmaBoardSerializer):
     ...
 
 
-class GetOutputSerializer(KarmaSpaceSerializer):
+class GetOutputSerializer(KarmaBoardSerializer):
     ...
 
 
