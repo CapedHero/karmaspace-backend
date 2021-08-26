@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "pip_requirements": {
+    "fileMatch": [
+      "requirements/abstract/base.in",
+      "requirements/abstract/dev.in",
+      "requirements/abstract/prod.in"
+    ]
+  }
+}
