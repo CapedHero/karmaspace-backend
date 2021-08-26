@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 
 from src.core.permissions import IsOwner
 from ..models import KarmaBoard
-from ..serializers import KarmaSerializer, KarmaBoardSerializer
+from ..serializers import KarmaBoardSerializer, KarmaSerializer
 
 
 class GetOutputSerializer(KarmaBoardSerializer):
