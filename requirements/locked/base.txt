@@ -173,9 +173,9 @@ django-storages==1.11.1 \
     --hash=sha256:c823dbf56c9e35b0999a13d7e05062b837bae36c518a40255d522fbe3750fbb4 \
     --hash=sha256:f28765826d507a0309cfaa849bd084894bc71d81bf0d09479168d44785396f80
     # via -r requirements/abstract/base.in
-django==3.1.13 \
-    --hash=sha256:9f8be75646f62204320b195062b1d696ba28aa3d45ee72fb7c888ffaebc5bdb2 \
-    --hash=sha256:a6e0d1ff11095b7394c079ade7094c73b2dc3df4a7a373c9b58ed73b77a97feb
+django==3.2.6 \
+    --hash=sha256:7f92413529aa0e291f3be78ab19be31aefb1e1c9a52cd59e130f505f27a51f13 \
+    --hash=sha256:f27f8544c9d4c383bbe007c57e3235918e258364577373d4920e9162837be022
     # via
     #   -r requirements/abstract/base.in
     #   django-cors-headers
