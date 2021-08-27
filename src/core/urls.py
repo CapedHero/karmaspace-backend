@@ -38,5 +38,5 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += [
         path("emails/", include(emails_urlpatterns)),
-        path(r"silk/", include("silk.urls", namespace="silk")),
+        # path(r"silk/", include("silk.urls", namespace="silk")),
     ]

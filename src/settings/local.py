@@ -9,12 +9,12 @@ ADMIN_BASE_PATH = "admin/"
 
 INSTALLED_APPS += [
     "django_extensions",
-    "silk",
+    # "silk",
 ]
 
 MIDDLEWARE += [
     "src.core.middlewares.BetterExceptionsMiddleware",
-    "silk.middleware.SilkyMiddleware",
+    # "silk.middleware.SilkyMiddleware",
 ]
 
 SILKY_PYTHON_PROFILER = True
