@@ -126,6 +126,22 @@ tasks:
   dependencies:list-outdated:
     run: python -m pip list --outdated
 
+  dependencies:handle-renovate-pr:
+    options:
+      renovate-pr-branch:
+        required: true
+    run:
+      - task: configure-local-env
+      - git fetch --all
+      - git checkout ${renovate-pr-branch}
+      - tusk dependencies:compile
+      - tusk dependencies:sync-dev
+      - tusk tests:run
+      - git add .
+      - git commit -m "Recompile packages"
+      - git push
+      - git checkout -
+
   dependencies:sync-dev:
     usage: Synchronise dependencies i.e. delete OLD, update EXISTING & install NEW.
     run:
