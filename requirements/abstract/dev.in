@@ -22,7 +22,7 @@ freezegun==1.1.0
 gprof2dot==2021.2.21
 ipdb==0.13.9
 ipython==7.21.0
-isort==5.7.0
+isort==5.9.3
 pip-tools==5.5.0
 pipdeptree==2.0.0
 pytest==6.2.2
