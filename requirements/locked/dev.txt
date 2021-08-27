@@ -350,9 +350,9 @@ flake8-comprehensions==3.6.1 \
     --hash=sha256:4888de89248b7f7535159189ff693c77f8354f6d37a02619fa28c9921a913aa0 \
     --hash=sha256:e9a010b99aa90c05790d45281ad9953df44a4a08a1a8f6cd41f98b4fc6a268a0
     # via -r requirements/abstract/dev.in
-flake8-docstrings==1.5.0 \
-    --hash=sha256:3d5a31c7ec6b7367ea6506a87ec293b94a0a46c0bce2bb4975b7f1d09b6f3717 \
-    --hash=sha256:a256ba91bc52307bef1de59e2a009c3cf61c3d0952dbe035d6ff7208940c2edc
+flake8-docstrings==1.6.0 \
+    --hash=sha256:99cac583d6c7e32dd28bbfbef120a7c0d1b6dde4adb5a9fd441c4227a6534bde \
+    --hash=sha256:9fe7c6a306064af8e62a055c2f61e9eb1da55f84bb39caef2b84ce53708ac34b
     # via -r requirements/abstract/dev.in
 flake8-eradicate==1.1.0 \
     --hash=sha256:d8e39b684a37c257a53cda817d86e2d96c9ba3450ddc292742623a5dfee04d9e \
