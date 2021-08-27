@@ -20,7 +20,7 @@ services:
       - .:/karmaspace-backend
 
   postgres:
-    image: "postgres:11.8"
+    image: "postgres:13.4-buster"
     environment:
       - POSTGRES_DB=karmaspace
       - POSTGRES_USER=db-user
