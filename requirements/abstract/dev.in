@@ -21,7 +21,7 @@ flake8-quotes==3.3.0
 freezegun==1.1.0
 gprof2dot==2021.2.21
 ipdb==0.13.9
-ipython==7.26.0
+ipython==7.27.0
 isort==5.9.3
 pip-tools==6.2.0
 pipdeptree==2.1.0
