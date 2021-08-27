@@ -131,12 +131,10 @@ tasks:
       renovate-pr-branch:
         required: true
     run:
-      - task: configure-local-env
       - git fetch --all
       - git checkout ${renovate-pr-branch}
       - tusk dependencies:compile
       - tusk dependencies:sync-dev
-      - tusk tests:run
       - git add .
       - git commit -m "Recompile packages"
       - git push
