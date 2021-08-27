@@ -339,9 +339,9 @@ faker==8.12.1 \
     --hash=sha256:6714c153433086681b26e5c95ee314ee0fcd45ec05f2426097543dd4c70789a6 \
     --hash=sha256:810859626d19e62a2a13aa4a08d59ada131f0522431eec163b09b6df147a25b9
     # via factory-boy
-flake8-bugbear==21.3.1 \
-    --hash=sha256:0c5b949dc1f33d2adae284294d39a81dd11534fbf689890fb22ee532cab959d9 \
-    --hash=sha256:ea08deb8922486e856b38c9338936de1e1de4ad9e7c912be142673d5afe5ac89
+flake8-bugbear==21.4.3 \
+    --hash=sha256:2346c81f889955b39e4a368eb7d508de723d9de05716c287dc860a4073dc57e7 \
+    --hash=sha256:4f305dca96be62bf732a218fe6f1825472a621d3452c5b994d8f89dae21dbafa
     # via -r requirements/abstract/dev.in
 flake8-commas==2.0.0 \
     --hash=sha256:d3005899466f51380387df7151fb59afec666a0f4f4a2c6a8995b975de0f44b7 \
