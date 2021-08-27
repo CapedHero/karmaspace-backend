@@ -346,9 +346,9 @@ flake8-commas==2.0.0 \
     --hash=sha256:d3005899466f51380387df7151fb59afec666a0f4f4a2c6a8995b975de0f44b7 \
     --hash=sha256:ee2141a3495ef9789a3894ed8802d03eff1eaaf98ce6d8653a7c573ef101935e
     # via -r requirements/abstract/dev.in
-flake8-comprehensions==3.3.1 \
-    --hash=sha256:6d80dfafda0d85633f88ea5bc7de949485f71f1e28db7af7719563fe5f62dcb1 \
-    --hash=sha256:e734bf03806bb562886d9bf635d23a65a1a995c251b67d7e007a7b608af9bd22
+flake8-comprehensions==3.6.1 \
+    --hash=sha256:4888de89248b7f7535159189ff693c77f8354f6d37a02619fa28c9921a913aa0 \
+    --hash=sha256:e9a010b99aa90c05790d45281ad9953df44a4a08a1a8f6cd41f98b4fc6a268a0
     # via -r requirements/abstract/dev.in
 flake8-docstrings==1.5.0 \
     --hash=sha256:3d5a31c7ec6b7367ea6506a87ec293b94a0a46c0bce2bb4975b7f1d09b6f3717 \
