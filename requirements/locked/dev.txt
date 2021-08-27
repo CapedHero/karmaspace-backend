@@ -371,8 +371,8 @@ flake8-print==4.0.0 \
     --hash=sha256:5afac374b7dc49aac2c36d04b5eb1d746d72e6f5df75a6ecaecd99e9f79c6516 \
     --hash=sha256:6c0efce658513169f96d7a24cf136c434dc711eb00ebd0a985eb1120103fe584
     # via -r requirements/abstract/dev.in
-flake8-quotes==3.2.0 \
-    --hash=sha256:3f1116e985ef437c130431ac92f9b3155f8f652fda7405ac22ffdfd7a9d1055e
+flake8-quotes==3.3.0 \
+    --hash=sha256:f1dd87830ed77ff2ce47fc0ee0fd87ae20e8f045355354ffbf4dcaa18d528217
     # via -r requirements/abstract/dev.in
 flake8==3.9.2 \
     --hash=sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b \
