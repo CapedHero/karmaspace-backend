@@ -822,9 +822,9 @@ pytest-django==3.9.0 \
 pytest-icdiff==0.5 \
     --hash=sha256:3a14097f4385665cb04330e6ae09a3dd430375f717e94482af6944470ad5f100
     # via -r requirements/abstract/dev.in
-pytest-mock==1.10.4 \
-    --hash=sha256:43ce4e9dd5074993e7c021bb1c22cbb5363e612a2b5a76bc6d956775b10758b7 \
-    --hash=sha256:5bf5771b1db93beac965a7347dc81c675ec4090cb841e49d9d34637a25c30568
+pytest-mock==1.13.0 \
+    --hash=sha256:67e414b3caef7bff6fc6bd83b22b5bc39147e4493f483c2679bc9d4dc485a94d \
+    --hash=sha256:e24a911ec96773022ebcc7030059b57cd3480b56d4f5d19b7c370ec635e6aed5
     # via -r requirements/abstract/dev.in
 pytest-socket==0.3.4 \
     --hash=sha256:6480d6962b1f908f4b7c267ed4cfbc8fe27555562dec31cf9f8988fc1bf11f64 \
