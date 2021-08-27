@@ -830,9 +830,8 @@ pytest-socket==0.3.4 \
     --hash=sha256:6480d6962b1f908f4b7c267ed4cfbc8fe27555562dec31cf9f8988fc1bf11f64 \
     --hash=sha256:e66de7ad7582cf23cce39f276156782c39505d20a21a705c0208b5305643a38a
     # via -r requirements/abstract/dev.in
-pytest-sugar==0.9.2 \
-    --hash=sha256:26cf8289fe10880cbbc130bd77398c4e6a8b936d8393b116a5c16121d95ab283 \
-    --hash=sha256:fcd87a74b2bce5386d244b49ad60549bfbc4602527797fac167da147983f58ab
+pytest-sugar==0.9.4 \
+    --hash=sha256:b1b2186b0a72aada6859bea2a5764145e3aaa2c1cfbb23c3a19b5f7b697563d3
     # via -r requirements/abstract/dev.in
 pytest==6.2.4 \
     --hash=sha256:50bcad0a0b9c5a72c8e4e7c9855a3ad496ca6a881a3641b4260605450772c54b \
