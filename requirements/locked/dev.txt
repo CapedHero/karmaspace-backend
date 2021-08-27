@@ -716,10 +716,10 @@ pip-tools==5.5.0 \
     --hash=sha256:10841c1e56c234d610d0466447685b9ea4ee4a2c274f858c0ef3c33d9bd0d985 \
     --hash=sha256:cb0108391366b3ef336185097b3c2c0f3fa115b15098dafbda5e78aef70ea114
     # via -r requirements/abstract/dev.in
-pipdeptree==2.0.0 \
-    --hash=sha256:0e4cbe3871287013162dbc0df8ae96fa748d4862160c932cbcbfd73260ff322a \
-    --hash=sha256:44de04e0034b7d80a5071325c80c4c8f126da001225157f542f62afa79c60f8c \
-    --hash=sha256:6899ba160bc7db98f0124d1aa6a680aa578adbac8558177ae66dd81bf69369de
+pipdeptree==2.1.0 \
+    --hash=sha256:0edf5e0d11d26c3960884839ac6fbe72eabf6f3bf3c76e495414d3aae693f9a2 \
+    --hash=sha256:763bc2b706ba0bbbebf9277e824cf405ff57cb897cac9eb86990deff1f1d1f33 \
+    --hash=sha256:e75b0595b0473177c08e6cde7ad2bd41b4a4b97cb86ccbdcd96a62ca0b4dcac8
     # via -r requirements/abstract/dev.in
 pluggy==0.13.1 \
     --hash=sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0 \
