@@ -30,7 +30,7 @@ pytest-cov==2.12.1
 pytest-django==3.9.0
 pytest-icdiff==0.5
 pytest-mock==3.6.1
-pytest-socket==0.3.4
+pytest-socket==0.4.1
 pytest-sugar==0.9.4
 safety==1.10.3
 typing-extensions==3.10.0.0
