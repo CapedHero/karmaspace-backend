@@ -44,8 +44,9 @@ class KarmaBoardDetailView(APIView):
 
     def patch(self, request: Request, owner_username: str, slug: str) -> Response:
         db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=slug)
+        self.check_object_permissions(self.request, db_obj)
         input_ = PatchInputSerializer(db_obj, data=request.data, partial=True)
         input_.is_valid(raise_exception=True)
         instance = input_.save()
-        output = GetOutputSerializer(instance).data
+        output = PatchOutputSerializer(instance).data
         return Response(data=output, status=HTTP_200_OK)
