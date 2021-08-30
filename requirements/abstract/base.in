@@ -1,7 +1,7 @@
 boto3==1.18.31
 django-cors-headers==3.8.0
 django-dramatiq==0.10.0
-django-environ==0.4.5
+django-environ==0.5.0
 django-redis==5.0.0
 django-storages==1.11.1
 Django==3.2.6
