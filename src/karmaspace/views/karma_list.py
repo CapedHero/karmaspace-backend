@@ -29,16 +29,11 @@ class PostOutputSerializer(KarmaSerializer):
 class KarmaListView(APIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
-    def post(
-        self,
-        request: Request,
-        karmaboard_owner_username: str,
-        karmaboard_slug: str,
-    ) -> Response:
+    def post(self, request: Request, owner_username: str, slug: str) -> Response:
         karmaboard = get_object_or_404(
             queryset=KarmaBoard,
-            owner__username=karmaboard_owner_username,
-            slug=karmaboard_slug,
+            owner__username=owner_username,
+            slug=slug,
         )
         input_ = PostInputSerializer(data=request.data, context={"karmaboard": karmaboard})
         input_.is_valid(raise_exception=True)
