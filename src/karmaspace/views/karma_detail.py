@@ -3,7 +3,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
+from rest_framework.status import HTTP_200_OK, HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 
 from src.core.permissions import IsOwner
@@ -26,3 +26,9 @@ class KarmaDetailView(APIView):
         input_.is_valid(raise_exception=True)
         input_.save()
         return Response(data={}, status=HTTP_200_OK)
+
+    def delete(self, request: Request, id_: str) -> Response:
+        db_obj = get_object_or_404(Karma, id=id_)
+        self.check_object_permissions(self.request, db_obj.karmaboard)
+        db_obj.delete()
+        return Response(status=HTTP_204_NO_CONTENT)
