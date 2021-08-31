@@ -96,6 +96,9 @@ tasks:
       - ln -sf ../../githooks/pre-commit .git/hooks/pre-commit
       - git config --bool flake8.strict true  # Make Flake8 failures prevent commits.
 
+  db:connect:
+    run: pgcli ${DJANGO_DATABASE_URL}
+
   dependencies:compile:
     usage: Compile dependencies using pip-tools (https://github.com/jazzband/pip-tools).
     run:
