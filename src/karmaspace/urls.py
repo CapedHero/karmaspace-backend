@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import KarmaBoardDetailView, KarmaBoardListView, KarmaListView, KarmaDetailView
+from .views import KarmaBoardDetailView, KarmaBoardListView, KarmaDetailView, KarmaListView
 
 
 api_urlpatterns = [
