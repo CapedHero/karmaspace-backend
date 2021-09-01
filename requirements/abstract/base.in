@@ -1,4 +1,4 @@
-boto3==1.18.32
+boto3==1.18.34
 django-cors-headers==3.8.0
 django-dramatiq==0.10.0
 django-environ==0.5.0
