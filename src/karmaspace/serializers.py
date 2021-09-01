@@ -18,6 +18,6 @@ class KarmaBoardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KarmaBoard
-        fields = ["owner", "name", "slug"]
+        fields = ["owner", "name", "slug", "value_step"]
 
     owner = OwnerSerializer()
