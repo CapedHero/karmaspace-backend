@@ -5,7 +5,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
+from rest_framework.status import HTTP_200_OK, HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 
 from src.core.permissions import IsOwner
@@ -39,6 +39,7 @@ class KarmaBoardDetailView(APIView):
 
     def get(self, request: Request, owner_username: str, slug: str) -> Response:
         db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=slug)
+        self.check_object_permissions(self.request, db_obj)
         output = GetOutputSerializer(db_obj).data
         return Response(data=output, status=HTTP_200_OK)
 
@@ -50,3 +51,9 @@ class KarmaBoardDetailView(APIView):
         instance = input_.save()
         output = PatchOutputSerializer(instance).data
         return Response(data=output, status=HTTP_200_OK)
+
+    def delete(self, request: Request, owner_username: str, slug: str) -> Response:
+        db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=slug)
+        self.check_object_permissions(self.request, db_obj)
+        db_obj.delete()
+        return Response(status=HTTP_204_NO_CONTENT)
