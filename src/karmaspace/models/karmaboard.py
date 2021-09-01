@@ -9,10 +9,18 @@ from src.core.models import BaseModel
 from src.core.utils import get_object_str
 
 
+class ValueStep(models.TextChoices):
+    BY_1 = "BY_1"
+    BY_5 = "BY_5"
+    BY_10 = "BY_10"
+    FIBONACCI = "FIBONACCI"
+
+
 class KarmaBoard(BaseModel):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="karmaboards")
     name = CICharField(max_length=30)
     slug = models.SlugField(max_length=50)
+    value_step = models.CharField(choices=ValueStep.choices, default=ValueStep.BY_1, max_length=20)
 
     class Meta:
         verbose_name = "Karmaboard"
