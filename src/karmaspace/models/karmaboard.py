@@ -7,6 +7,7 @@ from django.utils.text import slugify
 from src.app_auth.models import User
 from src.core.models import BaseModel
 from src.core.utils import get_object_str
+from src.karmaspace.logic.sort_index import get_sort_index_for_last_position
 
 
 class ValueStep(models.TextChoices):
@@ -21,6 +22,7 @@ class KarmaBoard(BaseModel):
     name = CICharField(max_length=30)
     slug = models.SlugField(max_length=50)
     value_step = models.CharField(choices=ValueStep.choices, default=ValueStep.BY_1, max_length=20)
+    sort_index = models.FloatField(blank=True)
 
     class Meta:
         verbose_name = "Karmaboard"
@@ -45,4 +47,8 @@ class KarmaBoard(BaseModel):
 
     def save(self, *args: Any, **kwargs: Any) -> None:
         self.slug = slugify(self.name)
+        if not self.sort_index:
+            self.sort_index = get_sort_index_for_last_position(
+                queryset=self.__class__.objects.filter(owner=self.owner)
+            )
         super().save(*args, **kwargs)
