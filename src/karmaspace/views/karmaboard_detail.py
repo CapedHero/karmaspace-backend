@@ -27,7 +27,7 @@ class GetOutputSerializer(KarmaBoardSerializer):
 class PatchInputSerializer(serializers.ModelSerializer):
     class Meta:
         model = KarmaBoard
-        fields = ["name", "value_step"]
+        fields = ["name", "value_step", "sort_index"]
 
 
 class PatchOutputSerializer(KarmaBoardSerializer):
