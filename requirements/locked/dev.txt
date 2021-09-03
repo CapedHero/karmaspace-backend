@@ -47,9 +47,9 @@ black==21.4b2 \
     --hash=sha256:bff7067d8bc25eb21dcfdbc8c72f2baafd9ec6de4663241a52fb904b304d391f \
     --hash=sha256:fc9bcf3b482b05c1f35f6a882c079dc01b9c7795827532f4cc43c0ec88067bbc
     # via -r requirements/abstract/dev.in
-boto3==1.18.34 \
-    --hash=sha256:5116e9bdec19adcc5531a9b7b535be77d5314eef092aaf7033ace48a9be65036 \
-    --hash=sha256:658ddf4ba552f654fd4d48335fa95ff4e3e1a4e82f90021a1a1d3de4a5428ba4
+boto3==1.18.35 \
+    --hash=sha256:ba9587a6ee53741b4136e0c6cda2a23f99439ed755b29e7e8e4b55044b6a7478 \
+    --hash=sha256:f09ac7c0ae72817bd3970f6fe79371f881ffe5bcf2882957a131bc8e59a93242
     # via -r requirements/abstract/base.in
 botocore==1.21.35 \
     --hash=sha256:29741509b19a6873e7f916fc0d9954e6433428d64669961f1daf322ce5254912 \
