@@ -182,53 +182,53 @@ def test_get_avatar_upload_to_path(filename: str):
     assert path == f"avatars/{user.username}.{file_suffix}"
 
 
-# class TestKarmaSpaceTeamIsMessagedAboutNewUserCreation:
-#     @pytest.mark.parametrize(
-#         argnames="is_notification_on",
-#         argvalues=[
-#             pytest.param(True, id="notification_is_enabled"),
-#             pytest.param(False, id="notification_is_disabled"),
-#         ],
-#     )
-#     def test_user_created(self, is_notification_on, mocker, settings):
-#         # GIVEN
-#         settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = is_notification_on
-#         send_new_user_created_msg_to_karmaspace_team_mock = mocker.patch(
-#             "src.app_auth.models.user.send_new_user_created_msg_to_karmaspace_team"
-#         )
-#
-#         # WHEN
-#         user = UserFactory()
-#
-#         # THEN
-#         if is_notification_on:
-#             send_new_user_created_msg_to_karmaspace_team_mock.send.assert_called_once_with(
-#                 user.username, user.email
-#             )
-#         else:
-#             send_new_user_created_msg_to_karmaspace_team_mock.send.assert_not_called()
-#
-#     @pytest.mark.parametrize(
-#         argnames="is_notification_on",
-#         argvalues=[
-#             pytest.param(True, id="notification_is_enabled"),
-#             pytest.param(False, id="notification_is_disabled"),
-#         ],
-#     )
-#     def test_user_updated(self, is_notification_on, mocker, settings):
-#         # GIVEN
-#         send_new_user_created_msg_to_karmaspace_team_mock = mocker.patch(
-#             "src.app_auth.models.user.send_new_user_created_msg_to_karmaspace_team"
-#         )
-#
-#         settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = False
-#         user = UserFactory(full_name="foo")
-#
-#         settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = is_notification_on
-#
-#         # WHEN
-#         user.full_name = "bar"
-#         user.save()
-#
-#         # THEN
-#         send_new_user_created_msg_to_karmaspace_team_mock.send.assert_not_called()
+class TestKarmaSpaceTeamIsMessagedAboutNewUserCreation:
+    @pytest.mark.parametrize(
+        argnames="is_notification_on",
+        argvalues=[
+            pytest.param(True, id="notification_is_enabled"),
+            pytest.param(False, id="notification_is_disabled"),
+        ],
+    )
+    def test_user_created(self, is_notification_on, mocker, settings):
+        # GIVEN
+        settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = is_notification_on
+        send_new_user_created_msg_to_karmaspace_team_mock = mocker.patch(
+            "src.app_auth.models.user.send_new_user_created_msg_to_karmaspace_team"
+        )
+
+        # WHEN
+        user = UserFactory()
+
+        # THEN
+        if is_notification_on:
+            send_new_user_created_msg_to_karmaspace_team_mock.send.assert_called_once_with(
+                user.username, user.email
+            )
+        else:
+            send_new_user_created_msg_to_karmaspace_team_mock.send.assert_not_called()
+
+    @pytest.mark.parametrize(
+        argnames="is_notification_on",
+        argvalues=[
+            pytest.param(True, id="notification_is_enabled"),
+            pytest.param(False, id="notification_is_disabled"),
+        ],
+    )
+    def test_user_updated(self, is_notification_on, mocker, settings):
+        # GIVEN
+        send_new_user_created_msg_to_karmaspace_team_mock = mocker.patch(
+            "src.app_auth.models.user.send_new_user_created_msg_to_karmaspace_team"
+        )
+
+        settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = False
+        user = UserFactory(full_name="foo")
+
+        settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = is_notification_on
+
+        # WHEN
+        user.full_name = "bar"
+        user.save()
+
+        # THEN
+        send_new_user_created_msg_to_karmaspace_team_mock.send.assert_not_called()

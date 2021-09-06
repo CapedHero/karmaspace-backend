@@ -1,6 +1,7 @@
 from tempfile import NamedTemporaryFile
 from typing import Any
 
+from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, UserManager
 from django.contrib.postgres.fields import CICharField, CIEmailField
@@ -14,9 +15,7 @@ import requests
 
 from src.core.models import BaseModel
 from src.core.utils import get_object_str
-
-
-# from src.karmaspace.tasks import send_new_user_created_msg_to_karmaspace_team
+from src.karmaspace.tasks import send_new_user_created_msg_to_karmaspace_team
 
 
 class UsernameValidator(RegexValidator):
@@ -73,12 +72,12 @@ class User(PermissionsMixin, AbstractBaseUser, BaseModel):
         return self.full_name.split(" ")[-1]
 
     def save(self, *args: Any, **kwargs: Any) -> None:
-        # is_new = not self.id
+        is_new = not self.created_at
 
         super().save(*args, **kwargs)
 
-        # if is_new and settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON:
-        #     send_new_user_created_msg_to_karmaspace_team.send(self.username, self.email)
+        if is_new and settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON:
+            send_new_user_created_msg_to_karmaspace_team.send(self.username, self.email)
 
     def save_random_avatar(self) -> None:
         avatar_url = (
