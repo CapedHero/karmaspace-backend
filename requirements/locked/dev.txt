@@ -304,9 +304,9 @@ django-storages==1.11.1 \
     --hash=sha256:c823dbf56c9e35b0999a13d7e05062b837bae36c518a40255d522fbe3750fbb4 \
     --hash=sha256:f28765826d507a0309cfaa849bd084894bc71d81bf0d09479168d44785396f80
     # via -r requirements/abstract/base.in
-django-stubs==1.8.0 \
-    --hash=sha256:717967d7fee0a6af0746724a0be80d72831a982a40fa8f245a6a46f4cafd157b \
-    --hash=sha256:bde9e44e3c4574c2454e74a3e607cc3bc23b0441bb7d1312cd677d5e30984b74
+django-stubs==1.9.0 \
+    --hash=sha256:59c9f81af64d214b1954eaf90f037778c8d2b9c2de946a3cda177fefcf588fbd \
+    --hash=sha256:664843091636a917faf5256d028476559dc360fdef9050b6df87ab61b21607bf
     # via
     #   -r requirements/abstract/dev.in
     #   djangorestframework-stubs
@@ -1053,6 +1053,7 @@ toml==0.10.2 \
     # via
     #   autopep8
     #   black
+    #   django-stubs
     #   dparse
     #   ipdb
     #   mypy
@@ -1068,6 +1069,14 @@ traitlets==5.1.0 \
     # via
     #   ipython
     #   matplotlib-inline
+types-pytz==2021.1.2 \
+    --hash=sha256:28fb1c0f77f59aebe9b792d073ebfbbbf7b329f9d4af6a6079713a618a1c0f31 \
+    --hash=sha256:448828a06f2aaa840e57364d866c661645a045e532f817e4f10c8c3ab2b66651
+    # via django-stubs
+types-pyyaml==5.4.10 \
+    --hash=sha256:1d9e431e9f1f78a65ea957c558535a3b15ad67ea4912bce48a6c1b613dcf81ad \
+    --hash=sha256:f1d1357168988e45fa20c65aecb3911462246a84809015dd889ebf8b1db74124
+    # via django-stubs
 typing-extensions==3.10.0.2 \
     --hash=sha256:49f75d16ff11f1cd258e1b988ccff82a3ca5570217d7ad8c5f48205dd99a677e \
     --hash=sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7 \
