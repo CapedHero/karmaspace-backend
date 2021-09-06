@@ -8,10 +8,21 @@
 >
   <tbody>
     <tr>
-      <td >
+      <td>
         <div>
+          {% if magic_link %}
+            <div style="color: #333333; font-size: 16px; margin-top: 12px;">
+              <a
+                href="{{ magic_link }}"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Zaloguj się za pomocą magicznego linka.
+              </a>
+            </div>
+          {% endif %}
           <div style="color: #333333; font-size: 16px; margin-top: 12px;">
-            Twoje tymczasowe hasło do KarmaSpace to:
+            Alternatywnie, podaj swoje tymczasowe hasło:
           </div>
           <pre
             style="

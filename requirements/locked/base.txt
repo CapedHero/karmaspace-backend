@@ -161,6 +161,7 @@ django==3.2.7 \
     #   django-cors-headers
     #   django-dramatiq
     #   django-redis
+    #   django-sesame
     #   django-storages
     #   djangorestframework
 django-cors-headers==3.8.0 \
@@ -178,6 +179,10 @@ django-environ==0.6.0 \
 django-redis==5.0.0 \
     --hash=sha256:048f665bbe27f8ff2edebae6aa9c534ab137f1e8fa7234147ef470df3f3aa9b8 \
     --hash=sha256:97739ca9de3f964c51412d1d7d8aecdfd86737bb197fce6e1ff12620c63c97ee
+    # via -r requirements/abstract/base.in
+django-sesame[ua]==2.4 \
+    --hash=sha256:4f232ba1c3642b4eef23257af9a2feac36970457d2940f4083c48c6a3d9cb0a3 \
+    --hash=sha256:b0570b610ec2f3602ff12d43b5bca41c4a37a3079e6a0170ceccc69689446b87
     # via -r requirements/abstract/base.in
 django-storages==1.11.1 \
     --hash=sha256:c823dbf56c9e35b0999a13d7e05062b837bae36c518a40255d522fbe3750fbb4 \
@@ -492,6 +497,10 @@ sqlparse==0.4.1 \
     --hash=sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0 \
     --hash=sha256:0f91fd2e829c44362cbcfab3e9ae12e22badaa8a29ad5ff599f9ec109f0454e8
     # via django
+ua-parser==0.10.0 \
+    --hash=sha256:46ab2e383c01dbd2ab284991b87d624a26a08f72da4d7d413f5bfab8b9036f8a \
+    --hash=sha256:47b1782ed130d890018d983fac37c2a80799d9e0b9c532e734c67cf70f185033
+    # via django-sesame
 urllib3==1.26.6 \
     --hash=sha256:39fb8672126159acb139a7718dd10806104dec1e2f0f6c88aab05d17df10c8d4 \
     --hash=sha256:f57b4c16c62fa2760b7e3d97c35b255512fb6b59a259730f36ba32ce9f8e342f

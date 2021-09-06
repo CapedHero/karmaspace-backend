@@ -16,6 +16,7 @@ from ..tasks import send_passphrase_to_user
 
 class PostInputSerializer(serializers.Serializer):
     email = serializers.EmailField()
+    redirect_url = serializers.URLField(default="")
 
 
 @api_view(http_method_names=["POST"])
@@ -31,5 +32,9 @@ def passphrase_view(request: Request) -> Response:
     PassphraseRecord.objects.filter(email=user_email).delete()
     PassphraseRecord.objects.create(email=user_email, passphrase=passphrase, expires_at=expires_at)
 
-    send_passphrase_to_user.send(user_email, passphrase)
+    send_passphrase_to_user.send(
+        user_email,
+        passphrase,
+        serializer.validated_data["redirect_url"],
+    )
     return Response(data={}, status=HTTP_201_CREATED)

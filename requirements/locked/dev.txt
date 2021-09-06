@@ -272,6 +272,7 @@ django==3.2.7 \
     #   django-dramatiq
     #   django-extensions
     #   django-redis
+    #   django-sesame
     #   django-silk
     #   django-storages
     #   django-stubs
@@ -296,6 +297,10 @@ django-extensions==3.1.3 \
 django-redis==5.0.0 \
     --hash=sha256:048f665bbe27f8ff2edebae6aa9c534ab137f1e8fa7234147ef470df3f3aa9b8 \
     --hash=sha256:97739ca9de3f964c51412d1d7d8aecdfd86737bb197fce6e1ff12620c63c97ee
+    # via -r requirements/abstract/base.in
+django-sesame[ua]==2.4 \
+    --hash=sha256:4f232ba1c3642b4eef23257af9a2feac36970457d2940f4083c48c6a3d9cb0a3 \
+    --hash=sha256:b0570b610ec2f3602ff12d43b5bca41c4a37a3079e6a0170ceccc69689446b87
     # via -r requirements/abstract/base.in
 django-silk==4.1.0 \
     --hash=sha256:a331e55618fa62eaf3cf5a63f31bc1e91205efbeeca5e587c577498b0e251ed8
@@ -1086,6 +1091,10 @@ typing-extensions==3.10.0.2 \
     #   django-stubs
     #   djangorestframework-stubs
     #   mypy
+ua-parser==0.10.0 \
+    --hash=sha256:46ab2e383c01dbd2ab284991b87d624a26a08f72da4d7d413f5bfab8b9036f8a \
+    --hash=sha256:47b1782ed130d890018d983fac37c2a80799d9e0b9c532e734c67cf70f185033
+    # via django-sesame
 uritemplate==3.0.1 \
     --hash=sha256:07620c3f3f8eed1f12600845892b0e036a2420acf513c53f7de0abd911a5894f \
     --hash=sha256:5af8ad10cec94f215e3f48112de2022e1d5a37ed427fbd88652fa908f2ab7cae

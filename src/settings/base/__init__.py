@@ -8,6 +8,7 @@ from .django_drf import *
 from .dramatiq import *
 from .emails import *
 from .files import *
+from .frontend import *
 from .lang_and_time import *
 from .logging import *
 from .redis import *

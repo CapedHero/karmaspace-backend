@@ -16,6 +16,9 @@ CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_DOMAIN = env("DJANGO_CSRF_COOKIE_DOMAIN", default=None)
 CSRF_TRUSTED_ORIGINS = env.list("DJANGO_CSRF_TRUSTED_ORIGINS", default=[])
 
+SESAME_MAX_AGE = 15 * 60  # 15 minutes in seconds
+SESAME_ONE_TIME = True
+
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -25,5 +28,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     "social_core.backends.facebook.FacebookOAuth2",
+    "sesame.backends.ModelBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
