@@ -13,6 +13,8 @@ today = datetime.now(timezone("Europe/Warsaw"))
 yesterday = today - relativedelta(days=1)
 two_days_ago = today - relativedelta(days=2)
 four_days_ago = today - relativedelta(days=4)
+ten_days_ago = today - relativedelta(days=10)
+two_months_ago = today - relativedelta(months=2)
 
 user_1 = User.objects.get(id=USER_1_ID)
 
@@ -49,6 +51,8 @@ karmas_data = [
     KarmaData(name="Wynoszenie pudeł i śmieci", value=11, created_at=yesterday),
     KarmaData(name="Mycie luster", value=-10, created_at=two_days_ago),
     KarmaData(name="Nadanie paczek", value=5, created_at=four_days_ago),
+    KarmaData(name="Naprawa cokołu", value=15, created_at=ten_days_ago),
+    KarmaData(name="Pomalowanie barierki", value=-11, created_at=two_months_ago),
 ]
 
 for karma_data_ in karmas_data:
