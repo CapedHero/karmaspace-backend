@@ -10,12 +10,12 @@ api_urlpatterns = [
         name="karmaboard_list",
     ),
     path(
-        route="karmaboards/<owner_username>/<slug>",
+        route="karmaboards/<uuid:pk>",
         view=KarmaBoardDetailView.as_view(),
         name="karmaboard_detail",
     ),
     path(
-        route="karmaboards/<owner_username>/<slug>/karmas",
+        route="karmaboards/<uuid:karmaboard_pk>/karmas",
         view=KarmaListView.as_view(),
         name="karma_list",
     ),

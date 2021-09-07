@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
@@ -19,7 +21,7 @@ class PatchInputSerializer(serializers.ModelSerializer):
 class KarmaDetailView(APIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
-    def patch(self, request: Request, pk: str) -> Response:
+    def patch(self, request: Request, pk: UUID) -> Response:
         db_obj = get_object_or_404(Karma, pk=pk)
         self.check_object_permissions(self.request, db_obj.karmaboard)
         input_ = PatchInputSerializer(db_obj, data=request.data, partial=True)
@@ -27,7 +29,7 @@ class KarmaDetailView(APIView):
         input_.save()
         return Response(data={}, status=HTTP_200_OK)
 
-    def delete(self, request: Request, pk: str) -> Response:
+    def delete(self, request: Request, pk: UUID) -> Response:
         db_obj = get_object_or_404(Karma, pk=pk)
         self.check_object_permissions(self.request, db_obj.karmaboard)
         db_obj.delete()

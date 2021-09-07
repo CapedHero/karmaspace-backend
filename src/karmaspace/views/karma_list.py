@@ -1,4 +1,5 @@
 from typing import Any
+from uuid import UUID
 
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
@@ -29,12 +30,8 @@ class PostOutputSerializer(KarmaSerializer):
 class KarmaListView(APIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
-    def post(self, request: Request, owner_username: str, slug: str) -> Response:
-        karmaboard = get_object_or_404(
-            queryset=KarmaBoard,
-            owner__username=owner_username,
-            slug=slug,
-        )
+    def post(self, request: Request, karmaboard_pk: UUID) -> Response:
+        karmaboard = get_object_or_404(KarmaBoard, pk=karmaboard_pk)
         input_ = PostInputSerializer(data=request.data, context={"karmaboard": karmaboard})
         input_.is_valid(raise_exception=True)
         instance = input_.save()

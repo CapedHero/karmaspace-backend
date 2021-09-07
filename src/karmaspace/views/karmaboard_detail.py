@@ -1,4 +1,5 @@
 from typing import Any, Dict
+from uuid import UUID
 
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
@@ -37,14 +38,14 @@ class PatchOutputSerializer(KarmaBoardSerializer):
 class KarmaBoardDetailView(APIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
-    def get(self, request: Request, owner_username: str, slug: str) -> Response:
-        db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=slug)
+    def get(self, request: Request, pk: UUID) -> Response:
+        db_obj = get_object_or_404(KarmaBoard, pk=pk)
         self.check_object_permissions(self.request, db_obj)
         output = GetOutputSerializer(db_obj).data
         return Response(data=output, status=HTTP_200_OK)
 
-    def patch(self, request: Request, owner_username: str, slug: str) -> Response:
-        db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=slug)
+    def patch(self, request: Request, pk: UUID) -> Response:
+        db_obj = get_object_or_404(KarmaBoard, pk=pk)
         self.check_object_permissions(self.request, db_obj)
         input_ = PatchInputSerializer(db_obj, data=request.data, partial=True)
         input_.is_valid(raise_exception=True)
@@ -52,8 +53,8 @@ class KarmaBoardDetailView(APIView):
         output = PatchOutputSerializer(instance).data
         return Response(data=output, status=HTTP_200_OK)
 
-    def delete(self, request: Request, owner_username: str, slug: str) -> Response:
-        db_obj = get_object_or_404(KarmaBoard, owner__username=owner_username, slug=slug)
+    def delete(self, request: Request, pk: UUID) -> Response:
+        db_obj = get_object_or_404(KarmaBoard, pk=pk)
         self.check_object_permissions(self.request, db_obj)
         db_obj.delete()
         return Response(status=HTTP_204_NO_CONTENT)
