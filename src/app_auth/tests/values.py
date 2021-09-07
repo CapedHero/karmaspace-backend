@@ -13,6 +13,7 @@ TEST_FULL_NAME = "Foo Bar"
 TEST_ID = 123
 TEST_PASSPHRASE = "foo-bar-baz"
 TEST_USERNAME = "user-foo"
+TEST_URL = "https://foo.bar"
 
 
 def get_test_gif(name: str = "test.gif") -> SimpleUploadedFile:

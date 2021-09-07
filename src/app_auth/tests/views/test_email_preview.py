@@ -14,7 +14,7 @@ class TestEmailsPreviewPassphrase:
 
         # THEN
         response_html = response.content.decode()
-        assert "hasło do KarmaSpace" in response_html
+        assert "tymczasowe hasło" in response_html
         assert "dummy-passphrase-foo-bar" in response_html
         assert "15 minut" in response_html
         assert response.status_code == HTTP_200_OK

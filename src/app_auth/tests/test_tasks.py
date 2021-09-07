@@ -1,14 +1,16 @@
+import pytest
 from django.conf import settings
 
 from ..tasks import send_passphrase_to_user
-from .values import TEST_EMAIL, TEST_PASSPHRASE
+from .values import TEST_EMAIL, TEST_PASSPHRASE, TEST_URL
 
 
+@pytest.mark.django_db
 def test_send_passphrase_to_user(mailoutbox):
     # WHEN
     user_email = TEST_EMAIL
     passphrase = TEST_PASSPHRASE
-    send_passphrase_to_user(user_email, passphrase)
+    send_passphrase_to_user(user_email, passphrase, redirect_url=TEST_URL)
 
     # THEN
     assert len(mailoutbox) == 1
@@ -21,5 +23,5 @@ def test_send_passphrase_to_user(mailoutbox):
     actual_html = mail.alternatives[0][0]
     actual_plain_msg = mail.body
     for msg in [actual_html, actual_plain_msg]:
-        assert "Twoje tymczasowe hasło do KarmaSpace" in msg
+        assert "podaj swoje tymczasowe hasło" in msg
         assert passphrase in msg

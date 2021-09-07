@@ -9,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 from freezegun import freeze_time
 
 from src.app_auth.models import PassphraseRecord
-from src.app_auth.tests.values import TEST_DATETIME, TEST_EMAIL, TEST_PASSPHRASE
+from src.app_auth.tests.values import TEST_DATETIME, TEST_EMAIL, TEST_PASSPHRASE, TEST_URL
 from src.app_tests.api_clients import get_unauthenticated_api_client
 
 
@@ -35,7 +35,11 @@ class TestPost:
 
         # WHEN
         api_client = get_unauthenticated_api_client()
-        response = api_client.post(VIEW_PATH, data={"email": TEST_EMAIL}, format="json")
+        response = api_client.post(
+            path=VIEW_PATH,
+            data={"email": TEST_EMAIL, "redirect_url": TEST_URL},
+            format="json",
+        )
 
         # THEN
         assert response.json() == {}
@@ -47,7 +51,9 @@ class TestPost:
         assert db_obj.passphrase == TEST_PASSPHRASE
         assert db_obj.expires_at == TEST_DATETIME + relativedelta(minutes=15)
 
-        send_passphrase_to_user_mock.send.assert_called_once_with(TEST_EMAIL, TEST_PASSPHRASE)
+        send_passphrase_to_user_mock.send.assert_called_once_with(
+            TEST_EMAIL, TEST_PASSPHRASE, TEST_URL,
+        )
 
     def test_returns_error_if_email_is_missing(self):
         # WHEN
