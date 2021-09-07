@@ -1,5 +1,6 @@
-import pytest
 from django.conf import settings
+
+import pytest
 
 from ..tasks import send_passphrase_to_user
 from .values import TEST_EMAIL, TEST_PASSPHRASE, TEST_URL

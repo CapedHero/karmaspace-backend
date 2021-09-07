@@ -52,7 +52,9 @@ class TestPost:
         assert db_obj.expires_at == TEST_DATETIME + relativedelta(minutes=15)
 
         send_passphrase_to_user_mock.send.assert_called_once_with(
-            TEST_EMAIL, TEST_PASSPHRASE, TEST_URL,
+            TEST_EMAIL,
+            TEST_PASSPHRASE,
+            TEST_URL,
         )
 
     def test_returns_error_if_email_is_missing(self):
