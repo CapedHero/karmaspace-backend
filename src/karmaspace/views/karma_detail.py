@@ -15,7 +15,7 @@ from ..models import Karma
 class PatchInputSerializer(serializers.ModelSerializer):
     class Meta:
         model = Karma
-        fields = ["name", "value"]
+        fields = ["name", "value", "duration_in_m"]
 
 
 class KarmaDetailView(APIView):

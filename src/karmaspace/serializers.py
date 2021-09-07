@@ -7,7 +7,7 @@ from .models import Karma, KarmaBoard
 class KarmaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Karma
-        fields = ["id", "created_at", "name", "value"]
+        fields = ["id", "name", "value", "duration_in_m", "created_at"]
 
 
 class KarmaBoardSerializer(serializers.ModelSerializer):

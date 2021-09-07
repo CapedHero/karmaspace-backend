@@ -77,6 +77,7 @@ per-file-ignores =
   src/app_auth/models/user.py: E800
   src/app_auth/tests/models/test_user.py: E800
   src/app_auth/views/__init__.py: F401
+  src/core/time_units/__init__.py: F401
   src/core/urls.py: E800
   src/core/utils.py: T001, E800
   src/karmaspace/models/__init__.py: F401
