@@ -20,7 +20,7 @@ api_urlpatterns = [
         name="karma_list",
     ),
     path(
-        route="karmas/<id_>",
+        route="karmas/<uuid:pk>",
         view=KarmaDetailView.as_view(),
         name="karma_detail",
     ),

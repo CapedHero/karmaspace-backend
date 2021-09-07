@@ -19,16 +19,16 @@ class PatchInputSerializer(serializers.ModelSerializer):
 class KarmaDetailView(APIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
-    def patch(self, request: Request, id_: str) -> Response:
-        db_obj = get_object_or_404(Karma, id=id_)
+    def patch(self, request: Request, pk: str) -> Response:
+        db_obj = get_object_or_404(Karma, pk=pk)
         self.check_object_permissions(self.request, db_obj.karmaboard)
         input_ = PatchInputSerializer(db_obj, data=request.data, partial=True)
         input_.is_valid(raise_exception=True)
         input_.save()
         return Response(data={}, status=HTTP_200_OK)
 
-    def delete(self, request: Request, id_: str) -> Response:
-        db_obj = get_object_or_404(Karma, id=id_)
+    def delete(self, request: Request, pk: str) -> Response:
+        db_obj = get_object_or_404(Karma, pk=pk)
         self.check_object_permissions(self.request, db_obj.karmaboard)
         db_obj.delete()
         return Response(status=HTTP_204_NO_CONTENT)
