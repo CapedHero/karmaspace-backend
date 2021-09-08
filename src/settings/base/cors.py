@@ -9,3 +9,6 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     "accept-version",  # unsplash-js sends it
     "cache-control",  # unsplash-js sends it
 ]
+CORS_EXPOSE_HEADERS = [
+    "X-Total",  # unsplash-js needs it
+]

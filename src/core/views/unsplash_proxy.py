@@ -13,5 +13,11 @@ def unsplash_proxy_view(request: Request, api_path: str) -> Response:
     relayed_querystring = request.query_params.urlencode()
     url = f"https://api.unsplash.com/{api_path}?{relayed_querystring}"
     headers = {"Authorization": f"Client-ID {settings.UNSPLASH_ACCESS_KEY}"}
+
     unsplash_response = requests.get(url, headers=headers)
-    return Response(data=unsplash_response.json(), status=unsplash_response.status_code)
+
+    dj_response = Response(data=unsplash_response.json(), status=unsplash_response.status_code)
+    if "X-Total" in unsplash_response.headers:
+        dj_response.headers["X-Total"] = unsplash_response.headers["X-Total"]
+
+    return dj_response
