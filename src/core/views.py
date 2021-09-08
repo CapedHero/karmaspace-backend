@@ -2,7 +2,7 @@ import json
 
 from django.conf import settings
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
@@ -65,3 +65,13 @@ def sentry_tunnel_view(request: Request) -> Response:
         )
 
     return Response(status=sentry_response.status_code)
+
+
+@api_view(http_method_names=["GET"])
+@permission_classes([IsAuthenticated])
+def unsplash_proxy_view(request: Request, api_path: str) -> Response:
+    relayed_querystring = request.query_params.urlencode()
+    url = f"https://api.unsplash.com/{api_path}?{relayed_querystring}"
+    headers = {"Authorization": f"Client-ID {settings.UNSPLASH_ACCESS_KEY}"}
+    unsplash_response = requests.get(url, headers=headers)
+    return Response(data=unsplash_response.json(), status=unsplash_response.status_code)

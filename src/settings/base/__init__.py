@@ -14,3 +14,4 @@ from .logging import *
 from .redis import *
 from .sentry import *
 from .social_auth import *
+from .unsplash import *
