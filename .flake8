@@ -80,6 +80,7 @@ per-file-ignores =
   src/core/time_units/__init__.py: F401
   src/core/urls.py: E800
   src/core/utils.py: T001, E800
+  src/core/views/__init__.py: F401
   src/karmaspace/models/__init__.py: F401
   src/karmaspace/views/__init__.py: F401
   src/settings/*: F401, F403, F405
