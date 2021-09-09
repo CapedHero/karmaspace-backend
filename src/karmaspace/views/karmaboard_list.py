@@ -1,5 +1,6 @@
 from typing import Any
 
+from django.db import transaction
 from django.db.models.aggregates import Sum
 from rest_framework import serializers
 from rest_framework.permissions import IsAuthenticated
@@ -10,16 +11,34 @@ from rest_framework.views import APIView
 
 from src.core.permissions import IsOwner
 from ..models import KarmaBoard
-from ..serializers import KarmaBoardSerializer
+from ..models.unsplash_photo import UnsplashPhoto
+from ..serializers import KarmaBoardSerializer, UnsplashPhotoSerializer
 
 
 class PostInputSerializer(serializers.ModelSerializer):
     class Meta:
         model = KarmaBoard
-        fields = ["name"]
+        fields = ["name", "value_step", "unsplash_photo"]
 
+    unsplash_photo = UnsplashPhotoSerializer()
+
+    @transaction.atomic
     def create(self, validated_data: Any) -> KarmaBoard:
-        return KarmaBoard.objects.create(owner=self.context["owner"], **validated_data)
+        photo_data = validated_data.pop("unsplash_photo")
+        unsplash_photo, _ = UnsplashPhoto.objects.update_or_create(
+            id=photo_data["id"],
+            defaults={
+                "regular_url": photo_data["regular_url"],
+                "small_url": photo_data["small_url"],
+                "author_name": photo_data["author_name"],
+                "author_url": photo_data["author_url"],
+            },
+        )
+        return KarmaBoard.objects.create(
+            owner=self.context["owner"],
+            unsplash_photo=unsplash_photo,
+            **validated_data,
+        )
 
 
 class PostOutputSerializer(KarmaBoardSerializer):

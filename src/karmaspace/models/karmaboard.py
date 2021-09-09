@@ -7,6 +7,7 @@ from src.app_auth.models import User
 from src.core.models import BaseModel
 from src.core.utils import get_object_str
 from src.karmaspace.logic.sort_index import get_sort_index_for_last_position
+from src.karmaspace.models.unsplash_photo import UnsplashPhoto
 
 
 class ValueStep(models.TextChoices):
@@ -20,6 +21,14 @@ class KarmaBoard(BaseModel):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="karmaboards")
     name = CICharField(max_length=30)
     value_step = models.CharField(choices=ValueStep.choices, default=ValueStep.BY_1, max_length=20)
+    unsplash_photo = models.ForeignKey(
+        to=UnsplashPhoto,
+        null=True,
+        blank=True,
+        default=None,
+        on_delete=models.SET_NULL,
+        related_name="karmaboards",
+    )
     sort_index = models.FloatField(blank=True)
 
     class Meta:

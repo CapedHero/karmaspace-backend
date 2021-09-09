@@ -1,6 +1,7 @@
 from typing import Any, Dict
 from uuid import UUID
 
+from django.db import transaction
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
@@ -11,7 +12,8 @@ from rest_framework.views import APIView
 
 from src.core.permissions import IsOwner
 from ..models import KarmaBoard
-from ..serializers import KarmaBoardSerializer, KarmaSerializer
+from ..models.unsplash_photo import UnsplashPhoto
+from ..serializers import KarmaBoardSerializer, KarmaSerializer, UnsplashPhotoSerializer
 
 
 class GetOutputSerializer(KarmaBoardSerializer):
@@ -28,7 +30,32 @@ class GetOutputSerializer(KarmaBoardSerializer):
 class PatchInputSerializer(serializers.ModelSerializer):
     class Meta:
         model = KarmaBoard
-        fields = ["name", "value_step", "sort_index"]
+        fields = ["name", "value_step", "unsplash_photo", "sort_index"]
+
+    unsplash_photo = UnsplashPhotoSerializer()
+
+    @transaction.atomic
+    def update(self, instance: KarmaBoard, validated_data: Any) -> KarmaBoard:
+        photo_data = validated_data.pop("unsplash_photo", None)
+
+        if photo_data:
+            unsplash_photo, _ = UnsplashPhoto.objects.update_or_create(
+                id=photo_data["id"],
+                defaults={
+                    "regular_url": photo_data["regular_url"],
+                    "small_url": photo_data["small_url"],
+                    "author_name": photo_data["author_name"],
+                    "author_url": photo_data["author_url"],
+                },
+            )
+            instance.unsplash_photo = unsplash_photo
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        instance.save()
+
+        return instance
 
 
 class PatchOutputSerializer(KarmaBoardSerializer):
