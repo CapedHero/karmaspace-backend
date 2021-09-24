@@ -365,9 +365,9 @@ flake8==3.9.2 \
     #   flake8-mutable
     #   flake8-print
     #   flake8-quotes
-flake8-bugbear==21.4.3 \
-    --hash=sha256:2346c81f889955b39e4a368eb7d508de723d9de05716c287dc860a4073dc57e7 \
-    --hash=sha256:4f305dca96be62bf732a218fe6f1825472a621d3452c5b994d8f89dae21dbafa
+flake8-bugbear==21.9.1 \
+    --hash=sha256:2f60c8ce0dc53d51da119faab2d67dea978227f0f92ed3c44eb7d65fb2e06a96 \
+    --hash=sha256:45bfdccfb9f2d8aa140e33cac8f46f1e38215c13d5aa8650e7e188d84e2f94c6
     # via -r requirements/abstract/dev.in
 flake8-commas==2.0.0 \
     --hash=sha256:d3005899466f51380387df7151fb59afec666a0f4f4a2c6a8995b975de0f44b7 \
