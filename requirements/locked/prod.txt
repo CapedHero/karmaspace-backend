@@ -174,9 +174,9 @@ django-dramatiq==0.10.0 \
     --hash=sha256:4fa375f96f9aa56f15568c9a7b9229220373a42ef1624af5eabd346d74cf8779 \
     --hash=sha256:aefd415c9212b4001f3006863eb62c0512e9faae8e2b9f36ee8af13ac0e30811
     # via -r requirements/abstract/base.in
-django-environ==0.6.0 \
-    --hash=sha256:6b3ce447f31c5a5144671d754baa0819c9bde2fb34dcdc05ba619a97f4567e5a \
-    --hash=sha256:f63b6489ee2113239fe60cdf94efc93a2b42ac07aefb5b5182d401b4fa820374
+django-environ==0.7.0 \
+    --hash=sha256:20a5a3570333d3718c0a7ca834290ef850e2b96237ae4ca0a05823b3a0cb3363 \
+    --hash=sha256:b99bd3704221f8b717c8517d8146e53fdee509d9e99056be560060003b92213e
     # via -r requirements/abstract/base.in
 django-redis==5.0.0 \
     --hash=sha256:048f665bbe27f8ff2edebae6aa9c534ab137f1e8fa7234147ef470df3f3aa9b8 \
