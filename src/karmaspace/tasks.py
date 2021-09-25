@@ -30,6 +30,6 @@ def send_user_msg_to_feedback_email(
         subject=f"Feedback - Nowa wiadomość od użytkownika {username}",
         html_message=ready_to_send_user_msg,
         message=strip_tags(ready_to_send_user_msg),
-        from_email=user_email,
+        from_email=f"{username}@karmaspace.io",
         recipient_list=["feedback@karmaspace.io"],
     )
