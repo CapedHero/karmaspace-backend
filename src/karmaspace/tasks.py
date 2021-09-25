@@ -10,7 +10,7 @@ from src.core.dramatiq_actors import dramatiq_actor
 @dramatiq_actor()
 def send_new_user_created_msg_to_karmaspace_team(user_username: str, user_email: str) -> None:
     send_mail(
-        subject=f"Nowy użytkownik - {user_username} / {user_email}",
+        subject=f"Nowy użytkownik - {user_username} | {user_email}",
         message="Nice!",
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=settings.KARMASPACE_TEAM_EMAILS,
@@ -27,7 +27,7 @@ def send_user_msg_to_feedback_email(
     ready_to_send_user_msg = bleach.linkify(safe_user_msg)
 
     send_mail(
-        subject=f"Feedback - Nowa wiadomość od użytkownika {username}",
+        subject=f"Feedback - Nowa wiadomość od użytkownika {username} | {user_email}",
         html_message=ready_to_send_user_msg,
         message=strip_tags(ready_to_send_user_msg),
         from_email=f"{username}@karmaspace.io",
