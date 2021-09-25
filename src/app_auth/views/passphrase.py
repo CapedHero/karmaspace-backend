@@ -16,7 +16,7 @@ from ..tasks import send_passphrase_to_user
 
 class PostInputSerializer(serializers.Serializer):
     email = serializers.EmailField()
-    redirect_url = serializers.URLField(default="")
+    redirect_url = serializers.URLField(default="", allow_blank=True)
 
 
 @api_view(http_method_names=["POST"])
