@@ -1,6 +1,12 @@
 from django.urls import path
 
-from .views import KarmaBoardDetailView, KarmaBoardListView, KarmaDetailView, KarmaListView
+from .views import (
+    KarmaBoardDetailView,
+    KarmaBoardListView,
+    KarmaDetailView,
+    KarmaListView,
+    user_feedback_msg_view,
+)
 
 
 api_urlpatterns = [
@@ -23,5 +29,13 @@ api_urlpatterns = [
         route="karmas/<uuid:pk>",
         view=KarmaDetailView.as_view(),
         name="karma_detail",
+    ),
+]
+
+msg_urlpatterns = [
+    path(
+        route="feedback",
+        view=user_feedback_msg_view,
+        name="user_feedback_msg",
     ),
 ]
