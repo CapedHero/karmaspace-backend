@@ -23,9 +23,10 @@ def sentry_proxy_view(request: Request) -> Response:  # noqa: C901
             status=HTTP_400_BAD_REQUEST,
         )
 
+    envelope = request.body.splitlines()
     try:
-        headers = json.loads(request.body.splitlines()[0])
-    except IndexError:
+        envelope_headers, item_headers, item = map(lambda x: json.loads(x), envelope)
+    except ValueError:
         logger.exception(
             msg="Sentry Proxy Error. Unexpected request body.",
             extra={"request_body": request.body},
@@ -36,14 +37,24 @@ def sentry_proxy_view(request: Request) -> Response:  # noqa: C901
         )
 
     try:
-        dsn = headers["dsn"]
+        dsn = envelope_headers["dsn"]
     except KeyError:
+        if item_headers.get("type", "") == "client_report":
+            logger.error(
+                msg="Sentry Proxy Error. Event not sent.",
+                extra={"request_body": request.body},
+            )
+            return Response(
+                data={"detail": "Event not sent due to a client error."},
+                status=HTTP_400_BAD_REQUEST,
+            )
+
         logger.exception(
             msg="Sentry Proxy Error. Missing Sentry DSN header.",
             extra={"request_body": request.body},
         )
         return Response(
-            data={"detail": f"Missing Sentry DSN header. headers={headers}"},
+            data={"detail": "Missing Sentry DSN header."},
             status=HTTP_400_BAD_REQUEST,
         )
 
