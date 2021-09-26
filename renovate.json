@@ -6,7 +6,8 @@
     "fileMatch": [
       "requirements/abstract/base.in",
       "requirements/abstract/dev.in",
-      "requirements/abstract/prod.in"
+      "requirements/abstract/prod.in",
+      "requirements/abstract/cron.in"
     ]
   }
 }

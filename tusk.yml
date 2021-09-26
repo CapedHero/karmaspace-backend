@@ -127,6 +127,14 @@ tasks:
         --output-file requirements/locked/prod.txt
         requirements/abstract/prod.in
 
+      - pip-compile
+        --upgrade
+        --generate-hashes
+        --allow-unsafe
+        --quiet
+        --output-file requirements/locked/cron.txt
+        requirements/abstract/cron.in
+
   dependencies:list-outdated:
     run: python -m pip list --outdated
 
