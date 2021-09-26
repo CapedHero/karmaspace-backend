@@ -27,7 +27,8 @@ def sentry_proxy_view(request: Request) -> Response:  # noqa: C901
         headers = json.loads(request.body.splitlines()[0])
     except IndexError:
         logger.exception(
-            f"Sentry Proxy Error. Unexpected request body. request_body={request.body}"
+            msg="Sentry Proxy Error. Unexpected request body.",
+            extra={"request_body": request.body},
         )
         return Response(
             data={"detail": "Unexpected request body."},
@@ -38,7 +39,8 @@ def sentry_proxy_view(request: Request) -> Response:  # noqa: C901
         dsn = headers["dsn"]
     except KeyError:
         logger.exception(
-            f"Sentry Proxy Error. Missing Sentry DSN header. request_body={request.body}"
+            msg="Sentry Proxy Error. Missing Sentry DSN header.",
+            extra={"request_body": request.body},
         )
         return Response(
             data={"detail": f"Missing Sentry DSN header. headers={headers}"},
@@ -47,7 +49,8 @@ def sentry_proxy_view(request: Request) -> Response:  # noqa: C901
 
     if dsn != settings.SENTRY_FE_DSN:
         logger.exception(
-            f"Sentry Proxy Error. Sentry DSN doesn't match. request_body={request.body}"
+            msg="Sentry Proxy Error. Sentry DSN doesn't match.",
+            extra={"request_body": request.body},
         )
         return Response(
             data={"detail": "Sentry DSN doesn't match."},
