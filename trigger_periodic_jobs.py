@@ -4,9 +4,10 @@ from uuid import uuid4
 
 from redis import Redis
 
-from src.settings.base.redis import REDIS_URL
+from django_environ import env
 
 
+REDIS_URL = f"redis://:{env('REDIS_PASSWORD')}@{env('REDIS_HOST')}:{env('REDIS_PORT')}"
 REDIS_CLIENT = Redis.from_url(REDIS_URL)
 QUEUE_NAME = "default"
 
