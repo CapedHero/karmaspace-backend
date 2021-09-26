@@ -6,7 +6,7 @@ from pytz import timezone
 
 from fixtures.constants import USER_1_ID
 from src.app_auth.models import User
-from src.karmaspace.models import Karma, KarmaBoard
+from src.karmaspace.models import Goal, Karma, KarmaBoard
 
 
 today = datetime.now(timezone("Europe/Warsaw"))
@@ -47,7 +47,7 @@ karmaboard_1 = KarmaBoard.objects.create(
 
 karmas_data = [
     KarmaData(name="Odkurzanie góry", value=3, created_at=today),
-    KarmaData(name="Zmywanie garów", value=4, created_at=yesterday),
+    KarmaData(name="Zmywanie garów", value=4, created_at=today),
     KarmaData(name="Wynoszenie pudeł i śmieci", value=11, created_at=yesterday),
     KarmaData(name="Mycie luster", value=-10, created_at=two_days_ago),
     KarmaData(name="Nadanie paczek", value=5, created_at=four_days_ago),
@@ -57,6 +57,13 @@ karmas_data = [
 
 for karma_data_ in karmas_data:
     _create_karma_fixture(karmaboard_1, karma_data_)
+
+Goal.objects.create(
+    karmaboard=karmaboard_1,
+    owner=user_1,
+    timeframe=Goal.Timeframe.DAILY,
+    target_value=10,
+)
 
 
 ###################################

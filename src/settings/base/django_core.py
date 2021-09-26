@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "social_django",
     # KarmaSpace
     "src.app_auth",
+    "src.jobs",
     "src.karmaspace",
 ]
 
