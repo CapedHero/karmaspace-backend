@@ -23,4 +23,4 @@ def test_send_new_user_created_msg_to_karmaspace_team(mailoutbox):
 
     assert mail.from_email == settings.DEFAULT_FROM_EMAIL
     assert list(mail.to) == settings.KARMASPACE_TEAM_EMAILS
-    assert mail.subject == f"Nowy użytkownik - {user_username} / {user_email}"
+    assert mail.subject == f"Nowy użytkownik - {user_username} | {user_email}"
