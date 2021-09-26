@@ -1,4 +1,5 @@
 import json
+import logging
 
 from django.conf import settings
 from rest_framework.decorators import api_view, permission_classes
@@ -10,25 +11,44 @@ from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER
 import requests
 
 
+logger = logging.getLogger("main")
+
+
 @api_view(http_method_names=["POST"])
 @permission_classes([AllowAny])
-def sentry_proxy_view(request: Request) -> Response:
+def sentry_proxy_view(request: Request) -> Response:  # noqa: C901
     if not settings.SENTRY_IS_ENABLED:
         return Response(
             data={"detail": "Sentry is not enabled."},
             status=HTTP_400_BAD_REQUEST,
         )
 
-    headers = json.loads(request.body.splitlines()[0])
+    try:
+        headers = json.loads(request.body.splitlines()[0])
+    except IndexError:
+        logger.exception(
+            f"Sentry Proxy Error. Unexpected request body. request_body={request.body}"
+        )
+        return Response(
+            data={"detail": "Unexpected request body."},
+            status=HTTP_400_BAD_REQUEST,
+        )
+
     try:
         dsn = headers["dsn"]
     except KeyError:
+        logger.exception(
+            f"Sentry Proxy Error. Missing Sentry DSN header. request_body={request.body}"
+        )
         return Response(
             data={"detail": f"Missing Sentry DSN header. headers={headers}"},
             status=HTTP_400_BAD_REQUEST,
         )
 
     if dsn != settings.SENTRY_FE_DSN:
+        logger.exception(
+            f"Sentry Proxy Error. Sentry DSN doesn't match. request_body={request.body}"
+        )
         return Response(
             data={"detail": "Sentry DSN doesn't match."},
             status=HTTP_400_BAD_REQUEST,
