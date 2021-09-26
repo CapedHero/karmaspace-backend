@@ -3,7 +3,6 @@ name: Periodic Jobs
 on:
   schedule:
     - cron: "* * * * *"
-  workflow_dispatch:
 
 jobs:
   render_jobs:
