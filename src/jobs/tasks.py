@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 
 from django.db.models import IntegerField, OuterRef, Q, Subquery
@@ -9,15 +10,18 @@ from src.core.dramatiq_actors import dramatiq_actor
 from src.karmaspace.models import Goal, KarmaBoard, Notification
 
 
+logger = logging.getLogger("main")
+
+
 @dramatiq_actor()
 def run_periodic_jobs() -> None:
     now = datetime.now(timezone("Europe/Warsaw"))
 
     if _is_6pm(now):
         create_daily_goals_notifications.send()
-        print("It truly is 6 PM!")  # noqa: T001
+        logger.info("It truly is 6 PM!")
 
-    print("Periodic tasks triggered.")  # noqa: T001
+    logger.info("Periodic tasks triggered.")
 
 
 def _is_6pm(timestamp: datetime) -> bool:
