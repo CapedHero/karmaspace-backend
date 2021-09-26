@@ -1,0 +1,20 @@
+name: Periodic Jobs
+
+on:
+  schedule:
+    - cron: "* * * * *"
+  workflow_dispatch:
+
+jobs:
+  render_jobs:
+    name: Run periodic jobs on Render
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Call Render API"
+        run: |
+          curl --request POST 'https://api.render.com/v1/services/${{ secrets.RENDER_CRON_JOB_SERVICE_ID }}/jobs' \
+            --header 'Authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{
+                "startCommand": "python trigger_periodic_jobs.py"
+            }'
