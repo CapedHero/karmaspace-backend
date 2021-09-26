@@ -12,13 +12,13 @@ def send_new_user_created_msg_to_karmaspace_team(user_username: str, user_email:
     send_mail(
         subject=f"Nowy użytkownik - {user_username} | {user_email}",
         message="Nice!",
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=settings.KARMASPACE_TEAM_EMAILS,
+        from_email='"KarmaSpace News" <karmabot@karmaspace.io>',
+        recipient_list=["news@karmaspace.io"],
     )
 
 
 @dramatiq_actor()
-def send_user_msg_to_feedback_email(
+def send_user_feedback(
     username: str,
     user_email: str,
     dangerous_user_msg: str,
@@ -30,6 +30,6 @@ def send_user_msg_to_feedback_email(
         subject=f"Feedback - Nowa wiadomość od użytkownika {username} | {user_email}",
         html_message=ready_to_send_user_msg,
         message=strip_tags(ready_to_send_user_msg),
-        from_email=f'"KarmaSpace Feedback" <{username}@karmaspace.io"',
+        from_email='"KarmaSpace Feedback" <karmabot@karmaspace.io>',
         recipient_list=["feedback@karmaspace.io"],
     )

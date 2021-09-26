@@ -5,7 +5,7 @@ from .views import (
     KarmaBoardListView,
     KarmaDetailView,
     KarmaListView,
-    user_feedback_msg_view,
+    user_feedback_view,
 )
 
 
@@ -35,7 +35,7 @@ api_urlpatterns = [
 msg_urlpatterns = [
     path(
         route="feedback",
-        view=user_feedback_msg_view,
+        view=user_feedback_view,
         name="user_feedback_msg",
     ),
 ]

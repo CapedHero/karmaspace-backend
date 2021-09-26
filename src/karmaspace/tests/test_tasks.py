@@ -1,5 +1,3 @@
-from django.conf import settings
-
 import pytest
 
 from src.app_auth.tests.values import TEST_EMAIL, TEST_USERNAME
@@ -21,6 +19,6 @@ def test_send_new_user_created_msg_to_karmaspace_team(mailoutbox):
     assert len(mailoutbox) == 1
     mail = mailoutbox[0]
 
-    assert mail.from_email == settings.DEFAULT_FROM_EMAIL
-    assert list(mail.to) == settings.KARMASPACE_TEAM_EMAILS
+    assert mail.from_email == '"KarmaSpace News" <karmabot@karmaspace.io>'
+    assert list(mail.to) == ["news@karmaspace.io"]
     assert mail.subject == f"Nowy użytkownik - {user_username} | {user_email}"
