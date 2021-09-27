@@ -1,3 +1,8 @@
+import django
+
+
+django.setup()
+
 from fixtures.constants import USER_1_ID
 from src.app_auth.models import User
 

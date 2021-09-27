@@ -177,6 +177,7 @@ tasks:
           PYTHONPATH: .
       - ./manage.py flush --no-input
       - python fixtures/users.py
+      - python fixtures/unsplash_photos.py
       - python fixtures/karmaboards.py
 
   linters:coverage-report:

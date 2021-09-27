@@ -1,12 +1,23 @@
+import django
+
+
+django.setup()
+
 from dataclasses import dataclass
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 from pytz import timezone
 
-from fixtures.constants import USER_1_ID
+from fixtures.constants import (
+    UNSPLASH_PHOTO_1_ID,
+    UNSPLASH_PHOTO_2_ID,
+    UNSPLASH_PHOTO_3_ID,
+    USER_1_ID,
+)
 from src.app_auth.models import User
 from src.karmaspace.models import Goal, Karma, KarmaBoard
+from src.karmaspace.models.unsplash_photo import UnsplashPhoto
 
 
 today = datetime.now(timezone("Europe/Warsaw"))
@@ -43,6 +54,7 @@ def _create_karma_fixture(karmaboard, karma_data: KarmaData) -> None:
 karmaboard_1 = KarmaBoard.objects.create(
     owner=user_1,
     name="Obowiązki domowe",
+    unsplash_photo=UnsplashPhoto.objects.get(pk=UNSPLASH_PHOTO_1_ID),
 )
 
 karmas_data = [
@@ -73,6 +85,7 @@ Goal.objects.create(
 karmaboard_2 = KarmaBoard.objects.create(
     owner=user_1,
     name="Rośliny i ogród",
+    unsplash_photo=UnsplashPhoto.objects.get(pk=UNSPLASH_PHOTO_2_ID),
 )
 
 karmas_data = [
@@ -91,6 +104,7 @@ for karma_data_ in karmas_data:
 karmaboard_3 = KarmaBoard.objects.create(
     owner=user_1,
     name="KarmaSpace startup",
+    unsplash_photo=UnsplashPhoto.objects.get(pk=UNSPLASH_PHOTO_3_ID),
 )
 
 karmas_data = [
