@@ -10,7 +10,7 @@ TEST_COOKBOOK_NAME = "Cookbook Foo"
 TEST_DATETIME = datetime(2020, 1, 2, 3, 45, tzinfo=pytz.timezone("utc"))
 TEST_EMAIL = "foo@bar.baz"
 TEST_FULL_NAME = "Foo Bar"
-TEST_ID = 123
+TEST_ID = "b1cced68-3c19-47c3-b112-730231289bd5"
 TEST_PASSPHRASE = "foo-bar-baz"
 TEST_USERNAME = "user-foo"
 TEST_URL = "https://foo.bar"

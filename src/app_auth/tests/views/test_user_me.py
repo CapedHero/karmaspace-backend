@@ -25,6 +25,7 @@ class TestGet:
 
         # THEN
         assert response.json() == {
+            "id": TEST_ID,
             "username": TEST_USERNAME,
             "avatar": f"https://test.com/media/avatars/{user.username}.gif" if avatar else None,
         }
