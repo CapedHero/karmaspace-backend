@@ -1,6 +1,7 @@
 """
 Code sourced from loguru docs:
 + https://github.com/Delgan/loguru#entirely-compatible-with-standard-logging
++ https://github.com/Delgan/loguru/issues/474#issuecomment-926705136
 """
 import logging
 import logging.config
@@ -11,8 +12,18 @@ from loguru import logger
 from django_environ import env
 
 
-class _InterceptHandler(logging.Handler):
+class PropagateHandler(logging.Handler):
     def emit(self, record):
+        record.from_loguru = True
+        logging.getLogger(record.name).handle(record)
+
+
+class InterceptHandler(logging.Handler):
+    def emit(self, record):
+        # Ignore messages from PropagateHandler to avoid hanging
+        if getattr(record, "from_loguru", False):
+            return
+
         # Get corresponding Loguru level if it exists
         try:
             level = logger.level(record.levelname).name
@@ -49,7 +60,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "handlers": {
         "intercept": {
-            "()": _InterceptHandler,
+            "()": InterceptHandler,
             "level": 0,
         },
     },
@@ -58,3 +69,4 @@ LOGGING = {
 
 logger.remove()
 logger.add(sys.stderr)
+logger.add(PropagateHandler(), format="{message}")
