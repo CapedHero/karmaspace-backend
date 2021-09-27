@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "src.app_auth",
     "src.jobs",
     "src.karmaspace",
+    "src.notifications",
 ]
 
 MIDDLEWARE = [

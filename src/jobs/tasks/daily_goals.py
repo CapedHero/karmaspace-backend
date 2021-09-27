@@ -8,7 +8,8 @@ from django.db.models.functions import Coalesce
 
 from src.core.dramatiq_actors import dramatiq_actor
 from src.core.utils import get_today_hh_mm
-from src.karmaspace.models import Goal, KarmaBoard, Notification
+from src.karmaspace.models import Goal, KarmaBoard
+from src.notifications.models import Notification
 from ..models import Job
 
 
