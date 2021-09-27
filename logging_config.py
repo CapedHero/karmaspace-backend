@@ -5,6 +5,7 @@ from django_environ import env
 
 LOGGERS = [
     "django",
+    "dramatiq",
     "gunicorn.access",
     "gunicorn.error",
     "main",
