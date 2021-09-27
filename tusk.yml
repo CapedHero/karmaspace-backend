@@ -168,7 +168,7 @@ tasks:
     usage: Run task queue built on Dramatiq + Redis with prod settings.
     run:
       - task: configure-prod-env
-      - python manage.py rundramatiq --processes=1 --threads=2
+      - python manage.py rundramatiq --processes=1 --threads=4
 
   fixtures:reset:
     usage: Remove existing data and (re)load fixtures.
