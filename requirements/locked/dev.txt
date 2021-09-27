@@ -55,9 +55,9 @@ boto3==1.18.47 \
     --hash=sha256:07260ec42a21c31a13b07ffbf219811a79be60d2eb9a99cedfec65c2a5f2155d \
     --hash=sha256:52d87c94511226ccacd9e94335eb8f8f980b97964f63db92b97148b5486330a7
     # via -r requirements/abstract/base.in
-botocore==1.21.48 \
-    --hash=sha256:2c25a76f09223b2f00ad578df34492b7b84cd4828fc90c08ccbdd1d70abbd7eb \
-    --hash=sha256:9d5b70be2f417d0aa30788049fd20473ad27218eccd05e71f545b4b4e09c79a0
+botocore==1.21.49 \
+    --hash=sha256:0161c3b64e34315928aae7fdbce49e684c9c2cfad2435cb22023b7ad87306f12 \
+    --hash=sha256:eab89183f7d94cabacde79a266060bb9429249e33a39b7ba4c1b15c965095477
     # via
     #   boto3
     #   s3transfer
@@ -554,6 +554,10 @@ jmespath==0.10.0 \
     # via
     #   boto3
     #   botocore
+loguru==0.5.3 \
+    --hash=sha256:b28e72ac7a98be3d28ad28570299a393dfcd32e5e3f6a353dec94675767b6319 \
+    --hash=sha256:f8087ac396b5ee5f67c963b495d615ebbceac2796379599820e324419d53667c
+    # via -r requirements/abstract/base.in
 markupsafe==2.0.1 \
     --hash=sha256:01a9b8ea66f1658938f65b93a85ebe8bc016e6769611be228d797c9d998dd298 \
     --hash=sha256:023cb26ec21ece8dc3907c0e8320058b2e0cb3c55cf9564da612bc325bed5e64 \

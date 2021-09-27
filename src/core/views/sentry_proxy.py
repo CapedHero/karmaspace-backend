@@ -1,5 +1,4 @@
 import json
-import logging
 
 from django.conf import settings
 from rest_framework.decorators import api_view, permission_classes
@@ -9,9 +8,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
 
 import requests
-
-
-logger = logging.getLogger("main")
+from loguru import logger
 
 
 @api_view(http_method_names=["POST"])

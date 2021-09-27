@@ -1,14 +1,11 @@
-import logging
 from tempfile import NamedTemporaryFile
 
 from django.contrib.auth import login
 from django.core.files import File
 
 import requests
+from loguru import logger
 from social_core.pipeline.partial import partial
-
-
-logger = logging.getLogger("main")
 
 
 def login_with_social_auth(strategy, backend, user=None, *args, **kwargs):

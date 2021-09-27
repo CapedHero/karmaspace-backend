@@ -1,4 +1,3 @@
-import logging
 from datetime import date
 
 from django.db import IntegrityError, transaction
@@ -12,8 +11,6 @@ from src.karmaspace.models import Goal, KarmaBoard
 from src.notifications.models import Notification
 from ..models import Job
 
-
-logger = logging.getLogger("main")
 
 JOB_NAME = "create_daily_goals_notifications"
 

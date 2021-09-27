@@ -1,16 +1,13 @@
-import logging
 from datetime import datetime
 
 from django.conf import settings
 
+from loguru import logger
 from pytz import timezone
 
 from src.core.dramatiq_actors import dramatiq_actor
 from src.core.utils import get_today_hh_mm
 from .daily_goals import create_daily_goals_notifications
-
-
-logger = logging.getLogger("main")
 
 
 @dramatiq_actor()
