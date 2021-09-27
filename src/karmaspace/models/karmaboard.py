@@ -10,14 +10,13 @@ from src.karmaspace.logic.sort_index import get_sort_index_for_last_position
 from src.karmaspace.models.unsplash_photo import UnsplashPhoto
 
 
-class ValueStep(models.TextChoices):
-    BY_1 = "BY_1"
-    BY_5 = "BY_5"
-    BY_10 = "BY_10"
-    FIBONACCI = "FIBONACCI"
-
-
 class KarmaBoard(BaseModel):
+    class ValueStep(models.TextChoices):
+        BY_1 = "BY_1"
+        BY_5 = "BY_5"
+        BY_10 = "BY_10"
+        FIBONACCI = "FIBONACCI"
+
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="karmaboards")
     name = CICharField(max_length=30)
     value_step = models.CharField(choices=ValueStep.choices, default=ValueStep.BY_1, max_length=20)
