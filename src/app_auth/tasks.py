@@ -26,7 +26,7 @@ def send_passphrase_to_user(user_email: str, passphrase: str, redirect_url: str)
         context={"passphrase": passphrase, "magic_link": magic_link},
     )
     send_mail(
-        subject=f"Twoje tymczasowe hasło do KarmaSpace to {passphrase}",
+        subject="Logowanie do KarmaSpace",
         html_message=msg_html,
         message=strip_tags(msg_html),
         from_email=settings.DEFAULT_FROM_EMAIL,
