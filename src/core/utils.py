@@ -1,6 +1,8 @@
+from datetime import date, datetime, time
 from functools import reduce
 from typing import Any, Dict, List, Optional, Set, TypeVar
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.db.models import Model
@@ -8,6 +10,10 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from rest_framework.reverse import reverse
 
+from pytz import timezone
+
+
+TZ = timezone(settings.TIME_ZONE)
 
 COWSAY_TEMPLATE = r"""
 ##{speech_bubble_border}##
@@ -40,6 +46,12 @@ V = TypeVar("V")
 
 def extract_keys_from_dict(dict_: Dict[K, V], keys: Set[K]) -> Dict[K, V]:
     return {key: dict_[key] for key in keys}
+
+
+def get_today_hh_mm(hh_mm: str) -> datetime:
+    hh, mm = map(lambda x: int(x), hh_mm.split(":"))
+    naive_datetime = datetime.combine(date=date.today(), time=time(hour=hh, minute=mm))
+    return TZ.localize(naive_datetime)
 
 
 def get_link_to_admin_form_for_object(obj: Model, inner_html: Optional[str] = None) -> str:
