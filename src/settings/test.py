@@ -1,5 +1,7 @@
 import tempfile
 
+from loguru import logger
+
 from .base import *
 
 
@@ -28,3 +30,8 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.dummy.DummyCache",
     }
 }
+
+logger.add(sys.stderr)
+# Pytest needs to capture the logs and to do so, logs need to be propagated
+# to its LogCaptureHandler.
+logger.add(PropagateHandler(), format="{message}")

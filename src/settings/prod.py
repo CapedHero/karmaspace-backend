@@ -1,3 +1,5 @@
+from loguru import logger
+
 from django_environ import env
 from .base import *
 
@@ -35,3 +37,9 @@ AWS_QUERYSTRING_AUTH = False
 #############
 
 ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = True
+
+###########
+# LOGGING #
+###########
+
+logger.add(sys.stderr, serialize=True)

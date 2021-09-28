@@ -1,3 +1,5 @@
+from loguru import logger
+
 from .base import *
 
 
@@ -23,3 +25,5 @@ SILKY_PYTHON_PROFILER_RESULT_PATH = PROJECT_ROOT / "profiles"
 SILKY_META = True
 
 SOCIAL_AUTH_ALLOWED_REDIRECT_HOSTS = ["localhost:8080"]
+
+logger.add(sys.stderr)

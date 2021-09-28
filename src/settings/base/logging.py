@@ -68,5 +68,4 @@ LOGGING = {
 }
 
 logger.remove()
-logger.add(sys.stderr)
-logger.add(PropagateHandler(), format="{message}")
+# SPECIFIC logger.add(...) are handled in settings local.py/prod.py/test.py!
