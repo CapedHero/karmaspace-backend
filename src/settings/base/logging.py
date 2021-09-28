@@ -48,7 +48,7 @@ STANDARD_CONFIG = {
 loggers_configs = {logger: STANDARD_CONFIG.copy() for logger in LOGGERS}
 
 # Handle spammers.
-SPAMMERS = ["asyncio", "dramatiq", "django", "sentry_sdk"]
+SPAMMERS = ["asyncio", "dramatiq", "django", "sentry", "sentry_sdk"]
 for spammer in SPAMMERS:
     try:
         loggers_configs[spammer]["level"] = "INFO"
