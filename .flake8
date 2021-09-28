@@ -79,6 +79,7 @@ per-file-ignores =
   src/app_auth/views/__init__.py: F401
   src/core/time_units/__init__.py: F401
   src/core/urls.py: E800
+  src/settings/base/sockets.py: E800
   src/core/utils.py: T001, E800
   src/core/views/__init__.py: F401
   src/jobs/tasks/__init__.py: F401
