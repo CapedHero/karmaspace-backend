@@ -5,9 +5,13 @@
   "pip_requirements": {
     "fileMatch": [
       "requirements/abstract/base.in",
+      "requirements/abstract/base.txt",
       "requirements/abstract/dev.in",
+      "requirements/abstract/dev.txt",
       "requirements/abstract/prod.in",
-      "requirements/abstract/cron.in"
+      "requirements/abstract/prod.txt",
+      "requirements/abstract/cron.in",
+      "requirements/abstract/cron.txt"
     ]
   }
 }
