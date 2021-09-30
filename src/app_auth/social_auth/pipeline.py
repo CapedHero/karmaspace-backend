@@ -14,31 +14,43 @@ def login_with_social_auth(strategy, backend, user=None, *args, **kwargs):
 
     if backend.name == "facebook":
         auth_backend = "social_core.backends.facebook.FacebookOAuth2"
+    elif backend.name == "google-openidconnect":
+        auth_backend = "social_core.backends.google_openidconnect.GoogleOpenIdConnect"
     else:
-        raise RuntimeError("Unhandled Social Auth backend!")
+        raise RuntimeError(
+            f"Unhandled Social Auth backend! "
+            f"backend.name={backend.name} "
+            f"type(backend)={type(backend)}"
+        )
 
     login(strategy.request, user, auth_backend)
 
 
 def save_avatar(backend, user, response, is_new=False, *args, **kwargs):
-    if user is None:
+    if user is None or not is_new:
         return
 
-    if backend.name == "facebook" and is_new:
+    if backend.name == "facebook":
         user_picture_url = f"https://graph.facebook.com/{response['id']}/picture"
         user_picture_params = {"type": "large", "access_token": response["access_token"]}
+    elif backend.name == "google-openidconnect":
+        user_picture_url = response.get("picture")
+        user_picture_params = {}
+    else:
+        return
 
-        try:
-            user_picture_response = requests.get(user_picture_url, params=user_picture_params)
-            user_picture_response.raise_for_status()
-        except requests.HTTPError:
-            logger.exception("Failed downloading Facebook image.")
-            return
-        else:
-            img_temp = NamedTemporaryFile()
-            img_temp.write(user_picture_response.content)
-            img_temp.flush()
-            user.avatar.save(f"{user.username}.jpg", File(img_temp))
+    try:
+        user_picture_response = requests.get(user_picture_url, params=user_picture_params)
+        user_picture_response.raise_for_status()
+        _, file_suffix = user_picture_response.headers["Content-Type"].split("/")
+    except (requests.HTTPError, KeyError, IndexError):
+        logger.exception(f"Failed downloading social auth image. backend={backend.name}")
+        return
+
+    img_temp = NamedTemporaryFile()
+    img_temp.write(user_picture_response.content)
+    img_temp.flush()
+    user.avatar.save(f"{user.username}.{file_suffix}", File(img_temp))
 
 
 @partial

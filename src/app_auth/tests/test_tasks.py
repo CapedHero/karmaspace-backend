@@ -24,5 +24,5 @@ def test_send_passphrase_to_user(mailoutbox):
     actual_html = mail.alternatives[0][0]
     actual_plain_msg = mail.body
     for msg in [actual_html, actual_plain_msg]:
-        assert "wykorzystaj swoje tymczasowe hasło" in msg
+        assert "wykorzystaj swoje tymczasowe hasło" in msg.lower()
         assert passphrase in msg

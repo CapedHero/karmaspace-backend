@@ -27,7 +27,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
+    # Social Auth backend name: facebook
     "social_core.backends.facebook.FacebookOAuth2",
+    # Social Auth backend name: google-openidconnect
+    "social_core.backends.google_openidconnect.GoogleOpenIdConnect",
     "sesame.backends.ModelBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]

@@ -70,7 +70,11 @@ class TestSaveAvatar:
         # GIVEN
         requests_get_mock = mocker.patch("requests.get")
         avatar = get_test_gif()
-        requests_get_mock.return_value = Mock(status_code=200, content=avatar.file.getvalue())
+        requests_get_mock.return_value = Mock(
+            status_code=200,
+            content=avatar.file.getvalue(),
+            headers={"Content-Type": "image/jpg"},
+        )
 
         response = {"id": TEST_ID, "access_token": TEST_ACCESS_TOKEN}
 
@@ -138,4 +142,4 @@ class TestSaveAvatar:
         save_avatar(FakeBackend(name="facebook"), user, response, is_new=True)
 
         # THEN
-        assert "Failed downloading Facebook image." in caplog.text
+        assert "Failed downloading social auth image." in caplog.text
