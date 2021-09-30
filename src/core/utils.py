@@ -1,6 +1,7 @@
 from datetime import date, datetime, time
 from functools import reduce
 from typing import Any, Dict, List, Optional, Set, TypeVar
+from urllib.parse import urlencode, urlparse
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -25,6 +26,10 @@ COWSAY_TEMPLATE = r"""
             (__)\       )\/\
                 ||----w |
                 ||     ||"""
+
+
+def add_safely_query_params(url: str, params: Dict[str, str]) -> str:
+    return url + ("&" if urlparse(url).query else "?") + urlencode(params)
 
 
 def cowsay(msg: str, print_end: str = "\n\n") -> None:
