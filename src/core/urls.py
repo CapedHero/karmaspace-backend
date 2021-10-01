@@ -8,7 +8,7 @@ from django.views.static import serve
 from src.app_auth.urls import api_urlpatterns as app_auth_api_urlpatterns
 from src.app_auth.urls import auth_urlpatterns
 from src.app_auth.urls import emails_urlpatterns as app_auth_emails_urlpatterns
-from src.core.views import health_view, sentry_proxy_view, unsplash_proxy_view
+from src.core.views import health_view, mixpanel_proxy_view, sentry_proxy_view, unsplash_proxy_view
 from src.karmaspace.urls import api_urlpatterns as karmaspace_api_urlpatterns
 from src.karmaspace.urls import msg_urlpatterns as karmaspace_msg_urlpatterns
 
@@ -33,6 +33,7 @@ urlpatterns = [
     path("auth/", include(auth_urlpatterns)),
     path("auth/social/", include("social_django.urls", namespace="social")),
     path("health", view=health_view, name="health"),
+    path("proxy/mixpanel/<path:api_path>", view=mixpanel_proxy_view, name="mixpanel_proxy"),
     path("proxy/sentry", view=sentry_proxy_view, name="sentry_tunnel"),
     path("proxy/unsplash/<path:api_path>", view=unsplash_proxy_view, name="unsplash_proxy"),
     path(
