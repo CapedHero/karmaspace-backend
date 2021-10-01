@@ -15,7 +15,10 @@ import requests
 
 from src.core.models import BaseModel
 from src.core.utils import get_object_str
-from src.karmaspace.tasks import send_new_user_created_msg_to_karmaspace_team
+from src.karmaspace.tasks import (
+    send_new_user_created_msg_to_karmaspace_team,
+    send_thank_you_for_joining_msg,
+)
 
 
 class UsernameValidator(RegexValidator):
@@ -76,8 +79,11 @@ class User(PermissionsMixin, AbstractBaseUser, BaseModel):
 
         super().save(*args, **kwargs)
 
-        if is_new and settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON:
-            send_new_user_created_msg_to_karmaspace_team.send(self.username, self.email)
+        if is_new:
+            send_thank_you_for_joining_msg.send(self.email)
+
+            if settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON:
+                send_new_user_created_msg_to_karmaspace_team.send(self.username, self.email)
 
     def save_random_avatar(self) -> None:
         avatar_url = (

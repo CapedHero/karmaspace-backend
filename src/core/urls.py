@@ -10,6 +10,7 @@ from src.app_auth.urls import auth_urlpatterns
 from src.app_auth.urls import emails_urlpatterns as app_auth_emails_urlpatterns
 from src.core.views import health_view, mixpanel_proxy_view, sentry_proxy_view, unsplash_proxy_view
 from src.karmaspace.urls import api_urlpatterns as karmaspace_api_urlpatterns
+from src.karmaspace.urls import emails_urlpatterns as karmaspace_emails_urlpatterns
 from src.karmaspace.urls import msg_urlpatterns as karmaspace_msg_urlpatterns
 
 
@@ -24,6 +25,7 @@ msg_urlpatterns = [
 
 emails_urlpatterns = [
     *app_auth_emails_urlpatterns,
+    *karmaspace_emails_urlpatterns,
 ]
 
 urlpatterns = [

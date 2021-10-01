@@ -5,6 +5,7 @@ from .views import (
     KarmaBoardListView,
     KarmaDetailView,
     KarmaListView,
+    preview_thank_you_for_joining_email_view,
     user_feedback_view,
 )
 
@@ -29,6 +30,14 @@ api_urlpatterns = [
         route="karmas/<uuid:pk>",
         view=KarmaDetailView.as_view(),
         name="karma_detail",
+    ),
+]
+
+emails_urlpatterns = [
+    path(
+        route="preview/thank_you_for_joining",
+        view=preview_thank_you_for_joining_email_view,
+        name="emails_preview_thank_you_for_joining_email",
     ),
 ]
 
