@@ -42,27 +42,10 @@ class InterceptHandler(logging.Handler):
 LOGGERS = list(logging.root.manager.loggerDict) + ["werkzeug"]
 STANDARD_CONFIG = {
     "handlers": ["intercept"],
-    "level": env("APP_LOG_LEVEL", default="DEBUG"),
+    "level": env("APP_LOG_LEVEL", default="INFO"),
     "propagate": True,
 }
 loggers_configs = {logger: STANDARD_CONFIG.copy() for logger in LOGGERS}
-
-# Handle spammers.
-SPAMMERS = [
-    "asyncio",
-    "dramatiq",
-    "django",
-    "faker.factory",
-    "sentry",
-    "sentry_sdk",
-    "sentry_sdk.errors",
-    "sentry_sdk.integrations.logging",
-]
-for spammer in SPAMMERS:
-    try:
-        loggers_configs[spammer]["level"] = "INFO"
-    except KeyError:
-        pass
 
 LOGGING = {
     "version": 1,
