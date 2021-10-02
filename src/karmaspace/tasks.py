@@ -15,7 +15,7 @@ def send_thank_you_for_joining_msg(user_email: str) -> None:
         subject="Witaj w KarmaSpace!",
         html_message=msg_html,
         message=strip_tags(msg_html),
-        from_email='"KarmaSpace" <welcome@karmaspace.io>',
+        from_email='"KarmaSpace" <hello@karmaspace.io>',
         recipient_list=[user_email],
     )
 
