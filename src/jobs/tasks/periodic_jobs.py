@@ -16,10 +16,10 @@ def run_periodic_jobs() -> None:
     logger.info("Periodic jobs triggered.")
 
     now = datetime.now(timezone(settings.TIME_ZONE))
-    t_17_00 = get_today_hh_mm("17:00")
+    t_18_00 = get_today_hh_mm("18:00")
     t_22_00 = get_today_hh_mm("22:00")
 
-    if t_17_00 <= now <= t_22_00:
+    if t_18_00 <= now <= t_22_00:
         create_daily_goals_notifications.send()
         logger.info("create_daily_goals_notifications job scheduled.")
 
