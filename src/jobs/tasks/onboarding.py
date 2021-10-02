@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 from dateutil.relativedelta import relativedelta
+from loguru import logger
 
 from src.app_auth.models import User
 from src.core.dramatiq_actors import dramatiq_actor
@@ -17,10 +18,10 @@ JOB_NAME = "send_follow_up_email_after_joining"
 @dramatiq_actor()
 def send_follow_up_email_after_joining() -> None:
     today_midnight = get_today_hh_mm("00:00")
-    yesterday_midnight = today_midnight - relativedelta(days=1)
+    # yesterday_midnight = today_midnight - relativedelta(days=1)
 
     users_created_yesterday = User.objects.filter(
-        created_at__gte=yesterday_midnight,
+        # created_at__gte=yesterday_midnight,
         created_at__lte=today_midnight,
     )
 
@@ -30,6 +31,7 @@ def send_follow_up_email_after_joining() -> None:
 
         try:
             with transaction.atomic():
+                logger.info(f"Sending follow-up email for {user.username}...")
                 job = Job(name=JOB_NAME, marker=str(user.id))
 
                 job.status = Job.Status.IN_PROGRESS
@@ -46,6 +48,7 @@ def send_follow_up_email_after_joining() -> None:
 
                 job.status = Job.Status.DONE
                 job.save()
+                logger.info(f"Sending follow-up email for {user.username}... SUCCESS")
 
         except IntegrityError:
             return
