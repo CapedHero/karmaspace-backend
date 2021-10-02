@@ -1,5 +1,10 @@
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.decorators import api_view, parser_classes, permission_classes
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    parser_classes,
+    permission_classes,
+)
 from rest_framework.parsers import FormParser
 from rest_framework.permissions import AllowAny
 from rest_framework.request import Request
@@ -9,8 +14,9 @@ import requests
 
 
 @api_view(http_method_names=["GET", "POST"])
-@permission_classes([AllowAny])
 @csrf_exempt
+@authentication_classes([])
+@permission_classes([AllowAny])
 @parser_classes([FormParser])
 def mixpanel_proxy_view(request: Request, api_path: str) -> Response:
     mixpanel_url = f"https://api-eu.mixpanel.com/{api_path}"
