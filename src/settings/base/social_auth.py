@@ -9,6 +9,7 @@ SOCIAL_AUTH_PIPELINE = [
     "social_core.pipeline.user.get_username",
     "social_core.pipeline.social_auth.associate_by_email",
     "social_core.pipeline.user.create_user",
+    "src.app_auth.social_auth.pipeline.mark_user_as_newly_created",
     "src.app_auth.social_auth.pipeline.save_avatar",
     "social_core.pipeline.social_auth.associate_user",
     "social_core.pipeline.social_auth.load_extra_data",

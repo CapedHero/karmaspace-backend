@@ -7,6 +7,20 @@ import requests
 from loguru import logger
 from social_core.pipeline.partial import partial
 
+from src.core.utils import add_safely_query_params
+
+
+REDIRECT_URL_KEY = "next"
+
+
+def mark_user_as_newly_created(strategy, user=None, is_new=False, *args, **kwargs):
+    if user is None or not is_new:
+        return
+
+    redirect_url = strategy.session_get(REDIRECT_URL_KEY)
+    updated_redirect_url = add_safely_query_params(redirect_url, params={"is_new": True})
+    strategy.session_set(REDIRECT_URL_KEY, updated_redirect_url)
+
 
 def login_with_social_auth(strategy, backend, user=None, *args, **kwargs):
     if user is None:

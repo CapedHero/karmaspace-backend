@@ -28,7 +28,7 @@ COWSAY_TEMPLATE = r"""
                 ||     ||"""
 
 
-def add_safely_query_params(url: str, params: Dict[str, str]) -> str:
+def add_safely_query_params(url: str, params: Dict[str, Any]) -> str:
     return url + ("&" if urlparse(url).query else "?") + urlencode(params)
 
 
