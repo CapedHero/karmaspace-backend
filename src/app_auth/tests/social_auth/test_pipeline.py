@@ -68,9 +68,9 @@ class TestSaveAvatar:
     @pytest.mark.django_db
     def test_happy_path(self, mocker):
         # GIVEN
-        requests_get_mock = mocker.patch("requests.get")
+        session_get_mock = mocker.patch("src.app_auth.models.user.session.get")
         avatar = get_test_gif()
-        requests_get_mock.return_value = Mock(
+        session_get_mock.return_value = Mock(
             status_code=200,
             content=avatar.file.getvalue(),
             headers={"Content-Type": "image/jpg"},
@@ -84,7 +84,7 @@ class TestSaveAvatar:
         save_avatar(FakeBackend(name="facebook"), user, response, is_new=True)
 
         # THEN
-        requests_get_mock.assert_called_once_with(
+        session_get_mock.assert_called_once_with(
             f"https://graph.facebook.com/{response['id']}/picture",
             params={"type": "large", "access_token": response["access_token"]},
         )
@@ -93,19 +93,19 @@ class TestSaveAvatar:
 
     def test_no_user(self, mocker):
         # GIVEN
-        requests_get_mock = mocker.patch("requests.get")
+        session_get_mock = mocker.patch("src.app_auth.models.user.session.get")
         response = {"id": TEST_ID, "access_token": TEST_ACCESS_TOKEN}
 
         # WHEN
         save_avatar(FakeBackend(name="facebook"), user=None, response=response, is_new=True)
 
         # THEN
-        requests_get_mock.assert_not_called()
+        session_get_mock.assert_not_called()
 
     @pytest.mark.django_db
     def test_user_is_not_new(self, mocker):
         # GIVEN
-        requests_get_mock = mocker.patch("requests.get")
+        session_get_mock = mocker.patch("src.app_auth.models.user.session.get")
         user = UserFactory()
         response = {"id": TEST_ID, "access_token": TEST_ACCESS_TOKEN}
 
@@ -113,12 +113,12 @@ class TestSaveAvatar:
         save_avatar(FakeBackend(name="facebook"), user, response, is_new=False)
 
         # THEN
-        requests_get_mock.assert_not_called()
+        session_get_mock.assert_not_called()
 
     @pytest.mark.django_db
     def test_unhandled_backend(self, mocker):
         # GIVEN
-        requests_get_mock = mocker.patch("requests.get")
+        session_get_mock = mocker.patch("src.app_auth.models.user.session.get")
         user = UserFactory()
         response = {"id": TEST_ID, "access_token": TEST_ACCESS_TOKEN}
 
@@ -126,14 +126,14 @@ class TestSaveAvatar:
         save_avatar(FakeBackend(name="unhandled"), user, response, is_new=True)
 
         # THEN
-        requests_get_mock.assert_not_called()
+        session_get_mock.assert_not_called()
 
     @pytest.mark.django_db
     def test_failed_downloading_facebook_image(self, mocker, caplog, capsys):
         # GIVEN
-        requests_get_mock = mocker.patch("requests.get")
+        session_get_mock = mocker.patch("src.app_auth.models.user.session.get")
         user_picture_response = FakeResponse(status_code=HTTP_400_BAD_REQUEST)
-        requests_get_mock.return_value = user_picture_response
+        session_get_mock.return_value = user_picture_response
 
         user = UserFactory()
         response = {"id": TEST_ID, "access_token": TEST_ACCESS_TOKEN}

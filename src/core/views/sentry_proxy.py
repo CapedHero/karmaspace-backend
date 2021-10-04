@@ -7,8 +7,9 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
 
-import requests
 from loguru import logger
+
+from src.core.networking import session
 
 
 @api_view(http_method_names=["POST"])
@@ -67,7 +68,7 @@ def sentry_proxy_view(request: Request) -> Response:  # noqa: C901
 
     sentry_project_id = dsn.rsplit("/", maxsplit=1)[1]
     url = f"https://sentry.io/api/{sentry_project_id}/envelope/"
-    sentry_response = requests.post(
+    sentry_response = session.post(
         url=url,
         data=request.body,
         headers={"Content-Type": "application/x-sentry-envelope"},

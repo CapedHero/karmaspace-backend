@@ -11,9 +11,8 @@ from django.db import models
 from django.utils.crypto import get_random_string
 from rest_framework.status import HTTP_200_OK
 
-import requests
-
 from src.core.models import BaseModel
+from src.core.networking import session
 from src.core.utils import get_object_str
 from src.karmaspace.tasks import (
     send_new_user_created_msg_to_karmaspace_team,
@@ -89,7 +88,7 @@ class User(PermissionsMixin, AbstractBaseUser, BaseModel):
         avatar_url = (
             "https://avatars.dicebear.com/api/jdenticon/" + get_random_string(length=10) + ".svg"
         )
-        response = requests.get(avatar_url)
+        response = session.get(avatar_url)
         if response.status_code == HTTP_200_OK:
             img_temp = NamedTemporaryFile()
             img_temp.write(response.content)
