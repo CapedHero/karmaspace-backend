@@ -176,9 +176,7 @@ tasks:
       - set-environment:
           PYTHONPATH: .
       - ./manage.py flush --no-input
-      - python fixtures/users.py
-      - python fixtures/unsplash_photos.py
-      - python fixtures/karmaboards.py
+      - python fixtures/load.py
 
   linters:coverage-report:
     usage: Open refreshed coverage report in a browser.

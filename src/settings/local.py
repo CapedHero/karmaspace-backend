@@ -1,5 +1,6 @@
 from loguru import logger
 
+from django_environ import env
 from .base import *
 
 
@@ -18,6 +19,9 @@ MIDDLEWARE += [
     "src.core.middlewares.BetterExceptionsMiddleware",
     # "silk.middleware.SilkyMiddleware",
 ]
+
+FIXTURES_USER_1_USERNAME = env("FIXTURES_USER_1_USERNAME")
+FIXTURES_USER_1_EMAIL = env("FIXTURES_USER_1_EMAIL")
 
 SILKY_PYTHON_PROFILER = True
 SILKY_PYTHON_PROFILER_BINARY = True
