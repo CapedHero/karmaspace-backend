@@ -9,7 +9,7 @@ from .karmaboard import KarmaBoard
 
 class Karma(BaseModel):
     karmaboard = models.ForeignKey(to=KarmaBoard, on_delete=models.CASCADE, related_name="karmas")
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=75)
     value = models.IntegerField(validators=[MinValueValidator(-99), MaxValueValidator(99)])
     duration_in_m = models.PositiveSmallIntegerField(
         default=0,
