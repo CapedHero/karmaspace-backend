@@ -116,14 +116,18 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
         karma_data_collection=[
             KarmaData(name="Trening na siłowni", value=15, created_at=today),
             KarmaData(name="Dzień bez mięsa", value=10, created_at=today),
-            KarmaData(name="Pizza i wino", value=-10, created_at=yesterday),
+            KarmaData(
+                name="Pizza pepperoni na grubym cieście i wino",
+                value=-10,
+                created_at=yesterday,
+            ),
+            KarmaData(name="Zjedzenie całej czekolady!", value=-5, created_at=two_days_ago),
             KarmaData(
                 name="Wyjście ze znajomymi do knajpy, czyli alkohol i snacki",
                 value=-20,
-                created_at=two_days_ago,
+                created_at=three_days_ago,
             ),
             KarmaData(name="Bieganie 5 km", value=5, created_at=three_days_ago),
-            KarmaData(name="Pożarcie całej czekolady", value=-5, created_at=three_days_ago),
             KarmaData(
                 name="Zrobienie domowych obiadów na trzy dni",
                 value=15,
