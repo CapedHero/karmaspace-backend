@@ -145,6 +145,7 @@ tasks:
     run:
       - git fetch --all
       - git checkout ${renovate-pr-branch}
+      - git pull
       - tusk dependencies:compile
       - tusk dependencies:sync-dev
       - git add .
