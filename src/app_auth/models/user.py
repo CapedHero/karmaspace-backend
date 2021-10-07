@@ -46,6 +46,7 @@ class User(PermissionsMixin, AbstractBaseUser, BaseModel):
             "Unselect this instead of deleting accounts."
         ),
     )
+    is_demo = models.BooleanField(default=False)
 
     password = models.CharField(max_length=128, blank=True)
 

@@ -28,6 +28,7 @@ class TestGet:
             "id": TEST_ID,
             "username": TEST_USERNAME,
             "avatar": f"https://test.com/media/avatars/{user.username}.gif" if avatar else None,
+            "is_demo": False,
         }
         assert response.status_code == HTTP_200_OK
 
