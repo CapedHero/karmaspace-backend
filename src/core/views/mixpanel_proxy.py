@@ -1,3 +1,5 @@
+import time
+
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import (
     api_view,
@@ -26,6 +28,7 @@ def mixpanel_proxy_view(request: Request, api_path: str) -> Response:
         or request.META.get("REMOTE_ADDR", None)
     )
     headers = {"X-REAL-IP": ip}
+    time.sleep(0.01)  # https://stackoverflow.com/a/383816/7483239
     mixpanel_response = session.request(
         method=request.method,
         url=mixpanel_url,
