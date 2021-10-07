@@ -20,9 +20,9 @@ boto3==1.18.51 \
     --hash=sha256:83d6f539e0f0e0f0c532bb2b11d1e9c5055d1d806d64a61aff4f49399c294ee7 \
     --hash=sha256:98279095b1d08ee6d8d587f2c66fda6d560ad3046e98cd140c1aa8e1ed018c70
     # via -r requirements/abstract/base.in
-botocore==1.21.51 \
-    --hash=sha256:17a10dd33334e7e3aaa4e12f66317284f96bb53267e20bc877a187c442681772 \
-    --hash=sha256:2089f9fa36a59d8c02435c49d58ccc7b3ceb9c0c054ea4f71631c3c3a1c5245e
+botocore==1.21.56 \
+    --hash=sha256:43fab79905e3dfe56f92a137314ef1afbf040f7c06516a003351c24322cbfd7c \
+    --hash=sha256:d712f572022670916bd77fbe421155dcf575398b9dced88035ed3658679883bd
     # via
     #   boto3
     #   s3transfer
@@ -421,9 +421,9 @@ pycparser==2.20 \
     --hash=sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0 \
     --hash=sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705
     # via cffi
-pyjwt==2.1.0 \
-    --hash=sha256:934d73fbba91b0483d3857d1aff50e96b2a892384ee2c17417ed3203f173fca1 \
-    --hash=sha256:fba44e7898bbca160a2b2b501f492824fc8382485d3a6f11ba5d0c1937ce6130
+pyjwt==2.2.0 \
+    --hash=sha256:a0b9a3b4e5ca5517cac9f1a6e9cd30bf1aa80be74fcdf4e28eded582ecfcfbae \
+    --hash=sha256:b0ed5824c8ecc5362e540c65dc6247567db130c4226670bf7699aec92fb4dae1
     # via social-auth-core
 pyparsing==2.4.7 \
     --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
@@ -447,9 +447,9 @@ python3-openid==3.2.0 \
     --hash=sha256:33fbf6928f401e0b790151ed2b5290b02545e8775f982485205a066f874aaeaf \
     --hash=sha256:6626f771e0417486701e0b4daff762e7212e820ca5b29fcc0d05f6f8736dfa6b
     # via social-auth-core
-pytz==2021.1 \
-    --hash=sha256:83a4a90894bf38e243cf052c8b58f381bfe9a7a483f6a9cab140bc7f702ac4da \
-    --hash=sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798
+pytz==2021.3 \
+    --hash=sha256:3672058bc3453457b622aab7a1c3bfd5ab0bdae451512f6cf25f64ed37f5b87c \
+    --hash=sha256:acad2d8b20a1af07d4e4c9d2e9285c5ed9104354062f275f3fcd88dcef4f1326
     # via django
 pyyaml==5.4.1 \
     --hash=sha256:08682f6b72c722394747bddaf0aa62277e02557c0fd1c42cb853016a38f8dedf \
@@ -628,9 +628,9 @@ zope.interface==5.4.0 \
     # via gevent
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==58.1.0 \
-    --hash=sha256:5de67252090e08d25f240f07d80310f778a5a46cdcf9ea9855662630ac8547b2 \
-    --hash=sha256:7324fd4b66efa05cdfc9c89174573a4410acc7848f318cc0565c7fb659dfdc81
+setuptools==58.2.0 \
+    --hash=sha256:2551203ae6955b9876741a26ab3e767bb3242dafe86a32a749ea0d78b6792f11 \
+    --hash=sha256:2c55bdb85d5bb460bd2e3b12052b677879cffcf46c0c688f2e5bf51d36001145
     # via
     #   gevent
     #   gunicorn
