@@ -19,7 +19,7 @@ def demo_view(request: Request) -> Response:
 
     demo_user = User.objects.create(
         username=f"DemoUser-{random_string}",
-        email=f"demo-user@{random_string}.demo.karmaspace.io",
+        email=f"demo-user-{random_string}@demo.karmaspace.io",
         is_demo=True,
     )
 
