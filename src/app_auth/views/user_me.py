@@ -11,7 +11,7 @@ from ..models import User
 class GetOutputSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "avatar"]
+        fields = ["id", "username", "avatar", "is_demo"]
 
 
 @api_view(http_method_names=["GET"])

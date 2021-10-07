@@ -51,9 +51,9 @@ bleach==4.1.0 \
     --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da \
     --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994
     # via -r requirements/abstract/base.in
-boto3==1.18.51 \
-    --hash=sha256:83d6f539e0f0e0f0c532bb2b11d1e9c5055d1d806d64a61aff4f49399c294ee7 \
-    --hash=sha256:98279095b1d08ee6d8d587f2c66fda6d560ad3046e98cd140c1aa8e1ed018c70
+boto3==1.18.56 \
+    --hash=sha256:42828d83acddfa2361411b13683eedf7c1c0a15e896b45960ed04a26efe7adfb \
+    --hash=sha256:d43e3651ad1b0b5de6f77df82df27e0f1e6cd854f725c808c70a1fb956f0b699
     # via -r requirements/abstract/base.in
 botocore==1.21.56 \
     --hash=sha256:43fab79905e3dfe56f92a137314ef1afbf040f7c06516a003351c24322cbfd7c \
@@ -182,7 +182,7 @@ coreschema==0.0.4 \
     --hash=sha256:5e6ef7bf38c1525d5e55a895934ab4273548629f16aed5c0a6caa74ebf45551f \
     --hash=sha256:9503506007d482ab0867ba14724b93c18a33b22b6d19fb419ef2d239dd4a1607
     # via coreapi
-coverage[toml]==6.0.1 \
+coverage==6.0.1 \
     --hash=sha256:07efe1fbd72e67df026ad5109bcd216acbbd4a29d5208b3dab61779bae6b7b26 \
     --hash=sha256:0898d6948b31df13391cd40568de8f35fa5901bc922c5ae05cf070587cb9c666 \
     --hash=sha256:0a7e55cc9f7efa22d5cc9966276ec7a40a8803676f6ccbfdc06a486fba9aa9ee \
@@ -251,9 +251,9 @@ defusedxml==0.7.1 \
     # via
     #   python3-openid
     #   social-auth-core
-django==3.2.7 \
-    --hash=sha256:95b318319d6997bac3595517101ad9cc83fe5672ac498ba48d1a410f47afecd2 \
-    --hash=sha256:e93c93565005b37ddebf2396b4dc4b6913c1838baa82efdfb79acedd5816c240
+django==3.2.8 \
+    --hash=sha256:42573831292029639b798fe4d3812996bfe4ff3275f04566da90764daec011a5 \
+    --hash=sha256:f6d2c4069c9b9bfac03bedff927ea1f9e0d29e34525cec8a68fd28eb2a8df7af
     # via
     #   -r requirements/abstract/base.in
     #   django-cors-headers
@@ -266,9 +266,9 @@ django==3.2.7 \
     #   django-stubs
     #   django-stubs-ext
     #   djangorestframework
-django-cors-headers==3.9.0 \
-    --hash=sha256:c28f96b77300efed0ff6b937d9ad2a7e80a7cb3ae5ef14968e793d540600fcd3 \
-    --hash=sha256:dc121efc242ebd1acad5df5a3b9907f165beeca3eeb7f839990a71a3771ac4f5
+django-cors-headers==3.10.0 \
+    --hash=sha256:cba6e99659abb0e47cc4aaabb8fcde03f193e6bb3b92ba47c5185ec4cedc5d9e \
+    --hash=sha256:cd6f4360f5246569c149dc1c40c907c191f1ec45551e10d2a2e2e68512652f78
     # via -r requirements/abstract/base.in
 django-dramatiq==0.10.0 \
     --hash=sha256:4fa375f96f9aa56f15568c9a7b9229220373a42ef1624af5eabd346d74cf8779 \
@@ -293,9 +293,9 @@ django-sesame[ua]==2.4 \
 django-silk==4.1.0 \
     --hash=sha256:a331e55618fa62eaf3cf5a63f31bc1e91205efbeeca5e587c577498b0e251ed8
     # via -r requirements/abstract/dev.in
-django-storages==1.11.1 \
-    --hash=sha256:c823dbf56c9e35b0999a13d7e05062b837bae36c518a40255d522fbe3750fbb4 \
-    --hash=sha256:f28765826d507a0309cfaa849bd084894bc71d81bf0d09479168d44785396f80
+django-storages==1.12 \
+    --hash=sha256:b3fdb4337b1e54b8a23fe41c62d91648e26249f9fc00e882d1d09e16207aa204 \
+    --hash=sha256:b76fb6758ff6251565d07a18fe051ca1dc886921052cd5a7e373442449c72a4a
     # via -r requirements/abstract/base.in
 django-stubs==1.9.0 \
     --hash=sha256:59c9f81af64d214b1954eaf90f037778c8d2b9c2de946a3cda177fefcf588fbd \
@@ -853,9 +853,9 @@ pytest==6.2.5 \
     #   pytest-mock
     #   pytest-socket
     #   pytest-sugar
-pytest-cov==3.0.0 \
-    --hash=sha256:578d5d15ac4a25e5f961c938b85a05b09fdaae9deef3bb6de9a6e766622ca7a6 \
-    --hash=sha256:e7f0f5b1617d2210a2cabc266dfe2f4c75a8d32fb89eafb7ad9d06f6d076d470
+pytest-cov==2.12.1 \
+    --hash=sha256:261bb9e47e65bd099c89c3edf92972865210c36813f80ede5277dceb77a4a62a \
+    --hash=sha256:261ceeb8c227b726249b376b8526b600f38667ee314f910353fa318caa01f4d7
     # via -r requirements/abstract/dev.in
 pytest-django==3.9.0 \
     --hash=sha256:64f99d565dd9497af412fcab2989fe40982c1282d4118ff422b407f3f7275ca5 \
@@ -1078,12 +1078,11 @@ toml==0.10.2 \
     #   ipdb
     #   mypy
     #   pytest
+    #   pytest-cov
 tomli==1.2.1 \
     --hash=sha256:8dd0e9524d6f386271a36b41dbf6c57d8e32fd96fd22b6584679dc569d20899f \
     --hash=sha256:a5b75cb6f3968abb47af1b40c1819dc519ea82bcc065776a866e8d74c5ca9442
-    # via
-    #   coverage
-    #   pep517
+    # via pep517
 traitlets==5.1.0 \
     --hash=sha256:03f172516916220b58c9f19d7f854734136dd9528103d04e9bf139a92c9f54c4 \
     --hash=sha256:bd382d7ea181fbbcce157c133db9a829ce06edffe097bcf3ab945b435452b46d
@@ -1141,9 +1140,9 @@ webencodings==0.5.1 \
     --hash=sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78 \
     --hash=sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923
     # via bleach
-werkzeug==2.0.1 \
-    --hash=sha256:1de1db30d010ff1af14a009224ec49ab2329ad2cde454c8a708130642d579c42 \
-    --hash=sha256:6c1ec500dcdba0baa27600f6a22f6333d8b662d22027ff9f6202e3367413caa8
+werkzeug==2.0.2 \
+    --hash=sha256:63d3dc1cf60e7b7e35e97fa9861f7397283b75d765afcaefd993d6046899de8f \
+    --hash=sha256:aa2bb6fc8dee8d6c504c0ac1e7f5f7dc5810a9903e793b6f715a9f015bdadb9a
     # via -r requirements/abstract/dev.in
 wheel==0.37.0 \
     --hash=sha256:21014b2bd93c6d0034b6ba5d35e4eb284340e09d63c59aef6fc14b0f346146fd \

@@ -72,6 +72,7 @@ exclude = venv
 
 per-file-ignores =
   ci/ci_checks.py: T001
+  fixtures/models/__init__.py: F401
   src/app_auth/admin/__init__.py: F401
   src/app_auth/models/__init__.py: F401
   src/app_auth/models/user.py: E800

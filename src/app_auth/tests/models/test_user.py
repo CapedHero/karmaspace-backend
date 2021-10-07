@@ -145,18 +145,18 @@ def test_save_random_avatar(mocker):
     # GIVEN
     random_string = "random_string"
 
-    requests_get_mock = mocker.patch("requests.get")
+    session_get_mock = mocker.patch("src.app_auth.models.user.session.get")
     mocker.patch(target="src.app_auth.models.user.get_random_string", return_value="random_string")
 
     avatar = get_test_gif()
-    requests_get_mock.return_value = Mock(status_code=200, content=avatar.file.getvalue())
+    session_get_mock.return_value = Mock(status_code=200, content=avatar.file.getvalue())
 
     # WHEN
     user = UserFactory(username=TEST_USERNAME)
     user.save_random_avatar()
 
     # THEN
-    requests_get_mock.assert_called_once_with(
+    session_get_mock.assert_called_once_with(
         "https://avatars.dicebear.com/api/jdenticon/" + random_string + ".svg"
     )
     assert user.avatar.file.name.endswith(TEST_USERNAME + ".svg")

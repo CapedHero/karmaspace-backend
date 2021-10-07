@@ -1,1 +1,1 @@
-from . import in_m
+from . import in_m, in_s

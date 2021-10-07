@@ -7,6 +7,7 @@ import requests
 from loguru import logger
 from social_core.pipeline.partial import partial
 
+from src.core.networking import session
 from src.core.utils import add_safely_query_params
 
 
@@ -54,7 +55,7 @@ def save_avatar(backend, user, response, is_new=False, *args, **kwargs):
         return
 
     try:
-        user_picture_response = requests.get(user_picture_url, params=user_picture_params)
+        user_picture_response = session.get(user_picture_url, params=user_picture_params)
         user_picture_response.raise_for_status()
         _, file_suffix = user_picture_response.headers["Content-Type"].split("/")
     except (requests.HTTPError, KeyError, IndexError):

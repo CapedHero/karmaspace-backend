@@ -145,6 +145,7 @@ tasks:
     run:
       - git fetch --all
       - git checkout ${renovate-pr-branch}
+      - git pull
       - tusk dependencies:compile
       - tusk dependencies:sync-dev
       - git add .
@@ -176,9 +177,7 @@ tasks:
       - set-environment:
           PYTHONPATH: .
       - ./manage.py flush --no-input
-      - python fixtures/users.py
-      - python fixtures/unsplash_photos.py
-      - python fixtures/karmaboards.py
+      - python fixtures/local_dev.py
 
   linters:coverage-report:
     usage: Open refreshed coverage report in a browser.

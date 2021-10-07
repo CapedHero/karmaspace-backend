@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views import (
+    demo_view,
     KarmaBoardDetailView,
     KarmaBoardListView,
     KarmaDetailView,
@@ -12,6 +13,11 @@ from .views import (
 
 
 api_urlpatterns = [
+    path(
+        route="demo",
+        view=demo_view,
+        name="demo",
+    ),
     path(
         route="karmaboards",
         view=KarmaBoardListView.as_view(),

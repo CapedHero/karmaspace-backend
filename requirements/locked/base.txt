@@ -16,9 +16,9 @@ bleach==4.1.0 \
     --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da \
     --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994
     # via -r requirements/abstract/base.in
-boto3==1.18.51 \
-    --hash=sha256:83d6f539e0f0e0f0c532bb2b11d1e9c5055d1d806d64a61aff4f49399c294ee7 \
-    --hash=sha256:98279095b1d08ee6d8d587f2c66fda6d560ad3046e98cd140c1aa8e1ed018c70
+boto3==1.18.56 \
+    --hash=sha256:42828d83acddfa2361411b13683eedf7c1c0a15e896b45960ed04a26efe7adfb \
+    --hash=sha256:d43e3651ad1b0b5de6f77df82df27e0f1e6cd854f725c808c70a1fb956f0b699
     # via -r requirements/abstract/base.in
 botocore==1.21.56 \
     --hash=sha256:43fab79905e3dfe56f92a137314ef1afbf040f7c06516a003351c24322cbfd7c \
@@ -160,9 +160,9 @@ defusedxml==0.7.1 \
     # via
     #   python3-openid
     #   social-auth-core
-django==3.2.7 \
-    --hash=sha256:95b318319d6997bac3595517101ad9cc83fe5672ac498ba48d1a410f47afecd2 \
-    --hash=sha256:e93c93565005b37ddebf2396b4dc4b6913c1838baa82efdfb79acedd5816c240
+django==3.2.8 \
+    --hash=sha256:42573831292029639b798fe4d3812996bfe4ff3275f04566da90764daec011a5 \
+    --hash=sha256:f6d2c4069c9b9bfac03bedff927ea1f9e0d29e34525cec8a68fd28eb2a8df7af
     # via
     #   -r requirements/abstract/base.in
     #   django-cors-headers
@@ -171,9 +171,9 @@ django==3.2.7 \
     #   django-sesame
     #   django-storages
     #   djangorestframework
-django-cors-headers==3.9.0 \
-    --hash=sha256:c28f96b77300efed0ff6b937d9ad2a7e80a7cb3ae5ef14968e793d540600fcd3 \
-    --hash=sha256:dc121efc242ebd1acad5df5a3b9907f165beeca3eeb7f839990a71a3771ac4f5
+django-cors-headers==3.10.0 \
+    --hash=sha256:cba6e99659abb0e47cc4aaabb8fcde03f193e6bb3b92ba47c5185ec4cedc5d9e \
+    --hash=sha256:cd6f4360f5246569c149dc1c40c907c191f1ec45551e10d2a2e2e68512652f78
     # via -r requirements/abstract/base.in
 django-dramatiq==0.10.0 \
     --hash=sha256:4fa375f96f9aa56f15568c9a7b9229220373a42ef1624af5eabd346d74cf8779 \
@@ -191,9 +191,9 @@ django-sesame[ua]==2.4 \
     --hash=sha256:4f232ba1c3642b4eef23257af9a2feac36970457d2940f4083c48c6a3d9cb0a3 \
     --hash=sha256:b0570b610ec2f3602ff12d43b5bca41c4a37a3079e6a0170ceccc69689446b87
     # via -r requirements/abstract/base.in
-django-storages==1.11.1 \
-    --hash=sha256:c823dbf56c9e35b0999a13d7e05062b837bae36c518a40255d522fbe3750fbb4 \
-    --hash=sha256:f28765826d507a0309cfaa849bd084894bc71d81bf0d09479168d44785396f80
+django-storages==1.12 \
+    --hash=sha256:b3fdb4337b1e54b8a23fe41c62d91648e26249f9fc00e882d1d09e16207aa204 \
+    --hash=sha256:b76fb6758ff6251565d07a18fe051ca1dc886921052cd5a7e373442449c72a4a
     # via -r requirements/abstract/base.in
 djangorestframework==3.12.4 \
     --hash=sha256:6d1d59f623a5ad0509fe0d6bfe93cbdfe17b8116ebc8eda86d45f6e16e819aaf \
