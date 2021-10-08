@@ -17,13 +17,6 @@ from src.core import time_units
 from src.core.networking import session
 
 
-robust_session_request = backoff.on_exception(
-    wait_gen=backoff.expo,
-    exception=requests.ConnectionError,
-    max_time=time_units.in_s.SEC_15,
-)(session.request)
-
-
 @api_view(http_method_names=["GET", "POST"])
 @csrf_exempt
 @authentication_classes([])
@@ -38,7 +31,7 @@ def mixpanel_proxy_view(request: Request, api_path: str) -> Response:
     )
     headers = {"X-REAL-IP": ip}
 
-    mixpanel_response = robust_session_request(
+    mixpanel_response = _robust_session_request(
         method=request.method,
         url=mixpanel_url,
         headers=headers,
@@ -50,3 +43,12 @@ def mixpanel_proxy_view(request: Request, api_path: str) -> Response:
         dj_response.headers[name] = value
 
     return dj_response
+
+
+@backoff.on_exception(
+    wait_gen=backoff.expo,
+    exception=requests.ConnectionError,
+    max_time=time_units.in_s.SEC_15,
+)
+def _robust_session_request(*args, **kwargs) -> requests.Response:
+    return session.request(*args, **kwargs)
