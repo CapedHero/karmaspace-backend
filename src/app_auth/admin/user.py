@@ -13,6 +13,7 @@ class UserAdmin(UserAdmin):
         "email",
         "is_active",
         "is_staff",
+        "is_demo",
         "is_superuser",
         "groups_list",
         "created_at",
@@ -26,7 +27,16 @@ class UserAdmin(UserAdmin):
         ["Personal info", {"fields": ["full_name", "email"]}],
         [
             "Permissions",
-            {"fields": ["is_active", "is_staff", "is_superuser", "groups", "user_permissions"]},
+            {
+                "fields": [
+                    "is_active",
+                    "is_staff",
+                    "is_demo",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                ]
+            },
         ],
         ["Dates", {"fields": ["created_at", "modified_at"]}],
     ]
