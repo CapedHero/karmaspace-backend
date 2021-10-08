@@ -16,6 +16,5 @@ models.create_admin()
 demo_user = User.objects.create(
     username=settings.FIXTURES_USER_1_USERNAME,
     email=settings.FIXTURES_USER_1_EMAIL,
-    is_demo=True,
 )
 create_demo_for_user(demo_user)
