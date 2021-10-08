@@ -35,6 +35,10 @@ backcall==0.2.0 \
     --hash=sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e \
     --hash=sha256:fbbce6a29f263178a1f7915c1940bde0ec2b2a967566fe1c65c1dfb7422bd255
     # via ipython
+backoff==1.11.1 \
+    --hash=sha256:61928f8fa48d52e4faa81875eecf308eccfb1016b018bb6bd21e05b5d90a96c5 \
+    --hash=sha256:ccb962a2378418c667b3c979b504fdeb7d9e0d29c0579e3b13b86467177728cb
+    # via -r requirements/abstract/base.in
 bandit==1.7.0 \
     --hash=sha256:216be4d044209fa06cf2a3e51b319769a51be8318140659719aa7a115c35ed07 \
     --hash=sha256:8a4c7415254d75df8ff3c3b15cfe9042ecee628a1e40b44c15a98890fbfc2608
@@ -55,9 +59,9 @@ boto3==1.18.56 \
     --hash=sha256:42828d83acddfa2361411b13683eedf7c1c0a15e896b45960ed04a26efe7adfb \
     --hash=sha256:d43e3651ad1b0b5de6f77df82df27e0f1e6cd854f725c808c70a1fb956f0b699
     # via -r requirements/abstract/base.in
-botocore==1.21.56 \
-    --hash=sha256:43fab79905e3dfe56f92a137314ef1afbf040f7c06516a003351c24322cbfd7c \
-    --hash=sha256:d712f572022670916bd77fbe421155dcf575398b9dced88035ed3658679883bd
+botocore==1.21.57 \
+    --hash=sha256:2a00acb822b148abf6a452c10c5f0b85d245e4bde7a0465ca2a5f8c990c07fc1 \
+    --hash=sha256:4fd374e2dad91b2375db08e0c8a0bbd03b5e741b7dc4c5e730a544993cc46850
     # via
     #   boto3
     #   s3transfer
