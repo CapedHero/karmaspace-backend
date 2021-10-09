@@ -1,12 +1,11 @@
-from django.core.mail import send_mail
 from django.db import IntegrityError, transaction
 from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 
 from dateutil.relativedelta import relativedelta
 
 from src.app_auth.models import User
 from src.core.dramatiq_actors import dramatiq_actor
+from src.core.email import send_email
 from src.core.utils import get_today_hh_mm
 from ..models import Job
 
@@ -36,12 +35,11 @@ def send_follow_up_email_after_joining() -> None:
                 job.save()
 
                 msg_html = render_to_string(template_name="emails/follow_up_after_joining.html")
-                send_mail(
+                send_email(
                     subject="To wspaniale, że z nami jesteś 💜",
-                    html_message=msg_html,
-                    message=strip_tags(msg_html),
+                    body_html=msg_html,
                     from_email='"KarmaSpace" <hello@karmaspace.io>',
-                    recipient_list=[user.email],
+                    to_emails=[user.email],
                 )
 
                 job.status = Job.Status.DONE

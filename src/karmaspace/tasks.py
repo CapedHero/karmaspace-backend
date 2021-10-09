@@ -1,32 +1,30 @@
 from django.conf import settings
-from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 
 import bleach
 
 from src.core.dramatiq_actors import dramatiq_actor
+from src.core.email import send_email
 
 
 @dramatiq_actor()
 def send_thank_you_for_joining_msg(user_email: str) -> None:
     msg_html = render_to_string(template_name="emails/thank_you_for_joining.html")
-    send_mail(
+    send_email(
         subject="Witaj w KarmaSpace!",
-        html_message=msg_html,
-        message=strip_tags(msg_html),
+        body_html=msg_html,
         from_email='"KarmaSpace" <hello@karmaspace.io>',
-        recipient_list=[user_email],
+        to_emails=[user_email],
     )
 
 
 @dramatiq_actor()
 def send_new_user_created_msg_to_karmaspace_team(user_username: str, user_email: str) -> None:
-    send_mail(
+    send_email(
         subject=f"Nowy użytkownik - {user_username} | {user_email}",
-        message="Nice!",
+        body_txt="Nice!",
         from_email='"KarmaSpace News" <karmabot@karmaspace.io>',
-        recipient_list=["news@karmaspace.io"],
+        to_emails=["news@karmaspace.io"],
     )
 
 
@@ -39,10 +37,9 @@ def send_user_feedback(
     safe_user_msg = bleach.clean(dangerous_user_msg, tags=settings.EMAIL_ALLOWED_HTML_TAGS)
     ready_to_send_user_msg = bleach.linkify(safe_user_msg)
 
-    send_mail(
+    send_email(
         subject=f"Feedback - Nowa wiadomość od użytkownika {username} | {user_email}",
-        html_message=ready_to_send_user_msg,
-        message=strip_tags(ready_to_send_user_msg),
+        body_html=ready_to_send_user_msg,
         from_email='"KarmaSpace Feedback" <karmabot@karmaspace.io>',
-        recipient_list=["feedback@karmaspace.io"],
+        to_emails=["feedback@karmaspace.io"],
     )

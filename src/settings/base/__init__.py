@@ -3,6 +3,7 @@ from .auth import *
 from .cache import *
 from .cors import *
 from .database import *
+from .demo import *
 from .django_core import *
 from .django_drf import *
 from .dramatiq import *

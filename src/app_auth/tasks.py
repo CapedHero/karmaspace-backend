@@ -1,12 +1,11 @@
 from django.conf import settings
-from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 
 from sesame.utils import get_query_string
 
 from src.app_auth.models import User
 from src.core.dramatiq_actors import dramatiq_actor
+from src.core.email import send_email
 
 
 @dramatiq_actor()
@@ -25,10 +24,9 @@ def send_passphrase_to_user(user_email: str, passphrase: str, redirect_url: str)
         template_name="emails/passphrase.html",
         context={"passphrase": passphrase, "magic_link": magic_link},
     )
-    send_mail(
+    send_email(
         subject="Logowanie do KarmaSpace",
-        html_message=msg_html,
-        message=strip_tags(msg_html),
+        body_html=msg_html,
         from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[user_email],
+        to_emails=[user_email],
     )

@@ -1,6 +1,7 @@
 import secrets
 import string
 
+from django.conf import settings
 from django.contrib.auth import login
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -19,7 +20,7 @@ def demo_view(request: Request) -> Response:
 
     demo_user = User.objects.create(
         username=f"DemoUser-{random_string}",
-        email=f"demo-user-{random_string}@demo.karmaspace.io",
+        email=f"demo-user-{random_string}@{settings.DEMO_USER_EMAIL_DOMAIN}",
         is_demo=True,
     )
 
