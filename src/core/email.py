@@ -16,10 +16,17 @@ def send_email(
     filtered_to_emails = [
         email for email in to_emails if not email.endswith(settings.DEMO_USER_EMAIL_DOMAIN)
     ]
+    if body_txt:
+        body_text_ = body_txt
+    else:
+        body_text_ = strip_tags(body_html)
+        if not body_text_:
+            return
+
     dj_send_email(
         subject=subject,
         html_message=body_html,
-        message=body_txt if body_txt else strip_tags(body_html),
+        message=body_text_,
         from_email=from_email,
         recipient_list=filtered_to_emails,
     )
