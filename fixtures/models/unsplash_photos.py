@@ -7,6 +7,7 @@ from src.karmaspace.models.unsplash_photo import UnsplashPhoto
 class Photos:
     bowl_food: UnsplashPhoto
     english_flag: UnsplashPhoto
+    family: UnsplashPhoto
     guitar: UnsplashPhoto
     library: UnsplashPhoto
     succulents: UnsplashPhoto
@@ -32,6 +33,14 @@ def create_unsplash_photos() -> Photos:
         "&q=80&w=400",
         author_name="Sigmund",
         author_url="https://unsplash.com/@sigmund",
+    )
+
+    family, _ = UnsplashPhoto.objects.get_or_create(
+        id="V3dHmb1MOXM",
+        regular_url="https://images.unsplash.com/photo-1511895426328-dc8714191300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNTkxMDh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MzM3OTg3MjE&ixlib=rb-1.2.1&q=80&w=1080",
+        small_url="https://images.unsplash.com/photo-1511895426328-dc8714191300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNTkxMDh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MzM3OTg3MjE&ixlib=rb-1.2.1&q=80&w=400",
+        author_name="Tyler Nix",
+        author_url="https://unsplash.com/@tylernixcreative",
     )
 
     guitar, _ = UnsplashPhoto.objects.get_or_create(
@@ -76,4 +85,13 @@ def create_unsplash_photos() -> Photos:
         author_url="https://unsplash.com/@henri0019",
     )
 
-    return Photos(bowl_food, english_flag, guitar, library, succulents, sunflowers, wooden_house)
+    return Photos(
+        bowl_food,
+        english_flag,
+        family,
+        guitar,
+        library,
+        succulents,
+        sunflowers,
+        wooden_house,
+    )

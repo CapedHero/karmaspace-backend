@@ -323,6 +323,22 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
         ],
     )
 
+    _create_karmas(
+        karmaboard=karmaboards.family_relations,
+        karma_data_collection=[
+            KarmaData(name="Telefon do babci", value=1, duration_in_m=15, created_at=yesterday),
+            KarmaData(name="Wspólna kolacja z rodzicami", value=8, created_at=two_days_ago),
+            KarmaData(name="Pomoc dziadkom w sadzie", value=5, created_at=four_days_ago),
+            KarmaData(name="Rozmowa z mamą", value=5, duration_in_m=75, created_at=ten_days_ago),
+            KarmaData(
+                name="Telefon do babci i dziadka",
+                value=2,
+                duration_in_m=30,
+                created_at=twelve_days_ago,
+            ),
+        ],
+    )
+
 
 def _create_karmas(karmaboard: KarmaBoard, karma_data_collection: List[KarmaData]) -> None:
     for karma_data in karma_data_collection:

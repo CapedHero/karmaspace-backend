@@ -8,6 +8,7 @@ from src.karmaspace.models import KarmaBoard
 @dataclass
 class KarmaBoards:
     duties_and_leasure: KarmaBoard
+    family_relations: KarmaBoard
     fitness_and_health: KarmaBoard
     house_chores: KarmaBoard
     learning_english: KarmaBoard
@@ -23,6 +24,12 @@ def create_karmaboards(user: User, photos: Photos) -> KarmaBoards:
             name="Obowiązki i rozrywki Hani",
             unsplash_photo=photos.sunflowers,
             sort_index=0.1,
+        ),
+        family_relations=KarmaBoard.objects.create(
+            owner=user,
+            name="Relacje rodzinne",
+            unsplash_photo=photos.family,
+            sort_index=0.8,
         ),
         fitness_and_health=KarmaBoard.objects.create(
             owner=user,
