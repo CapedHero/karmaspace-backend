@@ -39,7 +39,7 @@ class InterceptHandler(logging.Handler):
         logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
 
 
-LOGGERS = list(logging.root.manager.loggerDict) + ["werkzeug"]
+LOGGERS = list(logging.root.manager.loggerDict) + ["sentry", "werkzeug"]
 STANDARD_CONFIG = {
     "handlers": ["intercept"],
     "level": env("APP_LOG_LEVEL", default="INFO"),
