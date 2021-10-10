@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 import bleach
-from django.utils.html import strip_tags
 
 from src.core.dramatiq_actors import dramatiq_actor
 from src.core.email import send_email
