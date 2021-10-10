@@ -17,7 +17,7 @@ class KarmaAdmin(admin.ModelAdmin):
         "created_at",
     ]
     list_display_links = list_display
-    ordering = ["karmaboard__name", "karmaboard__owner__username", "karmaboard__name"]
+    ordering = ["-created_at"]
     search_fields = ["id", "name", "karmaboard__name", "karmaboard__owner__username"]
     date_hierarchy = "modified_at"
 
