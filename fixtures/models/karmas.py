@@ -152,7 +152,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
             KarmaData(name="Podlewanie Monstery i Fikusa", value=1, created_at=today),
             KarmaData(name="Przesadzenie Palmy Areka", value=3, created_at=yesterday),
             KarmaData(
-                name="Kupno i przywiezienie Sanseviery i ziemi do roślin",
+                name="Kupno i przywiezienie Strelicji oraz ziemi do roślin",
                 value=5,
                 created_at=yesterday,
             ),
