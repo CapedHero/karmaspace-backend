@@ -1,0 +1,29 @@
+name: Recompile Python packages
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - requirements/abstract/**
+    types: [ opened, synchronize ]
+
+jobs:
+  recompile_packages:
+    name: Recompile packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Download tusk
+        run: curl -sL https://git.io/tusk | bash -s -- -b .venv/bin latest
+
+      - name: Update locked requirements
+        run: tusk dependencies:compile
+
+      - name: Add commit with updated files
+        run: |
+          git add .
+          git commit -m "Recompile packages"
+          git push
