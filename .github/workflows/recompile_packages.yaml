@@ -3,7 +3,7 @@ name: Recompile Python packages
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - requirements/abstract/**
     types: [ opened, synchronize ]
