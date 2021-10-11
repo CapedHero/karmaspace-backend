@@ -101,10 +101,10 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.house_chores,
         karma_data_collection=[
-            KarmaData(name="Odkurzanie góry", value=3, created_at=today),
-            KarmaData(name="Zmywanie garnków", value=1, created_at=today),
+            KarmaData(name="Odkurzanie wszystkich pokojów", value=3, created_at=today),
+            KarmaData(name="Mycie luster", value=3, created_at=today),
             KarmaData(name="Wynoszenie pudeł i śmieci", value=2, created_at=yesterday),
-            KarmaData(name="Mycie luster", value=3, created_at=two_days_ago),
+            KarmaData(name="Zmywanie garnków", value=1, created_at=two_days_ago),
             KarmaData(name="Nadanie paczek", value=3, created_at=four_days_ago),
             KarmaData(name="Naprawa cokołu w kuchni", value=5, created_at=ten_days_ago),
             KarmaData(name="Pomalowanie barierki na balkonie", value=5, created_at=two_months_ago),
