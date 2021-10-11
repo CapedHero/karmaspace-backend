@@ -20,6 +20,7 @@ class KarmaAdmin(admin.ModelAdmin):
     ordering = ["-created_at"]
     search_fields = ["id", "name", "karmaboard__name", "karmaboard__owner__username"]
     date_hierarchy = "modified_at"
+    list_filter = ["karmaboard__owner__is_demo"]
 
     fieldsets = [
         [
