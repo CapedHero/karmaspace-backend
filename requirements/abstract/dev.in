@@ -24,7 +24,7 @@ ipdb==0.13.9
 ipython==7.28.0
 isort==5.9.3
 pip-tools==6.3.0
-pipdeptree==2.1.0
+pipdeptree==2.2.0
 pytest==6.2.5
 pytest-cov==3.0.0
 pytest-django==3.9.0
