@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download tusk
-        run: curl -sL https://git.io/tusk | bash -s -- -b /usr/local/bin latest
+        run: curl -sL https://git.io/tusk | sudo bash -s -- -b /usr/local/bin latest
 
       - name: Update locked requirements
         run: tusk dependencies:compile
