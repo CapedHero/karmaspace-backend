@@ -197,6 +197,12 @@ tasks:
       - python -m flake8
       - bandit --recursive --exclude=/app_tests,/tests,/venv .
 
+  scripts:mailchimp:
+    run:
+      - set-environment:
+          PYTHONPATH: .
+      - python scripts/mailchimp.py
+
   tests:run:
     usage: Run pytests with coverage report.
     options:
