@@ -103,6 +103,7 @@ tasks:
   dependencies:compile:
     usage: Compile dependencies using pip-tools (https://github.com/jazzband/pip-tools).
     run:
+      - python -m pip install pip-tools
       - pip-compile
         --upgrade
         --generate-hashes
