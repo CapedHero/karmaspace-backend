@@ -1,6 +1,6 @@
 backoff==1.11.1
 bleach==4.1.0
-boto3==1.18.56
+boto3==1.18.60
 django-cors-headers==3.10.0
 django-dramatiq==0.10.0
 django-environ==0.7.0
