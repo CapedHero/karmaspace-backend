@@ -6,7 +6,9 @@ django.setup()
 
 from django.conf import settings
 
+from loguru import logger
 from mailchimp_marketing import Client
+from mailchimp_marketing.api_client import ApiClientError
 
 from src.app_auth.models import User
 
@@ -25,7 +27,10 @@ def subscribe(email: str) -> None:
         "status": "subscribed",
     }
 
-    mailchimp.lists.add_list_member(settings.MAILCHIMP_EMAIL_LIST_ID, member_info)
+    try:
+        mailchimp.lists.add_list_member(settings.MAILCHIMP_EMAIL_LIST_ID, member_info)
+    except ApiClientError:
+        logger.exception("Mailchimp API error.")
 
 
 if __name__ == "__main__":
