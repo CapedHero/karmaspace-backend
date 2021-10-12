@@ -27,6 +27,7 @@ class TestGet:
         assert response.json() == {
             "id": TEST_ID,
             "username": TEST_USERNAME,
+            "email": TEST_EMAIL,
             "avatar": f"https://test.com/media/avatars/{user.username}.gif" if avatar else None,
             "is_demo": False,
         }
