@@ -11,6 +11,7 @@ from django.db import models
 from django.utils.crypto import get_random_string
 from rest_framework.status import HTTP_200_OK
 
+from src.core.mailchimp import subscribe_email
 from src.core.models import BaseModel
 from src.core.networking import session
 from src.core.utils import get_object_str
@@ -82,8 +83,9 @@ class User(PermissionsMixin, AbstractBaseUser, BaseModel):
         if is_new:
             send_thank_you_for_joining_msg.send(self.email)
 
-            if settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON:
+            if settings.IS_PROD:
                 send_new_user_created_msg_to_karmaspace_team.send(self.username, self.email)
+                subscribe_email(self.email)
 
     def save_random_avatar(self) -> None:
         avatar_url = (

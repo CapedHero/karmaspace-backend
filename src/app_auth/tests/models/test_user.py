@@ -184,15 +184,17 @@ def test_get_avatar_upload_to_path(filename: str):
 
 class TestKarmaSpaceTeamIsMessagedAboutNewUserCreation:
     @pytest.mark.parametrize(
-        argnames="is_notification_on",
+        argnames="is_prod",
         argvalues=[
-            pytest.param(True, id="notification_is_enabled"),
-            pytest.param(False, id="notification_is_disabled"),
+            pytest.param(True, id="is_prod=True"),
+            pytest.param(False, id="is_prod=False"),
         ],
     )
-    def test_user_created(self, is_notification_on, mocker, settings):
+    def test_user_created(self, is_prod, mocker, settings):
         # GIVEN
-        settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = is_notification_on
+        settings.IS_PROD = is_prod
+
+        mocker.patch("src.app_auth.models.user.subscribe_email")
         send_new_user_created_msg_to_karmaspace_team_mock = mocker.patch(
             "src.app_auth.models.user.send_new_user_created_msg_to_karmaspace_team"
         )
@@ -201,7 +203,7 @@ class TestKarmaSpaceTeamIsMessagedAboutNewUserCreation:
         user = UserFactory()
 
         # THEN
-        if is_notification_on:
+        if is_prod:
             send_new_user_created_msg_to_karmaspace_team_mock.send.assert_called_once_with(
                 user.username, user.email
             )
@@ -209,22 +211,24 @@ class TestKarmaSpaceTeamIsMessagedAboutNewUserCreation:
             send_new_user_created_msg_to_karmaspace_team_mock.send.assert_not_called()
 
     @pytest.mark.parametrize(
-        argnames="is_notification_on",
+        argnames="is_prod",
         argvalues=[
-            pytest.param(True, id="notification_is_enabled"),
-            pytest.param(False, id="notification_is_disabled"),
+            pytest.param(True, id="is_prod=True"),
+            pytest.param(False, id="is_prod=False"),
         ],
     )
-    def test_user_updated(self, is_notification_on, mocker, settings):
+    def test_user_updated(self, is_prod, mocker, settings):
         # GIVEN
+        mocker.patch("src.app_auth.models.user.subscribe_email")
         send_new_user_created_msg_to_karmaspace_team_mock = mocker.patch(
             "src.app_auth.models.user.send_new_user_created_msg_to_karmaspace_team"
         )
 
-        settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = False
+        settings.IS_PROD = False  # Prevent triggering on User create
+
         user = UserFactory(full_name="foo")
 
-        settings.ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = is_notification_on
+        settings.IS_PROD = is_prod
 
         # WHEN
         user.full_name = "bar"

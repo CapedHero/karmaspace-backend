@@ -4,6 +4,8 @@ from django_environ import env
 from .base import *
 
 
+IS_PROD = True
+
 # Can be generated with:
 # echo $(base64 /dev/urandom | tr -dc 'A-HJ-NP-Za-km-z2-9' | head -c32)
 ADMIN_BASE_PATH = env("DJANGO_ADMIN_BASE_PATH")
@@ -31,12 +33,6 @@ AWS_S3_OBJECT_PARAMETERS = {
     "ACL": "public-read",
 }
 AWS_QUERYSTRING_AUTH = False
-
-#############
-# ANALYTICS #
-#############
-
-ANALYTICS_IS_NEW_USERS_NOTIFICATIONS_ON = True
 
 ###########
 # LOGGING #
