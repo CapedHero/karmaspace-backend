@@ -12,17 +12,23 @@ tasks:
           DJANGO_SETTINGS_MODULE: src.settings.prod
 
   app:run-dev:
-    usage: Run Django app for development.
+    usage: Prepare & run backend environment for development (recommended).
     run:
       - task: configure-local-env
       - task: dependencies:sync-dev
       - docker-compose up --build --detach
-      # - python manage.py collectstatic --no-input
+      - python manage.py collectstatic --no-input
       - python manage.py migrate
       - python manage.py runserver_plus
 
+  app:run-dev-fast:
+    usage: Run Django app for development.
+    run:
+      - task: configure-local-env
+      - python manage.py runserver_plus
+
   app:run-prod:
-    usage: Run Django app for production.
+    usage: Prepare & run Django app for production.
     run:
       - task: configure-prod-env
       - python manage.py collectstatic --no-input
