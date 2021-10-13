@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 
 from loguru import logger
@@ -15,10 +17,16 @@ mailchimp.set_config(
 
 
 def subscribe_email(email: str) -> None:
+    list_id = settings.MAILCHIMP_EMAIL_LIST_ID
+
     try:
         mailchimp.lists.add_list_member(
-            list_id=settings.MAILCHIMP_EMAIL_LIST_ID,
+            list_id=list_id,
             body={"email_address": email, "status": "subscribed"},
         )
-    except ApiClientError:
-        logger.exception("Mailchimp API error.")
+    except ApiClientError as exc:
+        exc_data = json.loads(exc.text)
+        if "Member Exists" in exc_data["title"]:
+            logger.info(f"Email {email} is already subscribed to Mailchimp list {list_id}.")
+        else:
+            logger.exception("Mailchimp API error.")
