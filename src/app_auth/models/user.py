@@ -85,6 +85,8 @@ class User(PermissionsMixin, AbstractBaseUser, BaseModel):
 
             if settings.IS_PROD:
                 send_new_user_created_msg_to_karmaspace_team.send(self.username, self.email)
+
+            if settings.IS_PROD and not self.is_demo:
                 subscribe_email(self.email)
 
     def save_random_avatar(self) -> None:
