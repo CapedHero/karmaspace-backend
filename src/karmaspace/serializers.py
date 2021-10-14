@@ -18,7 +18,7 @@ class UnsplashPhotoSerializer(serializers.ModelSerializer):
 class KarmaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Karma
-        fields = ["id", "name", "value", "duration_in_m", "created_at"]
+        fields = ["id", "name", "value", "duration_in_m", "is_task", "created_at", "completed_at"]
 
 
 class KarmaBoardSerializer(serializers.ModelSerializer):

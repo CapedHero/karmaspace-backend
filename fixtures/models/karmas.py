@@ -15,6 +15,7 @@ class KarmaData:
     value: int
     created_at: datetime
     duration_in_m: int = 0
+    is_task: bool = False
 
 
 def create_karmas(karmaboards: KarmaBoards) -> None:
@@ -34,6 +35,12 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.duties_and_leasure,
         karma_data_collection=[
+            KarmaData(
+                name="Porządki w szafie i spakowanie nienoszonych rzeczy",
+                value=3,
+                created_at=today,
+                is_task=True,
+            ),
             KarmaData(
                 name="Odrabianie lekcji z polskiego i matematyki",
                 value=4,
@@ -101,6 +108,12 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.house_chores,
         karma_data_collection=[
+            KarmaData(
+                name="Zrobienie dużych zakupów na markecie",
+                value=6,
+                created_at=today,
+                is_task=True,
+            ),
             KarmaData(name="Odkurzanie wszystkich pokojów", value=3, created_at=today),
             KarmaData(name="Mycie luster", value=3, created_at=today),
             KarmaData(name="Wynoszenie pudeł i śmieci", value=2, created_at=yesterday),
@@ -114,6 +127,12 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.fitness_and_health,
         karma_data_collection=[
+            KarmaData(
+                name="Wziąć udział w biegu na 15 km",
+                value=30,
+                created_at=today,
+                is_task=True,
+            ),
             KarmaData(name="Trening na siłowni", value=15, created_at=today),
             KarmaData(name="Dzień bez mięsa", value=10, created_at=today),
             KarmaData(
@@ -149,6 +168,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.plants,
         karma_data_collection=[
+            KarmaData(name="Przyciąć wawrzyn i bukszpan", value=3, created_at=today, is_task=True),
             KarmaData(name="Podlewanie Monstery i Fikusa", value=1, created_at=today),
             KarmaData(name="Przesadzenie Palmy Areka", value=3, created_at=yesterday),
             KarmaData(
@@ -169,6 +189,12 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.learning_english,
         karma_data_collection=[
+            KarmaData(
+                name="Znalezienie kursu online na poziom C1",
+                value=4,
+                created_at=today,
+                is_task=True,
+            ),
             KarmaData(name="Powtarzanie słówek", value=1, created_at=today),
             KarmaData(
                 name='Czytanie "Miasteczka Salem" Kinga w oryginale',
@@ -209,6 +235,12 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.learning_guitar,
         karma_data_collection=[
+            KarmaData(
+                name="Wymienić struny i wyregulować gitarę",
+                value=4,
+                created_at=today,
+                is_task=True,
+            ),
             KarmaData(
                 name="Ćwiczenie zadanego materiału",
                 value=2,
@@ -269,6 +301,12 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.reading_books,
         karma_data_collection=[
+            KarmaData(
+                name='"Gambit królowej" - Walter Tevis',
+                value=8,
+                created_at=today,
+                is_task=True,
+            ),
             KarmaData(name='"Pieśń o Achillesie" - Madeline Miller', value=8, created_at=today),
             KarmaData(
                 name='"Diuna" - Frank Herbert',
@@ -326,6 +364,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.family_relations,
         karma_data_collection=[
+            KarmaData(name="Odwiedzić ciocię Anię", value=4, created_at=yesterday, is_task=True),
             KarmaData(name="Telefon do babci", value=1, duration_in_m=15, created_at=yesterday),
             KarmaData(name="Wspólna kolacja z rodzicami", value=8, created_at=two_days_ago),
             KarmaData(name="Pomoc dziadkom w sadzie", value=5, created_at=four_days_ago),
@@ -347,6 +386,7 @@ def _create_karmas(karmaboard: KarmaBoard, karma_data_collection: List[KarmaData
             name=karma_data.name,
             value=karma_data.value,
             duration_in_m=karma_data.duration_in_m,
+            is_task=karma_data.is_task,
         )
         karma.created_at = karma_data.created_at
         karma.save()

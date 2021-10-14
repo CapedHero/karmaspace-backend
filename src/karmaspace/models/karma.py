@@ -9,12 +9,16 @@ from .karmaboard import KarmaBoard
 
 class Karma(BaseModel):
     karmaboard = models.ForeignKey(to=KarmaBoard, on_delete=models.CASCADE, related_name="karmas")
+
     name = models.CharField(max_length=75)
     value = models.IntegerField(validators=[MinValueValidator(-99), MaxValueValidator(99)])
     duration_in_m = models.PositiveSmallIntegerField(
         default=0,
         validators=[MaxValueValidator(time_units.in_m.HOURS_24)],
     )
+
+    is_task = models.BooleanField(default=False)
+    completed_at = models.DateTimeField(default=None, null=True, blank=True)
 
     class Meta:
         verbose_name = "Karma"
