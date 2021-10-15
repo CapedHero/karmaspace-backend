@@ -13,6 +13,8 @@ class KarmaAdmin(admin.ModelAdmin):
         "name",
         "value",
         "duration_in_m",
+        "is_task",
+        "completed_at",
         "modified_at",
         "created_at",
     ]
@@ -20,7 +22,7 @@ class KarmaAdmin(admin.ModelAdmin):
     ordering = ["-created_at"]
     search_fields = ["id", "name", "karmaboard__name", "karmaboard__owner__username"]
     date_hierarchy = "modified_at"
-    list_filter = ["karmaboard__owner__is_demo"]
+    list_filter = ["karmaboard__owner__is_demo", "is_task"]
 
     fieldsets = [
         [
@@ -32,12 +34,13 @@ class KarmaAdmin(admin.ModelAdmin):
                     "name",
                     "value",
                     "duration_in_m",
+                    "is_task",
                 ]
             },
         ],
-        ["Dates", {"fields": ["modified_at", "created_at"]}],
+        ["Dates", {"fields": ["completed_at", "modified_at", "created_at"]}],
     ]
-    readonly_fields = ["id", "modified_at", "created_at"]
+    readonly_fields = ["id", "completed_at", "modified_at", "created_at"]
 
     def karmaboard_owner_link(self, karma: Karma) -> str:
         return get_link_to_admin_form_for_object(
