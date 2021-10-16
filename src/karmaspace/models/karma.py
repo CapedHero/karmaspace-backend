@@ -20,6 +20,8 @@ class Karma(BaseModel):
     is_task = models.BooleanField(default=False)
     completed_at = models.DateTimeField(default=None, null=True, blank=True)
 
+    note = models.TextField(max_length=1_000, default="", blank=True)
+
     class Meta:
         verbose_name = "Karma"
         verbose_name_plural = "Karmas"

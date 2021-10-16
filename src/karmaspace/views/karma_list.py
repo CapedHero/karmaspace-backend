@@ -17,7 +17,7 @@ from ..serializers import KarmaSerializer
 class PostInputSerializer(serializers.ModelSerializer):
     class Meta:
         model = Karma
-        fields = ["name", "value", "duration_in_m", "is_task"]
+        fields = ["name", "value", "duration_in_m", "is_task", "note"]
 
     def create(self, validated_data: Any) -> Karma:
         return Karma.objects.create(karmaboard=self.context["karmaboard"], **validated_data)
