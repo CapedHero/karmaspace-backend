@@ -22,7 +22,11 @@ def send_thank_you_for_joining_msg(user_email: str) -> None:
 @dramatiq_actor()
 def send_new_user_created_msg_to_karmaspace_team(user_username: str, user_email: str) -> None:
     send_email(
-        subject=f"Nowy użytkownik - {user_username} | {user_email}",
+        subject=(
+            "Nowy użytkownik - Demo"
+            if user_username.startswith("DemoUser")
+            else f"Nowy użytkownik - {user_username} | {user_email}"
+        ),
         body_txt="Nice!",
         from_email='"KarmaSpace News" <karmabot@karmaspace.io>',
         to_emails=["news@karmaspace.io"],
