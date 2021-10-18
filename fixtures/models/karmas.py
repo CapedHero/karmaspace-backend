@@ -31,6 +31,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     eight_days_ago = today - relativedelta(days=8)
     ten_days_ago = today - relativedelta(days=10)
     twelve_days_ago = today - relativedelta(days=12)
+    fourteen_days_ago = today - relativedelta(days=14)
     two_months_ago = today - relativedelta(months=2)
 
     _create_karmas(
@@ -99,13 +100,19 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 name="Pisanie referatu na historię (z małą pomocą 😉)",
                 value=4,
                 duration_in_m=60,
-                created_at=four_days_ago,
+                created_at=ten_days_ago,
             ),
             KarmaData(
-                name="Serialowanie na Netflixie",
+                name="Czytanie lektury",
+                value=10,
+                duration_in_m=120,
+                created_at=two_months_ago,
+            ),
+            KarmaData(
+                name="Seriale na Netflixie",
                 value=-6,
                 duration_in_m=90,
-                created_at=four_days_ago,
+                created_at=two_months_ago,
             ),
         ],
     )
@@ -178,14 +185,120 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 created_at=five_days_ago,
             ),
             KarmaData(name="Trening na siłowni", value=15, created_at=five_days_ago),
-            KarmaData(name="Cheat meal, burgery i lody", value=-10, created_at=seven_days_ago),
+            KarmaData(name="Cheat meal, burgery i lody", value=-10, created_at=six_days_ago),
             KarmaData(name="Bieganie 10 km", value=10, created_at=eight_days_ago),
-            KarmaData(name="Siatkówka z ludźmi z pracy", value=20, created_at=ten_days_ago),
-            KarmaData(name="Krótki trening na siłowni", value=10, created_at=twelve_days_ago),
             KarmaData(
-                name="Impreza w domu = alkohol i chrupki",
-                value=-30,
+                name="Impreza w domu, czyli alkohol i chipsy",
+                value=-25,
+                created_at=ten_days_ago,
+            ),
+            KarmaData(name="Siatkówka z ludźmi z pracy", value=20, created_at=twelve_days_ago),
+            KarmaData(name="Krótki trening na siłowni", value=10, created_at=two_months_ago),
+        ],
+    )
+
+    _create_karmas(
+        karmaboard=karmaboards.personal_growth,
+        karma_data_collection=[
+            KarmaData(
+                name="Poczytać ambitną książkę",
+                value=8,
+                duration_in_m=120,
+                created_at=today,
+                is_task=True,
+                note=(
+                    "<ul>"
+                    "<li><p><strong>"
+                    '"Sapiens. Od zwierząt do bogów" Yuvala?'
+                    "</strong></p></li>"
+                    "<li><p>"
+                    'A może "Pułapki myślenia" Kahnemana?'
+                    "</p></li>"
+                    "</ul>"
+                ),
+            ),
+            KarmaData(
+                name="Poszukiwanie dobrego bloga o marketingu online",
+                value=3,
+                duration_in_m=45,
+                created_at=yesterday,
+            ),
+            KarmaData(
+                name="Granie na konsoli",
+                value=-8,
+                duration_in_m=120,
+                created_at=yesterday,
+            ),
+            KarmaData(
+                name="Seriale na Netflixie",
+                value=-10,
+                duration_in_m=150,
+                created_at=two_days_ago,
+            ),
+            KarmaData(
+                name="Czytanie książki po angielsku (King)",
+                value=4,
+                duration_in_m=60,
+                created_at=two_days_ago,
+            ),
+            KarmaData(
+                name='Słuchanie audiobooka "7 nawyków skutecznego działania"',
+                value=3,
+                duration_in_m=45,
+                created_at=three_days_ago,
+            ),
+            KarmaData(
+                name="Trening na siłowni",
+                value=4,
+                duration_in_m=60,
+                created_at=three_days_ago,
+            ),
+            KarmaData(
+                name='Obejrzenie 2x odcinków "Planeta Ziemia"',
+                value=6,
+                duration_in_m=90,
+                created_at=four_days_ago,
+            ),
+            KarmaData(
+                name="Zaktualizowanie CV i profilu na LinkedIn",
+                value=4,
+                duration_in_m=60,
+                created_at=four_days_ago,
+            ),
+            KarmaData(
+                name='Słuchanie audiobooka "7 nawyków skutecznego działania"',
+                value=3,
+                duration_in_m=45,
+                created_at=seven_days_ago,
+            ),
+            KarmaData(
+                name="Zajęcia z jogi",
+                value=4,
+                duration_in_m=60,
+                created_at=ten_days_ago,
+            ),
+            KarmaData(
+                name="Pójścia do kina na najnowszego Bonda",
+                value=-10,
+                duration_in_m=150,
+                created_at=ten_days_ago,
+            ),
+            KarmaData(
+                name="Basen",
+                value=5,
+                duration_in_m=75,
                 created_at=twelve_days_ago,
+            ),
+            KarmaData(
+                name="Zdanie egzaminu z angielskiego na poziom C1",
+                value=20,
+                created_at=fourteen_days_ago,
+            ),
+            KarmaData(
+                name="Wyjście do teatru",
+                value=12,
+                duration_in_m=180,
+                created_at=two_months_ago,
             ),
         ],
     )
@@ -210,11 +323,11 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 created_at=yesterday,
             ),
             KarmaData(name="Podlewanie Sukulentów", value=1, created_at=four_days_ago),
-            KarmaData(name="Walka z ćmą bukszpanową!", value=3, created_at=five_days_ago),
+            KarmaData(name="Walka z ćmą bukszpanową!", value=3, created_at=ten_days_ago),
             KarmaData(
                 name="Podlewanie i nawożenie roślin na balkonie",
                 value=2,
-                created_at=five_days_ago,
+                created_at=two_months_ago,
             ),
         ],
     )
@@ -260,12 +373,12 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 duration_in_m=120,
                 created_at=five_days_ago,
             ),
-            KarmaData(name="Powtarzanie słówek", value=1, created_at=five_days_ago),
+            KarmaData(name="Powtarzanie słówek", value=1, created_at=ten_days_ago),
             KarmaData(
                 name="Robienie ćwiczeń z gramatyki",
                 value=3,
                 duration_in_m=45,
-                created_at=six_days_ago,
+                created_at=two_months_ago,
             ),
         ],
     )
@@ -333,13 +446,13 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 name="Ćwiczenie zadanego materiału",
                 value=2,
                 duration_in_m=30,
-                created_at=six_days_ago,
+                created_at=ten_days_ago,
             ),
             KarmaData(
                 name="Ćwiczenie zadanego materiału",
                 value=2,
                 duration_in_m=30,
-                created_at=seven_days_ago,
+                created_at=two_months_ago,
             ),
         ],
     )
@@ -442,7 +555,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 name="Telefon do babci i dziadka",
                 value=2,
                 duration_in_m=30,
-                created_at=twelve_days_ago,
+                created_at=two_months_ago,
             ),
         ],
     )

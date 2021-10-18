@@ -13,6 +13,7 @@ class KarmaBoards:
     house_chores: KarmaBoard
     learning_english: KarmaBoard
     learning_guitar: KarmaBoard
+    personal_growth: KarmaBoard
     plants: KarmaBoard
     reading_books: KarmaBoard
 
@@ -54,6 +55,12 @@ def create_karmaboards(user: User, photos: Photos) -> KarmaBoards:
             name="Gitara",
             unsplash_photo=photos.guitar,
             sort_index=0.6,
+        ),
+        personal_growth=KarmaBoard.objects.create(
+            owner=user,
+            name="Rozwój w wolnym czasie",
+            unsplash_photo=photos.balloons_over_plain,
+            sort_index=0.05,
         ),
         plants=KarmaBoard.objects.create(
             owner=user,
