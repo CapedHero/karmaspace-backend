@@ -201,9 +201,9 @@ django-sesame[ua]==2.4 \
     --hash=sha256:4f232ba1c3642b4eef23257af9a2feac36970457d2940f4083c48c6a3d9cb0a3 \
     --hash=sha256:b0570b610ec2f3602ff12d43b5bca41c4a37a3079e6a0170ceccc69689446b87
     # via -r requirements/abstract/base.in
-django-storages==1.12.1 \
-    --hash=sha256:a88199d67e2fc032e92de02106315ed005ae22a2bf4df5269c0add4148fec739 \
-    --hash=sha256:cb079981e2e4fe16d7f41000913225140dc334a84f5b7c5e4fcc6b7e6a028222
+django-storages==1.12.2 \
+    --hash=sha256:0013ebe4904521e2fa28f33591a03a7210304d73363e7eadd7cdcf81c12ba003 \
+    --hash=sha256:683b70617f4be9baa17b2d6d7df46cf6afe31b5eb17ece3ca82f773f555592a7
     # via -r requirements/abstract/base.in
 djangorestframework==3.12.4 \
     --hash=sha256:6d1d59f623a5ad0509fe0d6bfe93cbdfe17b8116ebc8eda86d45f6e16e819aaf \
