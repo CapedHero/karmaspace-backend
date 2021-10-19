@@ -290,7 +290,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 created_at=twelve_days_ago,
             ),
             KarmaData(
-                name="Zdanie egzaminu z angielskiego na poziom C1",
+                name="Zdanie egzaminu na sternika!",
                 value=20,
                 created_at=fourteen_days_ago,
             ),
