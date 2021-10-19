@@ -20,13 +20,13 @@ bleach==4.1.0 \
     --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da \
     --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994
     # via -r requirements/abstract/base.in
-boto3==1.18.61 \
-    --hash=sha256:08dc897299ecc9eef6df3cd296864154dfbc9f78edb8995b93258b59d747cbdc \
-    --hash=sha256:d2a8f8cd0a53093b2f1ab5a4b233533f1aa04e751209266597a05f50a46f6683
+boto3==1.18.64 \
+    --hash=sha256:9223b433b0d3b74f2b9574fb3c384048998343ccd6b608044318a7f9b904f661 \
+    --hash=sha256:b4d6299dd16a3042b7750cde00fe38d57fd59d3ce242308ba8488618ca931694
     # via -r requirements/abstract/base.in
-botocore==1.21.61 \
-    --hash=sha256:92ae0ca56a6582bddf42aca199ac3f67579910860bcd86166ae10f7a83f8841b \
-    --hash=sha256:eda50985c229b01c7de6f0a0ccb561dfa52ded06c8c59044f624133a33357b94
+botocore==1.21.64 \
+    --hash=sha256:0a30dca4dad7d43fd856e671ace95f9afc4726caa1e22f0ae11b654fc76e0c7d \
+    --hash=sha256:d57287377e4c7c7d7bf6c5fa39e02994de1d99fced9492a58a00e5a54bae1cca
     # via
     #   boto3
     #   s3transfer
@@ -439,9 +439,9 @@ pycparser==2.20 \
     --hash=sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0 \
     --hash=sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705
     # via cffi
-pyjwt==2.2.0 \
-    --hash=sha256:a0b9a3b4e5ca5517cac9f1a6e9cd30bf1aa80be74fcdf4e28eded582ecfcfbae \
-    --hash=sha256:b0ed5824c8ecc5362e540c65dc6247567db130c4226670bf7699aec92fb4dae1
+pyjwt==2.3.0 \
+    --hash=sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41 \
+    --hash=sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f
     # via social-auth-core
 pyparsing==2.4.7 \
     --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
