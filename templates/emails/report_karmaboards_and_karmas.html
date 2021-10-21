@@ -1,0 +1,24 @@
+<h2>
+  KarmaBoardy
+</h2>
+
+<ul>
+  {% for karmaboard in karmaboards %}
+    <li>
+      &quot;{{ karmaboard.name }}&quot; @{{ karmaboard.owner.username }}
+    </li>
+  {% endfor %}
+</ul>
+
+<h2>
+  Karmy
+</h2>
+
+<ul>
+  {% for karma in karmas %}
+    <li>
+      &quot;{{ karma.name }}&quot;
+      w &quot;{{ karma.karmaboard.name }}&quot; @{{ karma.karmaboard.owner.username }}
+    </li>
+  {% endfor %}
+</ul>
