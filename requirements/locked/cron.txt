@@ -4,9 +4,9 @@
 #
 #    pip-compile --allow-unsafe --generate-hashes --output-file=requirements/locked/cron.txt requirements/abstract/cron.in
 #
-django-environ==0.7.0 \
-    --hash=sha256:20a5a3570333d3718c0a7ca834290ef850e2b96237ae4ca0a05823b3a0cb3363 \
-    --hash=sha256:b99bd3704221f8b717c8517d8146e53fdee509d9e99056be560060003b92213e
+django-environ==0.8.1 \
+    --hash=sha256:42593bee519a527602a467c7b682aee1a051c2597f98c45f4f4f44169ecdb6e5 \
+    --hash=sha256:6f0bc902b43891656b20486938cba0861dc62892784a44919170719572a534cb
     # via -r requirements/abstract/cron.in
 redis==3.5.3 \
     --hash=sha256:0e7e0cfca8660dea8b7d5cd8c4f6c5e29e11f31158c0b0ae91a397f00e5a05a2 \
