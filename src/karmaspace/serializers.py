@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from src.app_auth.models import User
-from .models import Karma, KarmaBoard
+from .models import Karma, KarmaBoard, KarmaBoardUser
 from .models.unsplash_photo import UnsplashPhoto
 
 
@@ -41,4 +41,21 @@ class KarmaBoardSerializer(serializers.ModelSerializer):
         fields = ["id", "owner", "name", "value_step", "unsplash_photo", "sort_index"]
 
     owner = OwnerSerializer()
+    sort_index = serializers.SerializerMethodField(method_name="get_sort_index")
     unsplash_photo = UnsplashPhotoSerializer()
+
+    def get_sort_index(self, karmaboard: KarmaBoard) -> float:
+        return KarmaBoardUser.objects.get(
+            karmaboard=karmaboard,
+            user=self.context["user"],
+        ).sort_index
+
+
+class KarmaBoardUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KarmaBoardUser
+        fields = ["id", "username", "role"]
+
+    id = serializers.CharField(source="user.id")
+    username = serializers.CharField(source="user.username")
+    role = serializers.CharField(source="user_role")

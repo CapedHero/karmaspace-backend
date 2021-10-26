@@ -6,5 +6,6 @@ from .emails_preview import (
 from .karma_detail import KarmaDetailView
 from .karma_list import KarmaListView
 from .karmaboard_detail import KarmaBoardDetailView
+from .karmaboard_invitation import karmaboard_invitation_finish_view, karmaboard_invitations_view
 from .karmaboard_list import KarmaBoardListView
 from .messages import user_feedback_view

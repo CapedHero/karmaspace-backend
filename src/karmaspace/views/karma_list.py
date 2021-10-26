@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED
 from rest_framework.views import APIView
 
-from src.core.permissions import IsOwner
+from src.core.permissions import IsOwnerOrMember
 from ..models import Karma, KarmaBoard
 from ..serializers import KarmaSerializer
 
@@ -28,10 +28,11 @@ class PostOutputSerializer(KarmaSerializer):
 
 
 class KarmaListView(APIView):
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated, IsOwnerOrMember]
 
     def post(self, request: Request, karmaboard_pk: UUID) -> Response:
         karmaboard = get_object_or_404(KarmaBoard, pk=karmaboard_pk)
+        self.check_object_permissions(self.request, karmaboard)
         input_ = PostInputSerializer(data=request.data, context={"karmaboard": karmaboard})
         input_.is_valid(raise_exception=True)
         instance = input_.save()

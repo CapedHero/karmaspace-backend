@@ -1,6 +1,3 @@
-import secrets
-import string
-
 from django.conf import settings
 from django.contrib.auth import login
 from rest_framework.decorators import api_view, permission_classes
@@ -11,12 +8,13 @@ from rest_framework.status import HTTP_200_OK
 
 from fixtures.demo import create_demo_for_user
 from src.app_auth.models import User
+from src.core.utils import create_random_string
 
 
 @api_view(http_method_names=["POST"])
 @permission_classes([AllowAny])
 def demo_view(request: Request) -> Response:
-    random_string = _create_random_string(chars_num=8)
+    random_string = create_random_string(chars_num=8)
 
     demo_user = User.objects.create(
         username=f"DemoUser-{random_string}",
@@ -29,8 +27,3 @@ def demo_view(request: Request) -> Response:
     create_demo_for_user(demo_user)
 
     return Response(status=HTTP_200_OK)
-
-
-def _create_random_string(chars_num: int) -> str:
-    chars = string.ascii_uppercase + string.digits
-    return "".join(secrets.choice(chars) for _ in range(chars_num))

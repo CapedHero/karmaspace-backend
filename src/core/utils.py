@@ -1,3 +1,5 @@
+import secrets
+import string
 from datetime import date, datetime, time
 from functools import reduce
 from typing import Any, Dict, List, Optional, Set, TypeVar
@@ -43,6 +45,17 @@ def cowsay(msg: str, print_end: str = "\n\n") -> None:
         msg=msg, speech_bubble_border=speech_bubble_border
     )
     print(formatted_cowsay_str, end=print_end)
+
+
+def create_random_string(chars_num: int) -> str:
+    # How to calculate bits of entropy?
+    # > log2(unique_chars_num^chars_num)
+    #
+    # Example:
+    # 36 unique chars (26 upper chars + 10 digits) for 30 chars long secret:
+    # > log2(36^30) ~= 141
+    chars = string.ascii_uppercase + string.digits
+    return "".join(secrets.choice(chars) for _ in range(chars_num))
 
 
 K = TypeVar("K")

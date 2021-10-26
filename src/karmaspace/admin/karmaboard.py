@@ -12,15 +12,14 @@ class KarmaBoardAdmin(admin.ModelAdmin):
         "name",
         "value_step",
         "unsplash_photo_link",
-        "sort_index",
         "modified_at",
         "created_at",
     ]
     list_display_links = list_display
     ordering = ["-created_at"]
-    search_fields = ["id", "name", "owner__username"]
+    search_fields = ["id", "name", "karmaboarduser__user__username"]
     date_hierarchy = "modified_at"
-    list_filter = ["owner__is_demo"]
+    list_filter = ["karmaboarduser__user__is_demo"]
 
     fieldsets = [
         [
@@ -28,11 +27,9 @@ class KarmaBoardAdmin(admin.ModelAdmin):
             {
                 "fields": [
                     "id",
-                    "owner",
                     "name",
                     "value_step",
                     "unsplash_photo",
-                    "sort_index",
                 ]
             },
         ],
