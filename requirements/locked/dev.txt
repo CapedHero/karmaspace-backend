@@ -8,10 +8,6 @@ appdirs==1.4.4 \
     --hash=sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41 \
     --hash=sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128
     # via black
-appnope==0.1.2 \
-    --hash=sha256:93aa393e9d6c54c5cd570ccadd8edad61ea0c4b9ea7a01409020c9aa019eb442 \
-    --hash=sha256:dd83cd4b5b460958838f6eb3000c660b1f9caf2a5b1de4264e941512f603258a
-    # via ipython
 asgiref==3.4.1 \
     --hash=sha256:4ef1ab46b484e3c706329cedeff284a5d40824200638503f5768edb6de7d58e9 \
     --hash=sha256:ffc141aa908e6f175673e7b1b3b7af4fdb0ecb738fc5c8b88f69f055c2415214
@@ -369,9 +365,9 @@ flake8-docstrings==1.6.0 \
     --hash=sha256:99cac583d6c7e32dd28bbfbef120a7c0d1b6dde4adb5a9fd441c4227a6534bde \
     --hash=sha256:9fe7c6a306064af8e62a055c2f61e9eb1da55f84bb39caef2b84ce53708ac34b
     # via -r requirements/abstract/dev.in
-flake8-eradicate==1.1.0 \
-    --hash=sha256:d8e39b684a37c257a53cda817d86e2d96c9ba3450ddc292742623a5dfee04d9e \
-    --hash=sha256:f5917d6dbca352efcd10c15fdab9c55c48f0f26f6a8d47898b25d39101f170a8
+flake8-eradicate==1.2.0 \
+    --hash=sha256:51dc660d0c1c1ed93af0f813540bbbf72ab2d3466c14e3f3bac371c618b6042f \
+    --hash=sha256:acaa1b6839ff00d284b805c432fdfa6047262bd15a5504ec945797e87b4de1fa
     # via -r requirements/abstract/dev.in
 flake8-html==0.4.1 \
     --hash=sha256:17324eb947e7006807e4184ee26953e67baf421b3cf9e646a38bfec34eec5a94 \
