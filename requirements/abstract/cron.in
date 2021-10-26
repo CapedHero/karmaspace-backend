@@ -1,2 +1,2 @@
-django-environ==0.7.0
+django-environ==0.8.1
 redis==3.5.3
