@@ -17,7 +17,7 @@
 <ul>
   {% for karma in karmas %}
     <li>
-      &quot;{{ karma.name }}&quot;
+      &quot;{{ karma.name }}&quot; za {{ karma.value }} Punktów Karmy
       w &quot;{{ karma.karmaboard.name }}&quot; @{{ karma.karmaboard.owner.username }}
     </li>
   {% endfor %}
