@@ -1,5 +1,8 @@
 -r base.in
 
+# IPython requires appnope on macOS
+# https://github.com/ipython/ipython/blob/ebeba47f2bcd473f4e76b22de2bd5b893abe9b6f/setup.py#L214
+appnope==0.1.2
 bandit==1.7.0
 better-exceptions==0.3.3
 black==21.4b2
