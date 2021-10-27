@@ -26,12 +26,12 @@ def send_report_yesterday_created_karmaboards_and_karmas() -> None:
     non_demo_karmaboards_created_yesterday = KarmaBoard.objects.filter(
         created_at__gte=yesterday_midnight,
         created_at__lt=today_midnight,
-    ).exclude(owner__is_demo=True)
+    ).exclude(karmaboarduser__user__is_demo=True)
 
     non_demo_karmas_created_yesterday = Karma.objects.filter(
         created_at__gte=yesterday_midnight,
         created_at__lt=today_midnight,
-    ).exclude(karmaboard__owner__is_demo=True)
+    ).exclude(karmaboard__karmaboarduser__user__is_demo=True)
 
     try:
         with transaction.atomic():
