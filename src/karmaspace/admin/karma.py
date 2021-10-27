@@ -13,7 +13,7 @@ class KarmaAdmin(admin.ModelAdmin):
         "name",
         "value",
         "duration_in_m",
-        "is_task",
+        "is_active_task",
         "completed_at",
         "modified_at",
         "created_at",
@@ -22,7 +22,7 @@ class KarmaAdmin(admin.ModelAdmin):
     ordering = ["-created_at"]
     search_fields = ["id", "name", "karmaboard__name", "karmaboard__owner__username"]
     date_hierarchy = "modified_at"
-    list_filter = ["karmaboard__karmaboarduser__user__is_demo", "is_task"]
+    list_filter = ["karmaboard__karmaboarduser__user__is_demo", "is_active_task"]
 
     fieldsets = [
         [
@@ -34,7 +34,7 @@ class KarmaAdmin(admin.ModelAdmin):
                     "name",
                     "value",
                     "duration_in_m",
-                    "is_task",
+                    "is_active_task",
                 ]
             },
         ],

@@ -23,7 +23,7 @@ class KarmaSerializer(serializers.ModelSerializer):
             "name",
             "value",
             "duration_in_m",
-            "is_task",
+            "is_active_task",
             "created_at",
             "completed_at",
             "note",

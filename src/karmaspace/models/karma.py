@@ -17,7 +17,7 @@ class Karma(BaseModel):
         validators=[MaxValueValidator(time_units.in_m.HOURS_24)],
     )
 
-    is_task = models.BooleanField(default=False)
+    is_active_task = models.BooleanField(default=None, null=True, blank=True)
     completed_at = models.DateTimeField(default=None, null=True, blank=True)
 
     note = models.TextField(max_length=1_000, default="", blank=True)

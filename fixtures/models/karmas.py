@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 from dateutil.relativedelta import relativedelta
 from pytz import timezone
@@ -13,9 +13,9 @@ from src.karmaspace.models import Karma, KarmaBoard
 class KarmaData:
     name: str
     value: int
-    created_at: datetime
+    completed_at: Optional[datetime] = None
     duration_in_m: int = 0
-    is_task: bool = False
+    is_active_task: Optional[bool] = None
     note: str = ""
 
 
@@ -40,8 +40,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
             KarmaData(
                 name="Porządki w szafie i spakowanie nienoszonych rzeczy",
                 value=3,
-                created_at=today,
-                is_task=True,
+                is_active_task=True,
             ),
             KarmaData(
                 name="Odrabianie lekcji z polskiego i matematyki",
@@ -51,68 +50,70 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                     "<p>Trzeba znaleźć dodatkowe materiały do geometrii.</p>"
                     "<p>Może jakieś <strong>tablice dydaktyczne</strong> na ścianę?</p>"
                 ),
-                created_at=today,
+                completed_at=today,
             ),
             KarmaData(
                 name="Granie na tablecie",
                 value=-3,
                 duration_in_m=45,
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
             KarmaData(
                 name="Przygotowanie się do klasówki z hiszpańskiego",
                 value=6,
                 duration_in_m=90,
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
-            KarmaData(name="Wieczorne spotkanie z koleżankami", value=-5, created_at=two_days_ago),
+            KarmaData(
+                name="Wieczorne spotkanie z koleżankami", value=-5, completed_at=two_days_ago
+            ),
             KarmaData(
                 name="Wspólna nauka programowania w Pythonie",
                 value=4,
                 duration_in_m=60,
-                created_at=two_days_ago,
+                completed_at=two_days_ago,
             ),
             KarmaData(
                 name="Pomaganie dziadkom w ogródku",
                 value=10,
                 duration_in_m=150,
-                created_at=three_days_ago,
+                completed_at=three_days_ago,
             ),
             KarmaData(
                 name="Zajęcia na basenie",
                 value=6,
                 duration_in_m=60,
-                created_at=three_days_ago,
+                completed_at=three_days_ago,
             ),
             KarmaData(
                 name="Oglądanie filmików na YouTubie",
                 value=-4,
                 duration_in_m=60,
-                created_at=three_days_ago,
+                completed_at=three_days_ago,
             ),
             KarmaData(
                 name="Czytanie lektury",
                 value=10,
                 duration_in_m=120,
-                created_at=four_days_ago,
+                completed_at=four_days_ago,
             ),
             KarmaData(
                 name="Pisanie referatu na historię (z małą pomocą 😉)",
                 value=4,
                 duration_in_m=60,
-                created_at=ten_days_ago,
+                completed_at=ten_days_ago,
             ),
             KarmaData(
                 name="Czytanie lektury",
                 value=10,
                 duration_in_m=120,
-                created_at=two_months_ago,
+                completed_at=two_months_ago,
             ),
             KarmaData(
                 name="Seriale na Netflixie",
                 value=-6,
                 duration_in_m=90,
-                created_at=two_months_ago,
+                completed_at=two_months_ago,
             ),
         ],
     )
@@ -123,7 +124,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
             KarmaData(
                 name="Duże zakupy spożywcze w markecie",
                 value=6,
-                is_task=True,
+                is_active_task=True,
                 note=(
                     "<p>Pamiętać o:</p>"
                     "<ul>"
@@ -131,20 +132,21 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                     "<li><p><strong>totolotku</strong></p></li>"
                     "</ul>"
                 ),
-                created_at=today,
             ),
-            KarmaData(name="Odkurzanie wszystkich pokojów", value=3, created_at=today),
+            KarmaData(name="Odkurzanie wszystkich pokojów", value=3, completed_at=today),
             KarmaData(
                 name="Mycie luster",
                 value=3,
-                note="<p>Nowy płyn do mycia szyb jest fantasyczny : D</p>",
-                created_at=today,
+                note="<p>Nowy płyn do mycia szyb jest fantastyczny : D</p>",
+                completed_at=today,
             ),
-            KarmaData(name="Wynoszenie pudeł i śmieci", value=2, created_at=yesterday),
-            KarmaData(name="Zmywanie garnków", value=1, created_at=two_days_ago),
-            KarmaData(name="Nadanie paczek", value=3, created_at=four_days_ago),
-            KarmaData(name="Naprawa cokołu w kuchni", value=5, created_at=ten_days_ago),
-            KarmaData(name="Pomalowanie barierki na balkonie", value=5, created_at=two_months_ago),
+            KarmaData(name="Wynoszenie pudeł i śmieci", value=2, completed_at=yesterday),
+            KarmaData(name="Zmywanie garnków", value=1, completed_at=two_days_ago),
+            KarmaData(name="Nadanie paczek", value=3, completed_at=four_days_ago),
+            KarmaData(name="Naprawa cokołu w kuchni", value=5, completed_at=ten_days_ago),
+            KarmaData(
+                name="Pomalowanie barierki na balkonie", value=5, completed_at=two_months_ago
+            ),
         ],
     )
 
@@ -154,8 +156,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
             KarmaData(
                 name="Wziąć udział w biegu na 15 km",
                 value=30,
-                created_at=today,
-                is_task=True,
+                is_active_task=True,
             ),
             KarmaData(
                 name="Trening na siłowni",
@@ -164,36 +165,36 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                     "<p>Trzeba przychodzić <strong>przed 11:00</strong>, "
                     "bo potem są już tłumy.</p>"
                 ),
-                created_at=today,
+                completed_at=today,
             ),
-            KarmaData(name="Dzień bez mięsa", value=10, created_at=today),
+            KarmaData(name="Dzień bez mięsa", value=10, completed_at=today),
             KarmaData(
                 name="Pizza pepperoni na grubym cieście i wino",
                 value=-10,
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
-            KarmaData(name="Zjedzenie całej czekolady!", value=-5, created_at=two_days_ago),
+            KarmaData(name="Zjedzenie całej czekolady!", value=-5, completed_at=two_days_ago),
             KarmaData(
                 name="Wyjście ze znajomymi do knajpy, czyli alkohol i snacki",
                 value=-20,
-                created_at=three_days_ago,
+                completed_at=three_days_ago,
             ),
-            KarmaData(name="Bieganie 5 km", value=5, created_at=three_days_ago),
+            KarmaData(name="Bieganie 5 km", value=5, completed_at=three_days_ago),
             KarmaData(
                 name="Zrobienie domowych obiadów na trzy dni",
                 value=15,
-                created_at=five_days_ago,
+                completed_at=five_days_ago,
             ),
-            KarmaData(name="Trening na siłowni", value=15, created_at=five_days_ago),
-            KarmaData(name="Cheat meal, burgery i lody", value=-10, created_at=six_days_ago),
-            KarmaData(name="Bieganie 10 km", value=10, created_at=eight_days_ago),
+            KarmaData(name="Trening na siłowni", value=15, completed_at=five_days_ago),
+            KarmaData(name="Cheat meal, burgery i lody", value=-10, completed_at=six_days_ago),
+            KarmaData(name="Bieganie 10 km", value=10, completed_at=eight_days_ago),
             KarmaData(
                 name="Impreza w domu, czyli alkohol i chipsy",
                 value=-25,
-                created_at=ten_days_ago,
+                completed_at=ten_days_ago,
             ),
-            KarmaData(name="Siatkówka z ludźmi z pracy", value=20, created_at=twelve_days_ago),
-            KarmaData(name="Krótki trening na siłowni", value=10, created_at=two_months_ago),
+            KarmaData(name="Siatkówka z ludźmi z pracy", value=20, completed_at=twelve_days_ago),
+            KarmaData(name="Krótki trening na siłowni", value=10, completed_at=two_months_ago),
         ],
     )
 
@@ -204,8 +205,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 name="Poczytać ambitną książkę",
                 value=8,
                 duration_in_m=120,
-                created_at=today,
-                is_task=True,
+                is_active_task=True,
                 note=(
                     "<ul>"
                     "<li><p><strong>"
@@ -221,84 +221,84 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                 name="Poszukiwanie dobrego bloga o marketingu online",
                 value=3,
                 duration_in_m=45,
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
             KarmaData(
                 name="Granie na konsoli",
                 value=-8,
                 duration_in_m=120,
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
             KarmaData(
                 name="Seriale na Netflixie",
                 value=-10,
                 duration_in_m=150,
-                created_at=two_days_ago,
+                completed_at=two_days_ago,
             ),
             KarmaData(
                 name="Czytanie książki po angielsku (King)",
                 value=4,
                 duration_in_m=60,
-                created_at=two_days_ago,
+                completed_at=two_days_ago,
             ),
             KarmaData(
                 name='Słuchanie audiobooka "7 nawyków skutecznego działania"',
                 value=3,
                 duration_in_m=45,
-                created_at=three_days_ago,
+                completed_at=three_days_ago,
             ),
             KarmaData(
                 name="Trening na siłowni",
                 value=4,
                 duration_in_m=60,
-                created_at=three_days_ago,
+                completed_at=three_days_ago,
             ),
             KarmaData(
                 name='Obejrzenie 2x odcinków "Planeta Ziemia"',
                 value=6,
                 duration_in_m=90,
-                created_at=four_days_ago,
+                completed_at=four_days_ago,
             ),
             KarmaData(
                 name="Zaktualizowanie CV i profilu na LinkedIn",
                 value=4,
                 duration_in_m=60,
-                created_at=four_days_ago,
+                completed_at=four_days_ago,
             ),
             KarmaData(
                 name='Słuchanie audiobooka "7 nawyków skutecznego działania"',
                 value=3,
                 duration_in_m=45,
-                created_at=seven_days_ago,
+                completed_at=seven_days_ago,
             ),
             KarmaData(
                 name="Zajęcia z jogi",
                 value=4,
                 duration_in_m=60,
-                created_at=ten_days_ago,
+                completed_at=ten_days_ago,
             ),
             KarmaData(
                 name="Pójścia do kina na najnowszego Bonda",
                 value=-10,
                 duration_in_m=150,
-                created_at=ten_days_ago,
+                completed_at=ten_days_ago,
             ),
             KarmaData(
                 name="Basen",
                 value=5,
                 duration_in_m=75,
-                created_at=twelve_days_ago,
+                completed_at=twelve_days_ago,
             ),
             KarmaData(
                 name="Zdanie egzaminu na sternika!",
                 value=20,
-                created_at=fourteen_days_ago,
+                completed_at=fourteen_days_ago,
             ),
             KarmaData(
                 name="Wyjście do teatru",
                 value=12,
                 duration_in_m=180,
-                created_at=two_months_ago,
+                completed_at=two_months_ago,
             ),
         ],
     )
@@ -306,7 +306,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.plants,
         karma_data_collection=[
-            KarmaData(name="Przyciąć wawrzyn i bukszpan", value=3, created_at=today, is_task=True),
+            KarmaData(name="Przyciąć wawrzyn i bukszpan", value=3, is_active_task=True),
             KarmaData(
                 name="Podlewanie Monstery i Fikusa",
                 value=1,
@@ -314,20 +314,20 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                     "<p>Monstera w końcu <strong>zaczęła rosnąć</strong>! Faktycznie "
                     "potrzebowała więcej światła.</p>"
                 ),
-                created_at=today,
+                completed_at=today,
             ),
-            KarmaData(name="Przesadzenie Palmy Areka", value=3, created_at=yesterday),
+            KarmaData(name="Przesadzenie Palmy Areka", value=3, completed_at=yesterday),
             KarmaData(
                 name="Kupno i przywiezienie Strelicji oraz ziemi do roślin",
                 value=5,
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
-            KarmaData(name="Podlewanie Sukulentów", value=1, created_at=four_days_ago),
-            KarmaData(name="Walka z ćmą bukszpanową!", value=3, created_at=ten_days_ago),
+            KarmaData(name="Podlewanie Sukulentów", value=1, completed_at=four_days_ago),
+            KarmaData(name="Walka z ćmą bukszpanową!", value=3, completed_at=ten_days_ago),
             KarmaData(
                 name="Podlewanie i nawożenie roślin na balkonie",
                 value=2,
-                created_at=two_months_ago,
+                completed_at=two_months_ago,
             ),
         ],
     )
@@ -338,10 +338,9 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
             KarmaData(
                 name="Znalezienie kursu online na poziom C1",
                 value=4,
-                created_at=today,
-                is_task=True,
+                is_active_task=True,
             ),
-            KarmaData(name="Powtarzanie słówek", value=1, created_at=today),
+            KarmaData(name="Powtarzanie słówek", value=1, completed_at=today),
             KarmaData(
                 name='Czytanie "Miasteczka Salem" Kinga w oryginale',
                 value=3,
@@ -351,34 +350,34 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                     "<strong>ebooku</strong>? Na komputerze będzie łatwiej "
                     "sprawdzać i zapisywać nowe słówka.</p>"
                 ),
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
             KarmaData(
                 name="Lekcja indywidualna z Johnem",
                 value=5,
                 duration_in_m=60,
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
-            KarmaData(name="Powtarzanie słówek", value=1, created_at=two_days_ago),
+            KarmaData(name="Powtarzanie słówek", value=1, completed_at=two_days_ago),
             KarmaData(
                 name="Oglądanie materiału na YouTubie o idiomach",
                 value=2,
                 duration_in_m=30,
-                created_at=four_days_ago,
+                completed_at=four_days_ago,
             ),
-            KarmaData(name="Powtarzanie słówek", value=1, created_at=four_days_ago),
+            KarmaData(name="Powtarzanie słówek", value=1, completed_at=four_days_ago),
             KarmaData(
                 name='Czytanie "Miasteczka Salem" Kinga w oryginale',
                 value=8,
                 duration_in_m=120,
-                created_at=five_days_ago,
+                completed_at=five_days_ago,
             ),
-            KarmaData(name="Powtarzanie słówek", value=1, created_at=ten_days_ago),
+            KarmaData(name="Powtarzanie słówek", value=1, completed_at=ten_days_ago),
             KarmaData(
                 name="Robienie ćwiczeń z gramatyki",
                 value=3,
                 duration_in_m=45,
-                created_at=two_months_ago,
+                completed_at=two_months_ago,
             ),
         ],
     )
@@ -389,20 +388,19 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
             KarmaData(
                 name="Wymienić struny i wyregulować gitarę",
                 value=4,
-                created_at=today,
-                is_task=True,
+                is_active_task=True,
             ),
             KarmaData(
                 name="Ćwiczenie zadanego materiału",
                 value=2,
                 duration_in_m=30,
-                created_at=today,
+                completed_at=today,
             ),
             KarmaData(
                 name="Ćwiczenie zadanego materiału",
                 value=1,
                 duration_in_m=15,
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
             KarmaData(
                 name="Oglądanie filmiku o skalach muzycznych na YouTube",
@@ -416,43 +414,43 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                     "</a>"
                     "</p>"
                 ),
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
             KarmaData(
                 name="Lekcja z Mariuszem",
                 value=6,
                 duration_in_m=60,
-                created_at=three_days_ago,
+                completed_at=three_days_ago,
             ),
             KarmaData(
                 name="Ćwiczenie zadanego materiału",
                 value=4,
                 duration_in_m=60,
-                created_at=four_days_ago,
+                completed_at=four_days_ago,
             ),
             KarmaData(
                 name="Jam session u Roberta",
                 value=12,
                 duration_in_m=120,
-                created_at=five_days_ago,
+                completed_at=five_days_ago,
             ),
             KarmaData(
                 name="Nauka budowy akordów z podręcznikiem",
                 value=3,
                 duration_in_m=45,
-                created_at=six_days_ago,
+                completed_at=six_days_ago,
             ),
             KarmaData(
                 name="Ćwiczenie zadanego materiału",
                 value=2,
                 duration_in_m=30,
-                created_at=ten_days_ago,
+                completed_at=ten_days_ago,
             ),
             KarmaData(
                 name="Ćwiczenie zadanego materiału",
                 value=2,
                 duration_in_m=30,
-                created_at=two_months_ago,
+                completed_at=two_months_ago,
             ),
         ],
     )
@@ -463,8 +461,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
             KarmaData(
                 name='"Gambit królowej" - Walter Tevis',
                 value=8,
-                created_at=today,
-                is_task=True,
+                is_active_task=True,
                 note=(
                     "<p>"
                     "Hm, a może najpierw obejrzeć serial na "
@@ -478,56 +475,56 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                     "</p>"
                 ),
             ),
-            KarmaData(name='"Pieśń o Achillesie" - Madeline Miller', value=8, created_at=today),
+            KarmaData(name='"Pieśń o Achillesie" - Madeline Miller', value=8, completed_at=today),
             KarmaData(
                 name='"Diuna" - Frank Herbert',
                 value=16,
-                created_at=today - relativedelta(days=6),
+                completed_at=today - relativedelta(days=6),
             ),
             KarmaData(
                 name='"Sapiens. Od zwierząt do bogów" - Yuval Noah Harari',
                 value=20,
-                created_at=today - relativedelta(days=12),
+                completed_at=today - relativedelta(days=12),
             ),
             KarmaData(
                 name='"Nowy wspaniały świat" - Aldous Huxley',
                 value=10,
-                created_at=today - relativedelta(days=20),
+                completed_at=today - relativedelta(days=20),
             ),
             KarmaData(
                 name='"Sto lat samotności" - Gabriel García Márquez',
                 value=10,
-                created_at=today - relativedelta(days=24),
+                completed_at=today - relativedelta(days=24),
             ),
             KarmaData(
                 name='"Pan Lodowego Ogrodu - księga 1" - Jarosław Grzędowicz',
                 value=12,
-                created_at=today - relativedelta(days=30),
+                completed_at=today - relativedelta(days=30),
             ),
             KarmaData(
                 name='"Kocia kołyska" - Kurt Vonnegut',
                 value=8,
-                created_at=today - relativedelta(days=36),
+                completed_at=today - relativedelta(days=36),
             ),
             KarmaData(
                 name='"Cień wiatru" - Carlos Ruiz Zafón',
                 value=10,
-                created_at=today - relativedelta(days=42),
+                completed_at=today - relativedelta(days=42),
             ),
             KarmaData(
                 name='"Solaris" - Stanisław Lem',
                 value=7,
-                created_at=today - relativedelta(days=50),
+                completed_at=today - relativedelta(days=50),
             ),
             KarmaData(
                 name='"Pułapki myślenia. O myśleniu szybkim i wolnym" - Daniel Kahneman',
                 value=20,
-                created_at=today - relativedelta(days=60),
+                completed_at=today - relativedelta(days=60),
             ),
             KarmaData(
                 name='"Portret Doriana Graya" - Oscar Wilde',
                 value=7,
-                created_at=today - relativedelta(days=70),
+                completed_at=today - relativedelta(days=70),
             ),
         ],
     )
@@ -535,7 +532,7 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
     _create_karmas(
         karmaboard=karmaboards.family_relations,
         karma_data_collection=[
-            KarmaData(name="Odwiedzić ciocię Anię", value=4, created_at=yesterday, is_task=True),
+            KarmaData(name="Odwiedzić ciocię Anię", value=4, is_active_task=True),
             KarmaData(
                 name="Telefon do babci",
                 value=1,
@@ -546,16 +543,16 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
                     "<strong>zdjęcia mamy z dzieciństwa</strong>."
                     "</p>"
                 ),
-                created_at=yesterday,
+                completed_at=yesterday,
             ),
-            KarmaData(name="Wspólna kolacja z rodzicami", value=8, created_at=two_days_ago),
-            KarmaData(name="Pomoc dziadkom w sadzie", value=5, created_at=four_days_ago),
-            KarmaData(name="Rozmowa z mamą", value=5, duration_in_m=75, created_at=ten_days_ago),
+            KarmaData(name="Wspólna kolacja z rodzicami", value=8, completed_at=two_days_ago),
+            KarmaData(name="Pomoc dziadkom w sadzie", value=5, completed_at=four_days_ago),
+            KarmaData(name="Rozmowa z mamą", value=5, duration_in_m=75, completed_at=ten_days_ago),
             KarmaData(
                 name="Telefon do babci i dziadka",
                 value=2,
                 duration_in_m=30,
-                created_at=two_months_ago,
+                completed_at=two_months_ago,
             ),
         ],
     )
@@ -563,13 +560,12 @@ def create_karmas(karmaboards: KarmaBoards) -> None:
 
 def _create_karmas(karmaboard: KarmaBoard, karma_data_collection: List[KarmaData]) -> None:
     for karma_data in karma_data_collection:
-        karma = Karma.objects.create(
+        Karma.objects.create(
             karmaboard=karmaboard,
             name=karma_data.name,
             value=karma_data.value,
             duration_in_m=karma_data.duration_in_m,
-            is_task=karma_data.is_task,
+            is_active_task=karma_data.is_active_task,
+            completed_at=karma_data.completed_at,
             note=karma_data.note,
         )
-        karma.created_at = karma_data.created_at
-        karma.save()
