@@ -11,9 +11,7 @@ appdirs==1.4.4 \
 appnope==0.1.2 \
     --hash=sha256:93aa393e9d6c54c5cd570ccadd8edad61ea0c4b9ea7a01409020c9aa019eb442 \
     --hash=sha256:dd83cd4b5b460958838f6eb3000c660b1f9caf2a5b1de4264e941512f603258a
-    # via
-    #   -r requirements/abstract/dev.in
-    #   ipython
+    # via -r requirements/abstract/dev.in
 asgiref==3.4.1 \
     --hash=sha256:4ef1ab46b484e3c706329cedeff284a5d40824200638503f5768edb6de7d58e9 \
     --hash=sha256:ffc141aa908e6f175673e7b1b3b7af4fdb0ecb738fc5c8b88f69f055c2415214
@@ -53,9 +51,9 @@ boto3==1.19.3 \
     --hash=sha256:2dfc8cf34d6dfbdfca4c88e8fddf9fe95cde489fb83144fe35f989ec6790e325 \
     --hash=sha256:e36ffaf9969648e2f435aa1f0029956fea3aac52466eef3bcb43bde498a182dd
     # via -r requirements/abstract/base.in
-botocore==1.22.3 \
-    --hash=sha256:53ca22aeac9b53fe5ec1f40b8ca9620ffe8b054458abfeb9ab74bbe9e0b0ecfa \
-    --hash=sha256:aacdb9b8e09e356515966251d1e08d9929575a76af504992bfb941553dee59c2
+botocore==1.22.5 \
+    --hash=sha256:69780a647b7fef650fef18cba128795dade71b8c4c8fab57960592f217f9681f \
+    --hash=sha256:ad6a13d820c6b66859b12f0a43a4c5d9ae4fc62c76f3dc81115e0d1f77c2c3fb
     # via
     #   boto3
     #   s3transfer
@@ -337,9 +335,9 @@ factory-boy==3.2.0 \
     --hash=sha256:1d3db4b44b8c8c54cdd8b83ae4bdb9aeb121e464400035f1f03ae0e1eade56a4 \
     --hash=sha256:401cc00ff339a022f84d64a4339503d1689e8263a4478d876e58a3295b155c5b
     # via -r requirements/abstract/dev.in
-faker==9.6.0 \
-    --hash=sha256:072b61422be9da464b0bb40cdb44267dd584582056b77a2982d7c66c767f044c \
-    --hash=sha256:8ffd1ca479364a2ea78fe23a5710d5f940c50576f45c3f62edf9f7f9242cec0b
+faker==9.7.1 \
+    --hash=sha256:aad59a0cb82ac072f3109667fb2ba35ac45981ec22436c649d8fcdbf1c9e6927 \
+    --hash=sha256:d23cd665886d2e9680d90f3ce2af7a439f44de3c7becc78353ca2f49b0015352
     # via factory-boy
 flake8==3.9.2 \
     --hash=sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b \
@@ -541,8 +539,8 @@ loguru==0.5.3 \
     --hash=sha256:b28e72ac7a98be3d28ad28570299a393dfcd32e5e3f6a353dec94675767b6319 \
     --hash=sha256:f8087ac396b5ee5f67c963b495d615ebbceac2796379599820e324419d53667c
     # via -r requirements/abstract/base.in
-mailchimp-marketing==3.0.70 \
-    --hash=sha256:39dd6f3b7e6737c54d019f5b064de0ecde4838572b0053108ac8cc0485ca2142
+mailchimp-marketing==3.0.71 \
+    --hash=sha256:5473e1080ebe206d0a8fe10fcd84e9e2662dca38f79c0327233809f98ccc82ab
     # via -r requirements/abstract/base.in
 markupsafe==2.0.1 \
     --hash=sha256:01a9b8ea66f1658938f65b93a85ebe8bc016e6769611be228d797c9d998dd298 \
@@ -841,9 +839,9 @@ pyjwt==2.3.0 \
     --hash=sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41 \
     --hash=sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f
     # via social-auth-core
-pyparsing==3.0.1 \
-    --hash=sha256:84196357aa3566d64ad123d7a3c67b0e597a115c4934b097580e5ce220b91531 \
-    --hash=sha256:fd93fc45c47893c300bd98f5dd1b41c0e783eaeb727e7cea210dcc09d64ce7c3
+pyparsing==3.0.3 \
+    --hash=sha256:9e3511118010f112a4b4b435ae50e1eaa610cda191acb9e421d60cf5fde83455 \
+    --hash=sha256:f8d3fe9fc404576c5164f0f0c4e382c96b85265e023c409c43d48f65da9d60d0
     # via packaging
 pytest==6.2.5 \
     --hash=sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89 \
