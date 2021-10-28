@@ -20,6 +20,7 @@ class UserAdmin(UserAdmin):
         "modified_at",
     ]
     list_display_links = list_display
+    list_filter = ["is_active", "is_demo", "is_staff", "is_superuser"]
     search_fields = ["username", "full_name", "email"]
 
     fieldsets = [
